@@ -10,11 +10,13 @@ class Recipe {
   // and setters for you already, only write them if you want to override default
   // getter and setter.
 
-  Recipe({required this.name}); // Shortform way to write constructor with one named and required parameter.
+  // Shortform way to write constructor with one named and required parameter.
+  Recipe({required this.name});
 }
 
 // Example of how you would instantiate a `Recipe`:
-void main() { // This is analog to `public static void main(String[] args)`
+// This is analog to `public static void main(String[] args)`
+void main() {
   final recipe = Recipe(name: 'Steak');
   // Notice that:
   // - the `new` keyword is not required.

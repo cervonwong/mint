@@ -6,7 +6,8 @@ import 'package:flutter/material.dart';
 
 import 'ui/screens/random_recipe_screen.dart';
 
-void main() { // The start of the application.
+void main() {
+  // The start of the application.
   runApp(ExampleMvcApp());
 }
 
