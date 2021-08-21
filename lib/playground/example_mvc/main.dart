@@ -3,7 +3,9 @@
  */
 
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
+import 'controller/random_recipe_controller.dart';
 import 'ui/screens/random_recipe_screen.dart';
 
 void main() {
@@ -17,8 +19,13 @@ class ExampleMvcApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      home: RandomRecipeScreen(),
+    // This `ChangeNotifierProvider` makes our `RandomRecipeController` accessible
+    // to all widgets below it.
+    return ChangeNotifierProvider(
+      create: (context) => RandomRecipeController(),
+      child: MaterialApp(
+        home: RandomRecipeScreen(),
+      ),
     );
   }
 }
