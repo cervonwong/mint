@@ -1,0 +1,24 @@
+@startuml
+autonumber "<b>Step 0: "
+hide footbox
+
+title Sequence of what happens internally between UI and Controller in Example MVC.
+
+actor User
+participant "RandomRecipeButton" as button
+participant "RecipeLabel" as label
+participant "RandomRecipeController" as controller
+
+User -> button: Bonks button\n<i>"I want a random recipe please"
+button -> controller : <i>requestRandomRecipe()</i>\nRequest to generate random recipe
+
+note over controller: In an actual app, there will be more logic\nhere, such as database read/write.
+
+controller -> label  : <i>notifyListeners()</i>\nNotify all listeners something changed
+
+note over label: Many widgets can be notified by\ncontroller. In this example, only\nRecipeLabel needs to do something\nabout the change.
+
+label -> controller  : Calls <i>randomRecipe</i> getter\n(Consumer's builder handles this)
+controller --> label : <i>randomRecipe</i> is returned
+label --> User       : Displays to user new random recipe :)
+@enduml
