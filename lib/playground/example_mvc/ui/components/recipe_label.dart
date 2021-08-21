@@ -12,6 +12,8 @@ class RecipeLabel extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // Consumers allow widgets to listen to controllers. The builder is such
+    // that this stateless widget, can rebuild a part of itself when needed.
     return Consumer<RandomRecipeController>(
       builder: (_, controller, __) {
         return Text(

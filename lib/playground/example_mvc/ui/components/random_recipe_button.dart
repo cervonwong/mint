@@ -12,13 +12,17 @@ class RandomRecipeButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Consumer<RandomRecipeController>(builder: (_, controller, __) {
-      return ElevatedButton(
-        onPressed: () {
-          controller.requestRandomRecipe();
-        },
-        child: Text('Generate random recipe!'),
-      );
-    });
+    // Consumers allow widgets to listen to controllers. The builder is such
+    // that this stateless widget, can rebuild a part of itself when needed.
+    return Consumer<RandomRecipeController>(
+      builder: (_, controller, __) {
+        return ElevatedButton(
+          onPressed: () {
+            controller.requestRandomRecipe();
+          },
+          child: Text('Generate random recipe!'),
+        );
+      },
+    );
   }
 }
