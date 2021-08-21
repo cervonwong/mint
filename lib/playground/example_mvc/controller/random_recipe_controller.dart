@@ -24,6 +24,9 @@ class RandomRecipeController extends ChangeNotifier {
 
   // The UI widgets call this function.
   void requestRandomRecipe() {
+    // In an actual app, this function would for example read recipes from a
+    // database. Or maybe this function would write new data into the database
+    // then inform listeners that they need to change the UI, etc.
     _randomRecipe = _generateRandomRecipe();
     notifyListeners(); // Triggers all UI widgets who are listening to this class to update their UI.
   }
@@ -34,7 +37,7 @@ Recipe _generateRandomRecipe() {
 // Yes, you can nest functions in functions.
   String generateRandomName() {
     final random = Random();
-    const adjectives = ['Delicious' 'Chewy', 'Uncooked', 'Sour'];
+    const adjectives = ['Delicious', 'Chewy', 'Uncooked', 'Sour'];
     const mains = ['Steak', 'Chicken', 'Mouse', 'Cod'];
     const sides = ['Potatoes', 'Sticks', 'Grits', 'Tomatoes'];
 
