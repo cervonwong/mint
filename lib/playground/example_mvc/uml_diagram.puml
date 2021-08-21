@@ -1,6 +1,6 @@
 @startuml
 
-title Dependencies between stuff\n
+title Dependencies between model, controller, and UI in Example MVC.\n
 
 skinparam maxMessageSize 100
 skinparam objectFontName Monospaced
@@ -10,7 +10,7 @@ skinparam arrowFontSize 12
 skinparam titleFontSize 24
 
 object RandomRecipeController {
-    Controller should not depend\non UI, UI decides when to request,\nand how to react to data,\ncontroller doesnt explicitly\ncontrol it.
+    Controller should not depend on UI, instead UI decides\nwhen to request, and how to react to data, controller\ndoesn't explicitly tell them to do it.
 }
 object RandomRecipeButton
 object RecipeLabel
