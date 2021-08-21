@@ -1,0 +1,33 @@
+@startuml
+
+title Dependencies between stuff
+
+skinparam maxMessageSize 100
+skinparam defaultFontName Monospaced
+skinparam objectFontSize 16
+skinparam objectFontStyle bold
+skinparam arrowFontSize 12
+skinparam titleFontSize 24
+skinparam titleFontStyle bold
+
+object RandomRecipeController {
+    Controller should not depend\non UI, UI decides when to request,\nand how to react to data,\ncontroller doesnt explicitly\ncontrol it.
+}
+object RandomRecipeButton
+object RecipeLabel
+object Recipe {
+    Model should not know anything\nabout the existence of controllers or UI.
+}
+
+RandomRecipeController <.. RandomRecipeButton : < depends on controller to request changes
+RandomRecipeController <.. RecipeLabel : < depends on controller to react to changes
+Recipe <.. RandomRecipeController : < depends on model to send data
+Recipe <.. RecipeLabel : < depends on model to receive data
+
+note as n
+    If you import something,
+    then you depend on it.
+    The converse is also true.
+endnote
+
+@enduml
