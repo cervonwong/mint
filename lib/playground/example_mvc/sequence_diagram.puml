@@ -1,8 +1,11 @@
 @startuml
 autonumber "<b>Step 0: "
 hide footbox
+skinparam titleFontSize 24
+skinparam participantFontName Monospaced
+skinparam participantFontStyle bold
 
-title Sequence of what happens internally between UI and Controller in Example MVC.
+title Sequence of what happens internally between UI and Controller in Example MVC.\n
 
 actor User
 participant "RandomRecipeButton" as button
