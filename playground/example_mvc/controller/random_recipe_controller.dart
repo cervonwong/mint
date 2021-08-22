@@ -5,7 +5,8 @@
 import 'dart:math';
 
 import 'package:flutter/foundation.dart';
-import 'package:mint/playground/example_mvc/models/recipe.dart';
+
+import '../models/recipe.dart';
 
 // The official, scant explanation of Providers and ChangeNotifiers:
 // https://flutter.dev/docs/development/data-and-backend/state-mgmt/simple#changenotifier
