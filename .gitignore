@@ -14,7 +14,7 @@
 *.ipr
 *.iws
 .idea/libraries
-.idea/runConfigurations
+.idea/runConfigurations.xml
 .idea/misc.xml
 .idea/modules.xml
 .idea/vcs.xml
