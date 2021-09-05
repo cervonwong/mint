@@ -14,14 +14,14 @@ class ColorConstants {
   static const whitePrimary = Color(0xFFFFFFFF);
   static const whiteSecondary = Color(0xB3FFFFFF); // 70%.
 
-  static const greenPrimary = Color(0xFF468162);
-  static const greenLightOverlay = Color(0x0D468162); // 5%.
-  static const greenOverlay = Color(0x1A468162); // 10%.
-  static const greenLightBorder = Color(0x33468162); // 20%.
-  static const greenBorder = Color(0x4D468162); // 30%.
-  static const greenDisabled = Color(0x66468162); // 40%.
-  static const greenInactive = Color(0x80468162); // 50%.
-  static const greenDark = Color(0xFF2A6341);
+  static const greenPrimary = Color(0xFF329561);
+  static const greenLightOverlay = Color(0x0D329561); // 5%.
+  static const greenOverlay = Color(0x1A329561); // 10%.
+  static const greenLightBorder = Color(0x33329561); // 20%.
+  static const greenBorder = Color(0x4D329561); // 30%.
+  static const greenDisabled = Color(0x66329561); // 40%.
+  static const greenInactive = Color(0x80329561); // 50%.
+  static const greenDark = Color(0xFF276640);
 
   static const ivoryPrimary = Color(0xFFFFFCEB);
   static const ivoryOverlay = Color(0xEBFFFCEB); // 92%.
