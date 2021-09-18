@@ -22,7 +22,10 @@ class ColorConstants {
   static const greenDisabled = Color(0x66329561); // 40%.
   static const greenInactive = Color(0x80329561); // 50%.
   static const greenDark = Color(0xFF276640);
+  static const greenOverlayOnWhite = Color(0xFFEBF5F0);
 
   static const ivoryPrimary = Color(0xFFFFFCEB);
-  static const ivoryOverlay = Color(0xEBFFFCEB); // 92%.
+  static const ivoryOverlay = Color(0xE6FFFCEB); // 90%.
+
+  static const redPrimary = Color(0xFFE05252);
 }
