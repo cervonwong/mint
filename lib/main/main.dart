@@ -4,7 +4,14 @@
 
 import 'package:flutter/material.dart';
 
+import 'package:get_it/get_it.dart';
+import 'package:provider/provider.dart';
+
+import 'package:mint/main/ui/utils/layout_controller.dart';
+import 'di/injection_container.dart' as injection_container;
+
 void main() {
+  injection_container.configureDependencies();
   runApp(MyApp());
 }
 
@@ -16,7 +23,25 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: MyHomePage(title: 'Flutter Demo Home Page'),
+      home: LayoutControllerProviderWrapper(),
+    );
+  }
+}
+
+class LayoutControllerProviderWrapper extends StatelessWidget {
+  LayoutControllerProviderWrapper({Key? key}) : super(key: key);
+
+  final layoutController = GetIt.instance<LayoutController>();
+
+  @override
+  Widget build(BuildContext context) {
+    layoutController.updateWidth(MediaQuery.of(context).size.width);
+
+    return ChangeNotifierProvider(
+      create: (_) {
+        return layoutController;
+      },
+      child: MyHomePage(title: 'Flutter Demo Home Page'),
     );
   }
 }
@@ -53,7 +78,7 @@ class _MyHomePageState extends State<MyHomePage> {
               'You have pushed the button this many times:',
             ),
             Text(
-              '$_counter',
+              '${Provider.of<LayoutController>(context).breakpoint} $_counter',
               style: Theme.of(context).textTheme.headline4,
             ),
           ],
