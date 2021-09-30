@@ -2,15 +2,17 @@
  * Copyright (C) 2021 Cervon Wong and Lee I-Shiang
  */
 
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-
 import 'package:get_it/get_it.dart';
+import 'package:mint/main/ui/utils/layout_controller.dart';
 import 'package:provider/provider.dart';
 
-import 'package:mint/main/ui/utils/layout_controller.dart';
 import 'di/injection_container.dart' as injection_container;
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
   injection_container.configureDependencies();
   runApp(MyApp());
 }
