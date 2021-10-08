@@ -51,3 +51,5 @@ app.*.map.json
 /android/app/debug
 /android/app/profile
 /android/app/release
+/.idea/shelf/Uncommitted_changes_before_Update_at_9_30_2021_3_50_PM_[Changes]/shelved.patch
+/.idea/shelf/Uncommitted_changes_before_Update_at_9_30_2021_3_50_PM__Changes_.xml

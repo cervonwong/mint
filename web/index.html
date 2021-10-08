@@ -12,7 +12,6 @@
     * https://developer.mozilla.org/en-US/docs/Web/HTML/Element/base
   -->
   <base href="/">
-
   <meta charset="UTF-8">
   <meta content="IE=Edge" http-equiv="X-UA-Compatible">
   <meta name="description" content="Mint.">
@@ -27,11 +26,14 @@
   <link rel="manifest" href="manifest.json">
 </head>
 <body>
-  <!-- This script installs service_worker.js to provide PWA functionality to
-       application. For more information, see:
-       https://developers.google.com/web/fundamentals/primers/service-workers -->
-  <script>
-    var serviceWorkerVersion = null;
+<script src="https://www.gstatic.com/firebasejs/7.5.0/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.5.0/firebase-firestore.js"></script>
+<!-- ADD THIS BEFORE YOUR main.dart.js SCRIPT -->
+<!-- This script installs service_worker.js to provide PWA functionality to
+     application. For more information, see:
+     https://developers.google.com/web/fundamentals/primers/service-workers -->
+<script>
+    var serviceWorkerVersion = '1416607294';
     var scriptLoaded = false;
     function loadMainDartJs() {
       if (scriptLoaded) {
@@ -43,6 +45,20 @@
       scriptTag.type = 'application/javascript';
       document.body.append(scriptTag);
     }
+
+    // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+    var firebaseConfig = {
+      apiKey: "AIzaSyC7DTItztiuBhT3fmRSJxme5AXyUN9DFb4",
+      authDomain: "mint-def9e.firebaseapp.com",
+      databaseURL: "https://mint-def9e-default-rtdb.asia-southeast1.firebasedatabase.app",
+      projectId: "mint-def9e",
+      storageBucket: "mint-def9e.appspot.com",
+      messagingSenderId: "754043097134",
+      appId: "1:754043097134:web:4015e1c93c6ff8ecf08fbf",
+      measurementId: "G-YTF4RB0PCY"
+    };
+
+    firebase.initializeApp(firebaseConfig);
 
     if ('serviceWorker' in navigator) {
       // Service workers are supported. Use them.
@@ -93,6 +109,12 @@
       // Service workers not supported. Just drop the <script> tag.
       loadMainDartJs();
     }
-  </script>
+
+</script>
+<script src="main.dart.js" type="application/javascript"></script>
 </body>
 </html>
+<!--
+  ~ Copyright (C) 2021 Cervon Wong and Lee I-Shiang
+  -->
+
