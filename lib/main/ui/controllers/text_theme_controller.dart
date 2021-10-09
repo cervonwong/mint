@@ -56,16 +56,17 @@ class TextThemeController extends ChangeNotifier {
   TextStyle get button8 => _button8;
   late TextStyle _button8; // button.
 
-  final LayoutController layoutController;
+  final LayoutController _layoutController;
 
-  TextThemeController({required this.layoutController}) {
+  TextThemeController({required LayoutController layoutController})
+      : _layoutController = layoutController {
     layoutController.addListener(() {
       updateFontSizes();
     });
   }
 
   void updateFontSizes() {
-    final breakpoint = layoutController.breakpoint;
+    final breakpoint = _layoutController.breakpoint;
 
     const String _redHatText = 'Red Hat Text';
     const String _redHatDisplay = 'Red Hat Display';
