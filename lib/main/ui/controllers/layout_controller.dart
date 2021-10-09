@@ -12,10 +12,10 @@ import 'package:flutter/material.dart';
 class LayoutController extends ChangeNotifier {
   late double _width;
 
-  get margin => _margin;
+  double get margin => _margin;
   late double _margin;
 
-  get breakpoint => _breakpoint;
+  LayoutBreakpoint get breakpoint => _breakpoint;
   late LayoutBreakpoint _breakpoint;
 
   LayoutController();
