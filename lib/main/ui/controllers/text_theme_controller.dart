@@ -25,34 +25,34 @@ class TextThemeController extends ChangeNotifier {
   TextStyle get headline6 => _headline6;
   late TextStyle _headline6;
 
-  TextStyle get subtitle7 => subtitle7;
+  TextStyle get subtitle7 => _subtitle7;
   late TextStyle _subtitle7; // subtitle1.
 
-  TextStyle get subtitle8 => subtitle8;
+  TextStyle get subtitle8 => _subtitle8;
   late TextStyle _subtitle8; // subtitle2.
 
-  TextStyle get body6 => body6;
+  TextStyle get body6 => _body6;
   late TextStyle _body6; // bodyText with size of headline6.
 
-  TextStyle get body7 => body7;
+  TextStyle get body7 => _body7;
   late TextStyle _body7; // bodyText1.
 
-  TextStyle get body8 => body8;
+  TextStyle get body8 => _body8;
   late TextStyle _body8; // bodyText2.
 
-  TextStyle get body9 => body9;
+  TextStyle get body9 => _body9;
   late TextStyle _body9; // caption.
 
-  TextStyle get body10 => body10;
+  TextStyle get body10 => _body10;
   late TextStyle _body10; // overline.
 
-  TextStyle get button6 => button6;
+  TextStyle get button6 => _button6;
   late TextStyle _button6; // button with size of body6.
 
-  TextStyle get button7 => button7;
+  TextStyle get button7 => _button7;
   late TextStyle _button7; // button with size of body7.
 
-  TextStyle get button8 => button8;
+  TextStyle get button8 => _button8;
   late TextStyle _button8; // button.
 
   final LayoutController layoutController;
