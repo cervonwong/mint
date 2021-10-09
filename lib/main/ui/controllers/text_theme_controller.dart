@@ -3,8 +3,8 @@
  */
 
 import 'package:flutter/material.dart';
-import 'package:mint/main/ui/constants/color_constants.dart';
 
+import 'package:mint/main/ui/constants/color_constants.dart';
 import 'layout_controller.dart';
 
 class TextThemeController extends ChangeNotifier {
