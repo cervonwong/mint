@@ -109,9 +109,9 @@ final TextTheme smallestTextTheme = TextTheme(
     fontWeight: _mediumWeight,
   ),
 ).apply(
-    bodyColor: ColorConstants.blackPrimary,
-    displayColor: ColorConstants.blackPrimary,
-  );
+  bodyColor: ColorConstants.blackPrimary,
+  displayColor: ColorConstants.blackPrimary,
+);
 
 const AppBarTheme appBarTheme = AppBarTheme(
   backgroundColor: ColorConstants.ivoryPrimary,
