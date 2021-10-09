@@ -3,6 +3,7 @@
  */
 
 import 'package:flutter/material.dart';
+import 'package:mint/main/ui/constants/color_constants.dart';
 
 import 'layout_controller.dart';
 
@@ -72,89 +73,93 @@ class TextThemeController extends ChangeNotifier {
     const FontWeight _mediumWeight = FontWeight.w500;
     const FontWeight _regularWeight = FontWeight.w400;
     const double _globalFontSizeFactor = 1.0;
+    const TextStyle baseTextStyle = TextStyle(
+      color: ColorConstants.blackPrimary,
+    );
 
     switch (breakpoint) {
+      // Currently font size is not responsive.
       case LayoutBreakpoint.smallest:
       case LayoutBreakpoint.small:
       case LayoutBreakpoint.medium:
       case LayoutBreakpoint.large:
       case LayoutBreakpoint.largest:
-        _headline1 = TextStyle(
+        _headline1 = baseTextStyle.copyWith(
           fontFamily: _redHatDisplay,
           fontSize: 80.0 * _globalFontSizeFactor,
           fontWeight: _mediumWeight,
         );
-        _headline2 = TextStyle(
+        _headline2 = baseTextStyle.copyWith(
           fontFamily: _redHatDisplay,
           fontSize: 72.0 * _globalFontSizeFactor,
           fontWeight: _mediumWeight,
         );
-        _headline3 = TextStyle(
+        _headline3 = baseTextStyle.copyWith(
           fontFamily: _redHatDisplay,
           fontSize: 46.0 * _globalFontSizeFactor,
           fontWeight: _mediumWeight,
         );
-        _headline4 = TextStyle(
+        _headline4 = baseTextStyle.copyWith(
           fontFamily: _redHatDisplay,
           fontSize: 34.0 * _globalFontSizeFactor,
           fontWeight: _mediumWeight,
         );
-        _headline5 = TextStyle(
+        _headline5 = baseTextStyle.copyWith(
           fontFamily: _redHatDisplay,
           fontSize: 25.0 * _globalFontSizeFactor,
           fontWeight: _mediumWeight,
         );
-        _headline6 = TextStyle(
+        _headline6 = baseTextStyle.copyWith(
           fontFamily: _redHatDisplay,
           fontSize: 21.0 * _globalFontSizeFactor,
           fontWeight: _mediumWeight,
         );
-        _subtitle7 = TextStyle(
+        _subtitle7 = baseTextStyle.copyWith(
           fontFamily: _redHatText,
           fontSize: 17.0 * _globalFontSizeFactor,
           fontWeight: _mediumWeight,
         );
-        _subtitle8 = TextStyle(
+        _subtitle8 = baseTextStyle.copyWith(
           fontFamily: _redHatText,
           fontSize: 14.0 * _globalFontSizeFactor,
           fontWeight: _mediumWeight,
         );
-        _body6 = TextStyle(
+        _body6 = baseTextStyle.copyWith(
           fontFamily: _redHatText,
           fontSize: 21.0 * _globalFontSizeFactor,
           fontWeight: _regularWeight,
         );
-        _body7 = TextStyle(
+        _body7 = baseTextStyle.copyWith(
           fontFamily: _redHatText,
           fontSize: 17.0 * _globalFontSizeFactor,
           fontWeight: _regularWeight,
         );
-        _body8 = TextStyle(
+        _body8 = baseTextStyle.copyWith(
           fontFamily: _redHatText,
           fontSize: 14.0 * _globalFontSizeFactor,
           fontWeight: _regularWeight,
         );
-        _body9 = TextStyle(
+        _body9 = baseTextStyle.copyWith(
           fontFamily: _redHatText,
           fontSize: 12.0 * _globalFontSizeFactor,
           fontWeight: _regularWeight,
         );
-        _body10 = TextStyle(
+        _body10 = baseTextStyle.copyWith(
           fontFamily: _redHatText,
           fontSize: 10.0 * _globalFontSizeFactor,
           fontWeight: _mediumWeight,
         );
-        _button6 = TextStyle(
+        _button6 = baseTextStyle.copyWith(
           fontFamily: _redHatDisplay,
           fontSize: 21.0 * _globalFontSizeFactor,
           fontWeight: _boldWeight,
         );
-        _button7 = TextStyle(
+        _button7 = baseTextStyle.copyWith(
           fontFamily: _redHatDisplay,
           fontSize: 17.0 * _globalFontSizeFactor,
           fontWeight: _boldWeight,
         );
-        _button8 = TextStyle(
+        _button8 = baseTextStyle.copyWith(
           fontFamily: _redHatDisplay,
           fontSize: 14.0 * _globalFontSizeFactor,
           fontWeight: _boldWeight,
