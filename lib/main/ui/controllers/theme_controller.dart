@@ -12,7 +12,7 @@ class ThemeController extends ChangeNotifier {
   late ThemeData _themeData;
 
   ColorScheme get colorScheme => _colorScheme;
-  late ColorScheme _colorScheme;
+  ColorScheme _colorScheme = _createColorScheme();
 
   AppBarTheme get appBarTheme => _appBarTheme;
   late AppBarTheme _appBarTheme;
@@ -21,21 +21,27 @@ class ThemeController extends ChangeNotifier {
       _elevatedButton7ThemeData;
   late ElevatedButtonThemeData _elevatedButton7ThemeData;
 
+  IconThemeData get iconThemeData => _iconThemeData;
+  IconThemeData _iconThemeData = _createIconThemeData();
+
   InputDecorationTheme get inputDecorationTheme => _inputDecorationTheme;
   late InputDecorationTheme _inputDecorationTheme;
 
   final TextThemeController _textThemeController;
 
+  // CONSTRUCTOR
   ThemeController({required TextThemeController textThemeController})
       : _textThemeController = textThemeController {
     _textThemeController.addListener(() {
-      _colorScheme = _updateColorScheme();
-      _appBarTheme = _updateAppBarTheme();
-      _elevatedButton7ThemeData =
-          _updateElevatedButton7ThemeData(textThemeController);
-      _inputDecorationTheme = _updateInputDecorationTheme();
+      _updateTextDependentThemes();
       _themeData = _createThemeData();
     });
+  }
+
+  void _updateTextDependentThemes() {
+    _appBarTheme = _updateAppBarTheme();
+    _elevatedButton7ThemeData = _updateElevatedButton7ThemeData();
+    _inputDecorationTheme = _updateInputDecorationTheme();
   }
 
   ThemeData _createThemeData() {
@@ -46,14 +52,20 @@ class ThemeController extends ChangeNotifier {
       // Other themeData.
       appBarTheme: appBarTheme,
       elevatedButtonTheme: elevatedButton7ThemeData,
+      iconTheme: iconThemeData,
       inputDecorationTheme: inputDecorationTheme,
 
       // Misc. arguments.
       scaffoldBackgroundColor: ColorConstants.ivoryPrimary,
+
+      splashColor: ColorConstants.greenLightOverlay,
+      highlightColor: ColorConstants.greenLightOverlay,
+      hoverColor: ColorConstants.greenLightOverlay,
     );
   }
 
-  ColorScheme _updateColorScheme() {
+  // TEXT INDEPENDENT STATIC THEME CREATION METHODS
+  static ColorScheme _createColorScheme() {
     return ColorScheme(
       primary: ColorConstants.greenPrimary,
       primaryVariant: ColorConstants.greenDark,
@@ -71,6 +83,13 @@ class ThemeController extends ChangeNotifier {
     );
   }
 
+  static IconThemeData _createIconThemeData() {
+    return IconThemeData(
+      color: ColorConstants.greenPrimary,
+    );
+  }
+
+  // TEXT DEPENDENT THEME UPDATING METHODS
   AppBarTheme _updateAppBarTheme() {
     return AppBarTheme(
       backgroundColor: ColorConstants.ivoryPrimary,
@@ -83,12 +102,11 @@ class ThemeController extends ChangeNotifier {
     );
   }
 
-  ElevatedButtonThemeData _updateElevatedButton7ThemeData(
-      TextThemeController textThemeController) {
+  ElevatedButtonThemeData _updateElevatedButton7ThemeData() {
     return ElevatedButtonThemeData(
       style: ButtonStyle(
         textStyle: MaterialStateProperty.all<TextStyle>(
-          textThemeController.button7,
+          _textThemeController.button7,
         ),
         shadowColor: MaterialStateProperty.all<Color>(
           ColorConstants.greenLightOverlay,
