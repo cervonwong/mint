@@ -49,6 +49,7 @@ class ThemeController extends ChangeNotifier {
     return ThemeData(
       // Essential ThemeData.
       colorScheme: colorScheme,
+      textTheme: _textThemeController.textTheme,
 
       // Other themeData.
       appBarTheme: appBarTheme,

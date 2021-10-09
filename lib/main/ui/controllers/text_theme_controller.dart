@@ -56,16 +56,21 @@ class TextThemeController extends ChangeNotifier {
   TextStyle get button8 => _button8;
   late TextStyle _button8; // button.
 
+  TextTheme get textTheme => _textTheme;
+  late TextTheme _textTheme;
+
   final LayoutController _layoutController;
 
   TextThemeController({required LayoutController layoutController})
       : _layoutController = layoutController {
     layoutController.addListener(() {
-      updateFontSizes();
+      _updateFontSizes();
+      _textTheme = _createTextTheme();
+      notifyListeners();
     });
   }
 
-  void updateFontSizes() {
+  void _updateFontSizes() {
     final breakpoint = _layoutController.breakpoint;
 
     const String _redHatText = 'Red Hat Text';
@@ -166,6 +171,23 @@ class TextThemeController extends ChangeNotifier {
           fontWeight: _boldWeight,
         );
     }
-    notifyListeners();
+  }
+
+  TextTheme _createTextTheme() {
+    return TextTheme(
+      headline1: _headline1,
+      headline2: _headline2,
+      headline3: _headline3,
+      headline4: _headline4,
+      headline5: _headline5,
+      headline6: _headline6,
+      subtitle1: _subtitle7,
+      subtitle2: _subtitle8,
+      bodyText1: _body7,
+      bodyText2: _body8,
+      caption: _body9,
+      button: _button8,
+      overline: _body10,
+    );
   }
 }
