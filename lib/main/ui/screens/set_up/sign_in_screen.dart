@@ -8,6 +8,7 @@ import 'package:provider/provider.dart';
 
 import 'package:mint/main/ui/components/shared/listen_icon_button.dart';
 import 'package:mint/main/ui/components/shared/shared_buttons.dart';
+import 'package:mint/main/ui/components/shared/shared_text_form_field.dart';
 import 'package:mint/main/ui/constants/color_constants.dart';
 import 'package:mint/main/ui/controllers/layout_controller.dart';
 import 'package:mint/main/ui/controllers/text_theme_controller.dart';
@@ -56,7 +57,7 @@ class SignInScreen extends StatelessWidget {
                     style: Provider.of<TextThemeController>(context).subtitle7,
                   ),
                   SizedBox(height: 4.0),
-                  TextFormField(
+                  SharedTextFormField(
                     decoration: InputDecoration(
                       hintText: 'Enter email',
                     ),
@@ -67,7 +68,7 @@ class SignInScreen extends StatelessWidget {
                     style: Provider.of<TextThemeController>(context).subtitle7,
                   ),
                   SizedBox(height: 4.0),
-                  TextFormField(
+                  SharedTextFormField(
                     decoration: InputDecoration(
                       hintText: 'Enter password',
                     ),
