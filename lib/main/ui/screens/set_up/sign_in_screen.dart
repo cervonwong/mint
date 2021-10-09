@@ -3,6 +3,7 @@
  */
 
 import 'package:flutter/material.dart';
+import 'package:mint/main/ui/components/shared/listen_icon_button.dart';
 import 'package:mint/main/ui/components/shared/shared_buttons.dart';
 import 'package:mint/main/ui/constants/color_constants.dart';
 import 'package:mint/main/ui/controllers/layout_controller.dart';
@@ -45,7 +46,10 @@ class SignInScreen extends StatelessWidget {
                         ),
                   ),
                   SizedBox(height: 8.0),
-                  Icon(Icons.volume_up),
+                  ListenIconButton(
+                    text: 'Please pass your device to your instructor '
+                        'to help you sign in.',
+                  ),
                   SizedBox(height: 48.0),
                   SelectableText(
                     'Email',
