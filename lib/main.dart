@@ -10,9 +10,9 @@ import 'package:provider/provider.dart';
 
 import 'package:mint/main/ui/controllers/text_theme_controller.dart';
 import 'package:mint/main/ui/screens/set_up/sign_in_screen.dart';
-import 'package:mint/main/ui/themes.dart';
 import 'main/di/injection_container.dart' as injection_container;
 import 'main/ui/controllers/layout_controller.dart';
+import 'main/ui/controllers/theme_controller.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -26,7 +26,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flutter Demo',
-      theme: kThemeData,
+      theme: null, // Useless, will define in a `Theme` wrapper below.
       home: LayoutControllerProviderWrapper(),
     );
   }
@@ -37,6 +37,7 @@ class LayoutControllerProviderWrapper extends StatelessWidget {
 
   final layoutController = GetIt.instance<LayoutController>();
   final textThemeController = GetIt.instance<TextThemeController>();
+  final themeController = GetIt.instance<ThemeController>();
 
   @override
   Widget build(BuildContext context) {
@@ -46,8 +47,12 @@ class LayoutControllerProviderWrapper extends StatelessWidget {
       providers: [
         ChangeNotifierProvider(create: (_) => layoutController),
         ChangeNotifierProvider(create: (_) => textThemeController),
+        ChangeNotifierProvider(create: (_) => themeController),
       ],
-      child: SignInScreen(),
+      child: Theme(
+        data: themeController.themeData,
+        child: SignInScreen(),
+      ),
     );
   }
 }
