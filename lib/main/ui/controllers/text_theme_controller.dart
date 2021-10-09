@@ -1,0 +1,165 @@
+/*
+ * Copyright (C) 2021 Cervon Wong and Lee I-Shiang
+ */
+
+import 'package:flutter/material.dart';
+
+import 'layout_controller.dart';
+
+class TextThemeController extends ChangeNotifier {
+  TextStyle get headline1 => _headline1;
+  late TextStyle _headline1;
+
+  TextStyle get headline2 => _headline2;
+  late TextStyle _headline2;
+
+  TextStyle get headline3 => _headline3;
+  late TextStyle _headline3;
+
+  TextStyle get headline4 => _headline4;
+  late TextStyle _headline4;
+
+  TextStyle get headline5 => _headline5;
+  late TextStyle _headline5;
+
+  TextStyle get headline6 => _headline6;
+  late TextStyle _headline6;
+
+  TextStyle get subtitle7 => subtitle7;
+  late TextStyle _subtitle7; // subtitle1.
+
+  TextStyle get subtitle8 => subtitle8;
+  late TextStyle _subtitle8; // subtitle2.
+
+  TextStyle get body6 => body6;
+  late TextStyle _body6; // bodyText with size of headline6.
+
+  TextStyle get body7 => body7;
+  late TextStyle _body7; // bodyText1.
+
+  TextStyle get body8 => body8;
+  late TextStyle _body8; // bodyText2.
+
+  TextStyle get body9 => body9;
+  late TextStyle _body9; // caption.
+
+  TextStyle get body10 => body10;
+  late TextStyle _body10; // overline.
+
+  TextStyle get button6 => button6;
+  late TextStyle _button6; // button with size of body6.
+
+  TextStyle get button7 => button7;
+  late TextStyle _button7; // button with size of body7.
+
+  TextStyle get button8 => button8;
+  late TextStyle _button8; // button.
+
+  final LayoutController layoutController;
+
+  TextThemeController({required this.layoutController}) {
+    layoutController.addListener(() {
+      updateFontSizes();
+    });
+  }
+
+  void updateFontSizes() {
+    final breakpoint = layoutController.breakpoint;
+
+    const String _redHatText = 'Red Hat Text';
+    const String _redHatDisplay = 'Red Hat Display';
+    const FontWeight _boldWeight = FontWeight.bold;
+    const FontWeight _mediumWeight = FontWeight.w500;
+    const FontWeight _regularWeight = FontWeight.w400;
+    const double _globalFontSizeFactor = 1.0;
+
+    switch (breakpoint) {
+      case LayoutBreakpoint.smallest:
+      case LayoutBreakpoint.small:
+      case LayoutBreakpoint.medium:
+      case LayoutBreakpoint.large:
+      case LayoutBreakpoint.largest:
+        _headline1 = TextStyle(
+          fontFamily: _redHatDisplay,
+          fontSize: 80.0 * _globalFontSizeFactor,
+          fontWeight: _mediumWeight,
+        );
+        _headline2 = TextStyle(
+          fontFamily: _redHatDisplay,
+          fontSize: 72.0 * _globalFontSizeFactor,
+          fontWeight: _mediumWeight,
+        );
+        _headline3 = TextStyle(
+          fontFamily: _redHatDisplay,
+          fontSize: 46.0 * _globalFontSizeFactor,
+          fontWeight: _mediumWeight,
+        );
+        _headline4 = TextStyle(
+          fontFamily: _redHatDisplay,
+          fontSize: 34.0 * _globalFontSizeFactor,
+          fontWeight: _mediumWeight,
+        );
+        _headline5 = TextStyle(
+          fontFamily: _redHatDisplay,
+          fontSize: 25.0 * _globalFontSizeFactor,
+          fontWeight: _mediumWeight,
+        );
+        _headline6 = TextStyle(
+          fontFamily: _redHatDisplay,
+          fontSize: 21.0 * _globalFontSizeFactor,
+          fontWeight: _mediumWeight,
+        );
+        _subtitle7 = TextStyle(
+          fontFamily: _redHatText,
+          fontSize: 17.0 * _globalFontSizeFactor,
+          fontWeight: _mediumWeight,
+        );
+        _subtitle8 = TextStyle(
+          fontFamily: _redHatText,
+          fontSize: 14.0 * _globalFontSizeFactor,
+          fontWeight: _mediumWeight,
+        );
+        _body6 = TextStyle(
+          fontFamily: _redHatText,
+          fontSize: 21.0 * _globalFontSizeFactor,
+          fontWeight: _regularWeight,
+        );
+        _body7 = TextStyle(
+          fontFamily: _redHatText,
+          fontSize: 17.0 * _globalFontSizeFactor,
+          fontWeight: _regularWeight,
+        );
+        _body8 = TextStyle(
+          fontFamily: _redHatText,
+          fontSize: 14.0 * _globalFontSizeFactor,
+          fontWeight: _regularWeight,
+        );
+        _body9 = TextStyle(
+          fontFamily: _redHatText,
+          fontSize: 12.0 * _globalFontSizeFactor,
+          fontWeight: _regularWeight,
+        );
+        _body10 = TextStyle(
+          fontFamily: _redHatText,
+          fontSize: 10.0 * _globalFontSizeFactor,
+          fontWeight: _mediumWeight,
+        );
+        _button6 = TextStyle(
+          fontFamily: _redHatDisplay,
+          fontSize: 21.0 * _globalFontSizeFactor,
+          fontWeight: _boldWeight,
+        );
+        _button7 = TextStyle(
+          fontFamily: _redHatDisplay,
+          fontSize: 17.0 * _globalFontSizeFactor,
+          fontWeight: _boldWeight,
+        );
+        _button8 = TextStyle(
+          fontFamily: _redHatDisplay,
+          fontSize: 14.0 * _globalFontSizeFactor,
+          fontWeight: _boldWeight,
+        );
+    }
+    notifyListeners();
+  }
+}

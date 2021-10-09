@@ -8,6 +8,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:get_it/get_it.dart';
 import 'package:provider/provider.dart';
 
+import 'package:mint/main/ui/controllers/text_theme_controller.dart';
 import 'package:mint/main/ui/screens/set_up/sign_in_screen.dart';
 import 'package:mint/main/ui/themes.dart';
 import 'main/di/injection_container.dart' as injection_container;
@@ -35,15 +36,17 @@ class LayoutControllerProviderWrapper extends StatelessWidget {
   LayoutControllerProviderWrapper({Key? key}) : super(key: key);
 
   final layoutController = GetIt.instance<LayoutController>();
+  final textThemeController = GetIt.instance<TextThemeController>();
 
   @override
   Widget build(BuildContext context) {
     layoutController.updateWidth(MediaQuery.of(context).size.width);
 
-    return ChangeNotifierProvider(
-      create: (_) {
-        return layoutController;
-      },
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (_) => layoutController),
+        ChangeNotifierProvider(create: (_) => textThemeController),
+      ],
       child: SignInScreen(),
     );
   }

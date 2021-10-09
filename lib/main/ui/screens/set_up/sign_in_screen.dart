@@ -4,6 +4,10 @@
 
 import 'package:flutter/material.dart';
 
+import 'package:provider/provider.dart';
+
+import 'package:mint/main/ui/controllers/text_theme_controller.dart';
+
 class SignInScreen extends StatelessWidget {
   const SignInScreen();
 
@@ -17,7 +21,7 @@ class SignInScreen extends StatelessWidget {
             children: [
               Text(
                 'Sign In',
-                style: Theme.of(context).textTheme.headline4,
+                style: Provider.of<TextThemeController>(context).headline4,
               ),
             ],
           ),
