@@ -109,9 +109,7 @@ class ThemeController extends ChangeNotifier {
         textStyle: MaterialStateProperty.all<TextStyle>(
           _textThemeController.button7,
         ),
-        shadowColor: MaterialStateProperty.all<Color>(
-          ColorConstants.greenLightOverlay,
-        ),
+        elevation: MaterialStateProperty.all<double>(0.0),
         shape: MaterialStateProperty.all<OutlinedBorder>(
           RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(12.0),
