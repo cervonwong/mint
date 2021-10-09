@@ -4,13 +4,14 @@
 
 import 'dart:typed_data';
 
+import 'package:flutter/material.dart';
+
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_storage/firebase_storage.dart';
-import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
-import 'package:mint/main/ui/utils/layout_controller.dart';
 import 'package:provider/provider.dart';
 
+import 'package:mint/main/ui/utils/layout_controller.dart';
 import 'main/di/injection_container.dart' as injection_container;
 
 void main() async {
