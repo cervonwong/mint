@@ -27,13 +27,13 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter Demo',
       theme: null, // Useless, will define in a `Theme` wrapper below.
-      home: LayoutControllerProviderWrapper(),
+      home: BootloaderWrapper(),
     );
   }
 }
 
-class LayoutControllerProviderWrapper extends StatelessWidget {
-  LayoutControllerProviderWrapper({Key? key}) : super(key: key);
+class BootloaderWrapper extends StatelessWidget {
+  BootloaderWrapper({Key? key}) : super(key: key);
 
   final layoutController = GetIt.instance<LayoutController>();
   final textThemeController = GetIt.instance<TextThemeController>();
