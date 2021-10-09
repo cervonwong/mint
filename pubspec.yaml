@@ -26,6 +26,25 @@ dev_dependencies:
   pedantic: ^1.11.1
 
 flutter:
+  fonts:
+    - family: Red Hat Text
+      fonts:
+        - asset: assets/fonts/red_hat/RedHatText-Bold.ttf
+        - asset: assets/fonts/red_hat/RedHatText-BoldItalic.ttf
+        - asset: assets/fonts/red_hat/RedHatText-Italic.ttf
+        - asset: assets/fonts/red_hat/RedHatText-Medium.ttf
+        - asset: assets/fonts/red_hat/RedHatText-MediumItalic.ttf
+        - asset: assets/fonts/red_hat/RedHatText-Regular.ttf
+    - family: Red Hat Display
+      fonts:
+        - asset: assets/fonts/red_hat/RedHatDisplay-Black.ttf
+        - asset: assets/fonts/red_hat/RedHatDisplay-BlackItalic.ttf
+        - asset: assets/fonts/red_hat/RedHatDisplay-Bold.ttf
+        - asset: assets/fonts/red_hat/RedHatDisplay-BoldItalic.ttf
+        - asset: assets/fonts/red_hat/RedHatDisplay-Italic.ttf
+        - asset: assets/fonts/red_hat/RedHatDisplay-Medium.ttf
+        - asset: assets/fonts/red_hat/RedHatDisplay-MediumItalic.ttf
+        - asset: assets/fonts/red_hat/RedHatDisplay-Regular.ttf
   uses-material-design: true
 
 import_sorter:
