@@ -10,6 +10,7 @@ import 'package:flutter/material.dart';
 /// For example, UI elements will listen to this and determine what layout is
 /// appropriate and what is the width of the margins
 class LayoutController extends ChangeNotifier {
+  double get screenWidth => _screenWidth;
   late double _screenWidth;
 
   LayoutBreakpoint get breakpoint => _breakpoint;
