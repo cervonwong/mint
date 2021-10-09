@@ -2,7 +2,10 @@
  * Copyright (C) 2021 Cervon Wong and Lee I-Shiang
  */
 
+import 'dart:typed_data';
+
 import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
 import 'package:mint/main/ui/utils/layout_controller.dart';
@@ -16,11 +19,6 @@ void main() async {
   injection_container.configureDependencies();
   runApp(MyApp());
 }
-
-// void main() {
-//   injection_container.configureDependencies();
-//   runApp(MyApp());
-// }
 
 class MyApp extends StatelessWidget {
   @override
@@ -71,8 +69,32 @@ class _MyHomePageState extends State<MyHomePage> {
     });
   }
 
+  final FirebaseStorage storage = FirebaseStorage.instance;
+  Uint8List? imageBytes;
+  String? errorMsg;
+
+  _MyHomePageState() {
+    storage
+        .ref()
+        .child('crabthink.png')
+        .getData(10000000)
+        .then((data) => setState(() {
+              imageBytes = data;
+            }))
+        .catchError((e) => setState(() {
+              errorMsg = e.error;
+            }));
+  }
+
   @override
   Widget build(BuildContext context) {
+    var img = imageBytes != null
+        ? Image.memory(
+            imageBytes!,
+            fit: BoxFit.cover,
+          )
+        : Text(errorMsg != null ? errorMsg! : 'Loading...');
+
     return Scaffold(
       appBar: AppBar(
         title: Text(widget.title),
@@ -88,6 +110,7 @@ class _MyHomePageState extends State<MyHomePage> {
               '${Provider.of<LayoutController>(context).breakpoint} $_counter',
               style: Theme.of(context).textTheme.headline4,
             ),
+            img,
           ],
         ),
       ),
