@@ -40,7 +40,7 @@ class LayoutControllerProviderWrapper extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    layoutController.updateWidth(MediaQuery.of(context).size.width);
+    layoutController.updateScreenWidth(MediaQuery.of(context).size.width);
 
     return MultiProvider(
       providers: [
