@@ -5,6 +5,7 @@
 import 'dart:collection';
 
 import 'package:meta/meta.dart';
+
 import 'package:mint/main/models/step.dart';
 
 @immutable
