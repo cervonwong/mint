@@ -75,7 +75,7 @@ class TextThemeController extends ChangeNotifier {
 
     const String _redHatText = 'Red Hat Text';
     const String _redHatDisplay = 'Red Hat Display';
-    const FontWeight _boldWeight = FontWeight.bold;
+    const FontWeight _boldWeight = FontWeight.w700;
     const FontWeight _mediumWeight = FontWeight.w500;
     const FontWeight _regularWeight = FontWeight.w400;
     const double _globalFontSizeFactor = 1.0;
