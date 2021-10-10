@@ -19,13 +19,16 @@ class RecipeController extends ChangeNotifier {
 }
 
 Future<Recipe> _getRecipe({required String id}) async {
-  var collection = FirebaseFirestore.instance.collection('recipes');
-  var querySnapshot = await collection.doc(id).get();
+  final collection = FirebaseFirestore.instance.collection('recipes');
+  final querySnapshot = await collection.doc(id).get();
 
-  Recipe recipe = new Recipe(
-      steps: List<Step>.from(querySnapshot.data()!['steps'].map((item) {
-    return new Step(step: item['step'], image: item['image']);
-  })));
+  final recipe = new Recipe(
+    steps: List<Step>.from(
+      querySnapshot.data()!['steps'].map(
+            (item) => new Step(step: item['step'], image: item['image']),
+          ),
+    ),
+  );
 
   return recipe;
 }
