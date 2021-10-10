@@ -6,7 +6,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:mint/main/models/recipe.dart';
 
-import '../step.dart';
+import '../models/step.dart';
 
 class RecipeController extends ChangeNotifier {
   late Recipe _recipe;
