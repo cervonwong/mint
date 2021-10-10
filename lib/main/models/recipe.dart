@@ -5,4 +5,8 @@
 import 'package:meta/meta.dart';
 
 @immutable
-class Recipe {}
+class Recipe {
+  final List steps;
+
+  Recipe({required this.steps});
+}
