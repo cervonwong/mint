@@ -77,6 +77,9 @@ class LayoutController extends ChangeNotifier {
         return (_screenWidth - 600.0) / 2; // Placeholder value.
     }
   }
+
+  @override
+  void dispose() {}
 }
 
 // The relative size of the app window wrt to the width of the app window.

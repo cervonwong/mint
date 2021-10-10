@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 
 import 'package:firebase_core/firebase_core.dart';
 import 'package:get_it/get_it.dart';
+import 'package:mint/main/ui/screens/set_up/user_type_set_up_screen.dart';
 import 'package:provider/provider.dart';
 
 import 'package:mint/main/ui/controllers/text_theme_controller.dart';
@@ -27,17 +28,23 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter Demo',
       theme: null, // Useless, will define in a `Theme` wrapper below.
-      home: BootloaderWrapper(),
+      initialRoute: SignInScreen.routeName,
+      routes: {
+        SignInScreen.routeName: (context) => BootloaderWrapper(screen: SignInScreen()),
+        UserTypeSetUpScreen.routeName: (context) => BootloaderWrapper(screen: UserTypeSetUpScreen()),
+      },
     );
   }
 }
 
 class BootloaderWrapper extends StatelessWidget {
-  BootloaderWrapper({Key? key}) : super(key: key);
+  final Widget screen;
 
   final layoutController = GetIt.instance<LayoutController>();
   final textThemeController = GetIt.instance<TextThemeController>();
   final themeController = GetIt.instance<ThemeController>();
+
+  BootloaderWrapper({required this.screen});
 
   @override
   Widget build(BuildContext context) {
@@ -51,7 +58,7 @@ class BootloaderWrapper extends StatelessWidget {
       ],
       child: Theme(
         data: themeController.themeData,
-        child: SignInScreen(),
+        child: screen,
       ),
     );
   }

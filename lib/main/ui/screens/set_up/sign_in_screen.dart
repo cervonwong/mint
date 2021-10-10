@@ -3,6 +3,7 @@
  */
 
 import 'package:flutter/material.dart';
+import 'package:mint/main/ui/screens/set_up/user_type_set_up_screen.dart';
 
 import 'package:provider/provider.dart';
 
@@ -14,6 +15,9 @@ import 'package:mint/main/ui/controllers/layout_controller.dart';
 import 'package:mint/main/ui/controllers/text_theme_controller.dart';
 
 class SignInScreen extends StatelessWidget {
+  static const routeName = 'sign_in';
+  static const signInTitleHeroTag = 'Sign in Title Hero';
+
   const SignInScreen();
 
   @override
@@ -30,10 +34,13 @@ class SignInScreen extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  SelectableText(
-                    'Sign In',
-                    textAlign: TextAlign.center,
-                    style: Provider.of<TextThemeController>(context).headline4,
+                  Hero(
+                    tag: signInTitleHeroTag,
+                    child: SelectableText(
+                      'Sign In',
+                      textAlign: TextAlign.center,
+                      style: Provider.of<TextThemeController>(context).headline4,
+                    ),
                   ),
                   SizedBox(height: 6.0),
                   SelectableText(
@@ -75,7 +82,12 @@ class SignInScreen extends StatelessWidget {
                   ),
                   SizedBox(height: 32.0),
                   ElevatedButton7(
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.pushNamed(
+                        context,
+                        UserTypeSetUpScreen.routeName,
+                      );
+                    },
                     child: Text(
                       'Continue',
                     ),

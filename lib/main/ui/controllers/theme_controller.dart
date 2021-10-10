@@ -147,4 +147,7 @@ class ThemeController extends ChangeNotifier {
       ),
     );
   }
+
+  @override
+  void dispose() {}
 }

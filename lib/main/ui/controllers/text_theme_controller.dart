@@ -190,4 +190,7 @@ class TextThemeController extends ChangeNotifier {
       overline: _body10,
     );
   }
+
+  @override
+  void dispose() {}
 }
