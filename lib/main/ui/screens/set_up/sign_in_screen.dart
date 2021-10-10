@@ -36,11 +36,14 @@ class SignInScreen extends StatelessWidget {
                 children: [
                   Hero(
                     tag: signInTitleHeroTag,
-                    child: SelectableText(
-                      'Sign In',
-                      textAlign: TextAlign.center,
-                      style:
-                          Provider.of<TextThemeController>(context).headline4,
+                    child: Material(
+                      type: MaterialType.transparency,
+                      child: SelectableText(
+                        'Sign In',
+                        textAlign: TextAlign.center,
+                        style:
+                            Provider.of<TextThemeController>(context).headline4,
+                      ),
                     ),
                   ),
                   SizedBox(height: 6.0),

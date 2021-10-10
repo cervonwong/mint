@@ -34,10 +34,13 @@ class UserTypeSetUpScreen extends StatelessWidget {
                 children: [
                   Hero(
                     tag: SignInScreen.signInTitleHeroTag,
-                    child: SelectableText(
-                      'Sign In',
-                      textAlign: TextAlign.center,
-                      style: GetIt.instance<TextThemeController>().headline4,
+                    child: Material(
+                      type: MaterialType.transparency,
+                      child: SelectableText(
+                        'Sign In',
+                        textAlign: TextAlign.center,
+                        style: GetIt.instance<TextThemeController>().headline4,
+                      ),
                     ),
                   ),
                   SizedBox(height: 48.0),
