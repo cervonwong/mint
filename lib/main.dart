@@ -26,7 +26,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: 'Mint 🌿',
       theme: null, // Useless, will define in a `Theme` wrapper below.
       initialRoute: SignInScreen.routeName,
       routes: {
