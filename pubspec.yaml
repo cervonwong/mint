@@ -13,6 +13,7 @@ dependencies:
   firebase_auth: ^3.1.3
   firebase_core: ^1.7.0
   firebase_storage: ^10.0.5
+  fluentui_system_icons: ^1.1.142
   flutter:
     sdk: flutter
   get_it: ^7.2.0
@@ -26,6 +27,25 @@ dev_dependencies:
   pedantic: ^1.11.1
 
 flutter:
+  fonts:
+    - family: Red Hat Text
+      fonts:
+        - asset: assets/fonts/red_hat/RedHatText-Bold.ttf
+        - asset: assets/fonts/red_hat/RedHatText-BoldItalic.ttf
+        - asset: assets/fonts/red_hat/RedHatText-Italic.ttf
+        - asset: assets/fonts/red_hat/RedHatText-Medium.ttf
+        - asset: assets/fonts/red_hat/RedHatText-MediumItalic.ttf
+        - asset: assets/fonts/red_hat/RedHatText-Regular.ttf
+    - family: Red Hat Display
+      fonts:
+        - asset: assets/fonts/red_hat/RedHatDisplay-Black.ttf
+        - asset: assets/fonts/red_hat/RedHatDisplay-BlackItalic.ttf
+        - asset: assets/fonts/red_hat/RedHatDisplay-Bold.ttf
+        - asset: assets/fonts/red_hat/RedHatDisplay-BoldItalic.ttf
+        - asset: assets/fonts/red_hat/RedHatDisplay-Italic.ttf
+        - asset: assets/fonts/red_hat/RedHatDisplay-Medium.ttf
+        - asset: assets/fonts/red_hat/RedHatDisplay-MediumItalic.ttf
+        - asset: assets/fonts/red_hat/RedHatDisplay-Regular.ttf
   uses-material-design: true
 
 import_sorter:
