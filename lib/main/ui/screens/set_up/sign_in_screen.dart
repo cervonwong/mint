@@ -3,7 +3,6 @@
  */
 
 import 'package:flutter/material.dart';
-import 'package:mint/main/ui/screens/set_up/user_type_set_up_screen.dart';
 
 import 'package:provider/provider.dart';
 
@@ -13,6 +12,7 @@ import 'package:mint/main/ui/components/shared/shared_text_form_field.dart';
 import 'package:mint/main/ui/constants/color_constants.dart';
 import 'package:mint/main/ui/controllers/layout_controller.dart';
 import 'package:mint/main/ui/controllers/text_theme_controller.dart';
+import 'package:mint/main/ui/screens/set_up/user_type_set_up_screen.dart';
 
 class SignInScreen extends StatelessWidget {
   static const routeName = 'sign_in';
@@ -39,7 +39,8 @@ class SignInScreen extends StatelessWidget {
                     child: SelectableText(
                       'Sign In',
                       textAlign: TextAlign.center,
-                      style: Provider.of<TextThemeController>(context).headline4,
+                      style:
+                          Provider.of<TextThemeController>(context).headline4,
                     ),
                   ),
                   SizedBox(height: 6.0),

@@ -2,14 +2,16 @@
  * Copyright (C) 2021 Cervon Wong and Lee I-Shiang
  */
 
-import 'package:fluentui_system_icons/fluentui_system_icons.dart';
 import 'package:flutter/material.dart';
+
+import 'package:fluentui_system_icons/fluentui_system_icons.dart';
 import 'package:get_it/get_it.dart';
+import 'package:provider/provider.dart';
+
 import 'package:mint/main/ui/constants/color_constants.dart';
 import 'package:mint/main/ui/controllers/layout_controller.dart';
 import 'package:mint/main/ui/controllers/text_theme_controller.dart';
 import 'package:mint/main/ui/screens/set_up/sign_in_screen.dart';
-import 'package:provider/provider.dart';
 
 class UserTypeSetUpScreen extends StatelessWidget {
   static const routeName = 'user_type_set_up';
@@ -93,7 +95,8 @@ class UserTypeOptionCard extends StatelessWidget {
           child: Row(
             children: [
               Expanded(
-                child: Text( // Not selectable to entire card clickable.
+                // Not SelectableText to make entire card clickable.
+                child: Text(
                   label,
                   style: Provider.of<TextThemeController>(context).headline6,
                 ),
