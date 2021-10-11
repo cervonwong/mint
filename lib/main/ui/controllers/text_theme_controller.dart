@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:mint/main/ui/constants/color_constants.dart';
 import 'layout_controller.dart';
 
+// TODO: 10/11/2021 Can scrap this class if not used at the end.  And replace with constants.
 class TextThemeController extends ChangeNotifier {
   TextStyle get headline1 => _headline1;
   late TextStyle _headline1;
@@ -61,116 +62,126 @@ class TextThemeController extends ChangeNotifier {
 
   final LayoutController _layoutController;
 
+  bool _hasInitialised = false;
+  LayoutBreakpoint? _currentBreakpoint;
+
   TextThemeController({required LayoutController layoutController})
       : _layoutController = layoutController {
     layoutController.addListener(() {
+      if (_hasInitialised) return;
+      if (_currentBreakpoint == layoutController.breakpoint) return;
       _updateFontSizes();
       _textTheme = _createTextTheme();
       notifyListeners();
+      _hasInitialised = true;
     });
   }
 
   void _updateFontSizes() {
     final breakpoint = _layoutController.breakpoint;
 
-    const String _redHatText = 'Red Hat Text';
-    const String _redHatDisplay = 'Red Hat Display';
-    const FontWeight _boldWeight = FontWeight.w700;
-    const FontWeight _mediumWeight = FontWeight.w500;
-    const FontWeight _regularWeight = FontWeight.w400;
-    const double _globalFontSizeFactor = 1.0;
+    const String redHatText = 'Red Hat Text';
+    const String redHatDisplay = 'Red Hat Display';
+    const FontWeight boldWeight = FontWeight.w700;
+    const FontWeight mediumWeight = FontWeight.w500;
+    const FontWeight regularWeight = FontWeight.w400;
+    const double globalFontSizeFactor = 1.0;
     const TextStyle baseTextStyle = TextStyle(
       color: ColorConstants.blackPrimary,
     );
 
+    late double breakpointSizeFactor = 1.0;
+
     switch (breakpoint) {
-      // Currently font size is not responsive.
+      // Currently font size is not responsive. // Does it need to be?
       case LayoutBreakpoint.smallest:
       case LayoutBreakpoint.small:
       case LayoutBreakpoint.medium:
       case LayoutBreakpoint.large:
       case LayoutBreakpoint.largest:
-        _headline1 = baseTextStyle.copyWith(
-          fontFamily: _redHatDisplay,
-          fontSize: 80.0 * _globalFontSizeFactor,
-          fontWeight: _mediumWeight,
-        );
-        _headline2 = baseTextStyle.copyWith(
-          fontFamily: _redHatDisplay,
-          fontSize: 72.0 * _globalFontSizeFactor,
-          fontWeight: _mediumWeight,
-        );
-        _headline3 = baseTextStyle.copyWith(
-          fontFamily: _redHatDisplay,
-          fontSize: 46.0 * _globalFontSizeFactor,
-          fontWeight: _mediumWeight,
-        );
-        _headline4 = baseTextStyle.copyWith(
-          fontFamily: _redHatDisplay,
-          fontSize: 34.0 * _globalFontSizeFactor,
-          fontWeight: _mediumWeight,
-        );
-        _headline5 = baseTextStyle.copyWith(
-          fontFamily: _redHatDisplay,
-          fontSize: 25.0 * _globalFontSizeFactor,
-          fontWeight: _mediumWeight,
-        );
-        _headline6 = baseTextStyle.copyWith(
-          fontFamily: _redHatDisplay,
-          fontSize: 21.0 * _globalFontSizeFactor,
-          fontWeight: _mediumWeight,
-        );
-        _subtitle7 = baseTextStyle.copyWith(
-          fontFamily: _redHatText,
-          fontSize: 17.0 * _globalFontSizeFactor,
-          fontWeight: _mediumWeight,
-        );
-        _subtitle8 = baseTextStyle.copyWith(
-          fontFamily: _redHatText,
-          fontSize: 14.0 * _globalFontSizeFactor,
-          fontWeight: _mediumWeight,
-        );
-        _body6 = baseTextStyle.copyWith(
-          fontFamily: _redHatText,
-          fontSize: 21.0 * _globalFontSizeFactor,
-          fontWeight: _regularWeight,
-        );
-        _body7 = baseTextStyle.copyWith(
-          fontFamily: _redHatText,
-          fontSize: 17.0 * _globalFontSizeFactor,
-          fontWeight: _regularWeight,
-        );
-        _body8 = baseTextStyle.copyWith(
-          fontFamily: _redHatText,
-          fontSize: 14.0 * _globalFontSizeFactor,
-          fontWeight: _regularWeight,
-        );
-        _body9 = baseTextStyle.copyWith(
-          fontFamily: _redHatText,
-          fontSize: 12.0 * _globalFontSizeFactor,
-          fontWeight: _regularWeight,
-        );
-        _body10 = baseTextStyle.copyWith(
-          fontFamily: _redHatText,
-          fontSize: 10.0 * _globalFontSizeFactor,
-          fontWeight: _mediumWeight,
-        );
-        _button6 = baseTextStyle.copyWith(
-          fontFamily: _redHatDisplay,
-          fontSize: 21.0 * _globalFontSizeFactor,
-          fontWeight: _boldWeight,
-        );
-        _button7 = baseTextStyle.copyWith(
-          fontFamily: _redHatDisplay,
-          fontSize: 17.0 * _globalFontSizeFactor,
-          fontWeight: _boldWeight,
-        );
-        _button8 = baseTextStyle.copyWith(
-          fontFamily: _redHatDisplay,
-          fontSize: 14.0 * _globalFontSizeFactor,
-          fontWeight: _boldWeight,
-        );
+        break;
     }
+
+    _headline1 = baseTextStyle.copyWith(
+      fontFamily: redHatDisplay,
+      fontSize: 80.0 * globalFontSizeFactor * breakpointSizeFactor,
+      fontWeight: mediumWeight,
+    );
+    _headline2 = baseTextStyle.copyWith(
+      fontFamily: redHatDisplay,
+      fontSize: 72.0 * globalFontSizeFactor * breakpointSizeFactor,
+      fontWeight: mediumWeight,
+    );
+    _headline3 = baseTextStyle.copyWith(
+      fontFamily: redHatDisplay,
+      fontSize: 46.0 * globalFontSizeFactor * breakpointSizeFactor,
+      fontWeight: mediumWeight,
+    );
+    _headline4 = baseTextStyle.copyWith(
+      fontFamily: redHatDisplay,
+      fontSize: 34.0 * globalFontSizeFactor * breakpointSizeFactor,
+      fontWeight: mediumWeight,
+    );
+    _headline5 = baseTextStyle.copyWith(
+      fontFamily: redHatDisplay,
+      fontSize: 25.0 * globalFontSizeFactor * breakpointSizeFactor,
+      fontWeight: mediumWeight,
+    );
+    _headline6 = baseTextStyle.copyWith(
+      fontFamily: redHatDisplay,
+      fontSize: 21.0 * globalFontSizeFactor * breakpointSizeFactor,
+      fontWeight: mediumWeight,
+    );
+    _subtitle7 = baseTextStyle.copyWith(
+      fontFamily: redHatText,
+      fontSize: 17.0 * globalFontSizeFactor * breakpointSizeFactor,
+      fontWeight: mediumWeight,
+    );
+    _subtitle8 = baseTextStyle.copyWith(
+      fontFamily: redHatText,
+      fontSize: 14.0 * globalFontSizeFactor * breakpointSizeFactor,
+      fontWeight: mediumWeight,
+    );
+    _body6 = baseTextStyle.copyWith(
+      fontFamily: redHatText,
+      fontSize: 21.0 * globalFontSizeFactor * breakpointSizeFactor,
+      fontWeight: regularWeight,
+    );
+    _body7 = baseTextStyle.copyWith(
+      fontFamily: redHatText,
+      fontSize: 17.0 * globalFontSizeFactor * breakpointSizeFactor,
+      fontWeight: regularWeight,
+    );
+    _body8 = baseTextStyle.copyWith(
+      fontFamily: redHatText,
+      fontSize: 14.0 * globalFontSizeFactor * breakpointSizeFactor,
+      fontWeight: regularWeight,
+    );
+    _body9 = baseTextStyle.copyWith(
+      fontFamily: redHatText,
+      fontSize: 12.0 * globalFontSizeFactor * breakpointSizeFactor,
+      fontWeight: regularWeight,
+    );
+    _body10 = baseTextStyle.copyWith(
+      fontFamily: redHatText,
+      fontSize: 10.0 * globalFontSizeFactor * breakpointSizeFactor,
+      fontWeight: mediumWeight,
+    );
+    _button6 = baseTextStyle.copyWith(
+      fontFamily: redHatDisplay,
+      fontSize: 21.0 * globalFontSizeFactor * breakpointSizeFactor,
+      fontWeight: boldWeight,
+    );
+    _button7 = baseTextStyle.copyWith(
+      fontFamily: redHatDisplay,
+      fontSize: 17.0 * globalFontSizeFactor * breakpointSizeFactor,
+      fontWeight: boldWeight,
+    );
+    _button8 = baseTextStyle.copyWith(
+      fontFamily: redHatDisplay,
+      fontSize: 14.0 * globalFontSizeFactor * breakpointSizeFactor,
+      fontWeight: boldWeight,
+    );
   }
 
   TextTheme _createTextTheme() {

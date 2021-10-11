@@ -8,6 +8,7 @@ import 'package:flutter/services.dart';
 import 'package:mint/main/ui/constants/color_constants.dart';
 import 'package:mint/main/ui/controllers/text_theme_controller.dart';
 
+// TODO: 10/11/2021 Can scrap this class if not used at the end. And replace with constants.
 class ThemeController extends ChangeNotifier {
   ThemeData get themeData => _themeData;
   late ThemeData _themeData;
