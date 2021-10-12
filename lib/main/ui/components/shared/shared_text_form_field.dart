@@ -5,11 +5,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-class SharedTextFormField extends StatelessWidget {
+class SharedTextFormField extends StatefulWidget {
   final Key? key;
   final controller;
   final String? initialValue;
-  final FocusNode? focusNode;
+
+  // final FocusNode? focusNode; // Do not accept this parameter because using
+  // custom FocusNode in state to unfocus TextField when keyboard retracts.
+  // If focusNode needs to be passed in the future, then can think about how
+  // to accept focusNode for custom behaviour.
   final InputDecoration? decoration;
   final TextInputType? keyboardType;
   final TextCapitalization textCapitalization;
@@ -61,7 +65,7 @@ class SharedTextFormField extends StatelessWidget {
     this.key,
     this.controller,
     this.initialValue,
-    this.focusNode,
+    // this.focusNode,
     this.decoration = const InputDecoration(),
     this.keyboardType,
     this.textCapitalization = TextCapitalization.none,
@@ -111,6 +115,22 @@ class SharedTextFormField extends StatelessWidget {
   });
 
   @override
+  State<SharedTextFormField> createState() => _SharedTextFormFieldState();
+}
+
+class _SharedTextFormFieldState extends State<SharedTextFormField>
+    with WidgetsBindingObserver {
+  // To unfocus TextField when keyboard is retracted.
+  // See also: initState(), didChangeMetrics, dispose()
+  final _focusNode = FocusNode();
+
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance!.addObserver(this);
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Theme(
       data: Theme.of(context).copyWith(
@@ -119,57 +139,73 @@ class SharedTextFormField extends StatelessWidget {
             .copyWith(subtitle1: Theme.of(context).textTheme.bodyText1),
       ),
       child: TextFormField(
-        key: key,
-        controller: controller,
-        initialValue: initialValue,
-        focusNode: focusNode,
-        decoration: decoration,
-        keyboardType: keyboardType,
-        textCapitalization: textCapitalization,
-        textInputAction: textInputAction,
-        style: style,
-        strutStyle: strutStyle,
-        textDirection: textDirection,
-        textAlign: textAlign,
-        textAlignVertical: textAlignVertical,
-        autofocus: autofocus,
-        readOnly: readOnly,
-        toolbarOptions: toolbarOptions,
-        showCursor: showCursor,
-        obscuringCharacter: obscuringCharacter,
-        obscureText: obscureText,
-        autocorrect: autocorrect,
-        smartDashesType: smartDashesType,
-        smartQuotesType: smartQuotesType,
-        maxLengthEnforcement: maxLengthEnforcement,
-        maxLines: maxLines,
-        minLines: minLines,
-        expands: expands,
-        maxLength: maxLength,
-        onChanged: onChanged,
-        onTap: onTap,
-        onEditingComplete: onEditingComplete,
-        onFieldSubmitted: onFieldSubmitted,
-        onSaved: onSaved,
-        validator: validator,
-        inputFormatters: inputFormatters,
-        enabled: enabled,
-        cursorWidth: cursorWidth,
-        cursorHeight: cursorHeight,
-        cursorRadius: cursorRadius,
-        cursorColor: cursorColor,
-        keyboardAppearance: keyboardAppearance,
-        scrollPadding: scrollPadding,
-        enableInteractiveSelection: enableInteractiveSelection,
-        selectionControls: selectionControls,
-        buildCounter: buildCounter,
-        scrollPhysics: scrollPhysics,
-        autofillHints: autofillHints,
-        autovalidateMode: autovalidateMode,
-        scrollController: scrollController,
-        restorationId: restorationId,
-        enableIMEPersonalizedLearning: enableIMEPersonalizedLearning,
+        key: widget.key,
+        controller: widget.controller,
+        initialValue: widget.initialValue,
+        focusNode: _focusNode,
+        decoration: widget.decoration,
+        keyboardType: widget.keyboardType,
+        textCapitalization: widget.textCapitalization,
+        textInputAction: widget.textInputAction,
+        style: widget.style,
+        strutStyle: widget.strutStyle,
+        textDirection: widget.textDirection,
+        textAlign: widget.textAlign,
+        textAlignVertical: widget.textAlignVertical,
+        autofocus: widget.autofocus,
+        readOnly: widget.readOnly,
+        toolbarOptions: widget.toolbarOptions,
+        showCursor: widget.showCursor,
+        obscuringCharacter: widget.obscuringCharacter,
+        obscureText: widget.obscureText,
+        autocorrect: widget.autocorrect,
+        smartDashesType: widget.smartDashesType,
+        smartQuotesType: widget.smartQuotesType,
+        maxLengthEnforcement: widget.maxLengthEnforcement,
+        maxLines: widget.maxLines,
+        minLines: widget.minLines,
+        expands: widget.expands,
+        maxLength: widget.maxLength,
+        onChanged: widget.onChanged,
+        onTap: widget.onTap,
+        onEditingComplete: widget.onEditingComplete,
+        onFieldSubmitted: widget.onFieldSubmitted,
+        onSaved: widget.onSaved,
+        validator: widget.validator,
+        inputFormatters: widget.inputFormatters,
+        enabled: widget.enabled,
+        cursorWidth: widget.cursorWidth,
+        cursorHeight: widget.cursorHeight,
+        cursorRadius: widget.cursorRadius,
+        cursorColor: widget.cursorColor,
+        keyboardAppearance: widget.keyboardAppearance,
+        scrollPadding: widget.scrollPadding,
+        enableInteractiveSelection: widget.enableInteractiveSelection,
+        selectionControls: widget.selectionControls,
+        buildCounter: widget.buildCounter,
+        scrollPhysics: widget.scrollPhysics,
+        autofillHints: widget.autofillHints,
+        autovalidateMode: widget.autovalidateMode,
+        scrollController: widget.scrollController,
+        restorationId: widget.restorationId,
+        enableIMEPersonalizedLearning: widget.enableIMEPersonalizedLearning,
       ),
     );
+  }
+
+  @override
+  void didChangeMetrics() {
+    super.didChangeMetrics();
+    final value = WidgetsBinding.instance!.window.viewInsets.bottom;
+    if (value == 0) {
+      _focusNode.unfocus();
+    }
+  }
+
+  @override
+  void dispose() {
+    WidgetsBinding.instance!.removeObserver(this);
+    _focusNode.dispose();
+    super.dispose();
   }
 }
