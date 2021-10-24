@@ -4,15 +4,13 @@
 
 import 'package:flutter/material.dart';
 
-import 'package:provider/provider.dart';
-
 import 'package:mint/main/ui/components/shared/listen_icon_button.dart';
 import 'package:mint/main/ui/components/shared/shared_buttons.dart';
 import 'package:mint/main/ui/components/shared/shared_text_form_field.dart';
 import 'package:mint/main/ui/constants/color_constants.dart';
-import 'package:mint/main/ui/controllers/layout_controller.dart';
-import 'package:mint/main/ui/controllers/text_theme_controller.dart';
+import 'package:mint/main/ui/constants/theme_constants.dart';
 import 'package:mint/main/ui/screens/set_up/user_type_set_up_screen.dart';
+import 'package:mint/main/ui/utils/layout_calculator.dart';
 
 class SignInScreen extends StatelessWidget {
   static const routeName = 'sign_in';
@@ -28,7 +26,7 @@ class SignInScreen extends StatelessWidget {
           child: SingleChildScrollView(
             child: Padding(
               padding: EdgeInsets.symmetric(
-                horizontal: Provider.of<LayoutController>(context).wideMargin,
+                horizontal: LayoutCalculator.wideMargin(context: context),
               ),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -41,8 +39,7 @@ class SignInScreen extends StatelessWidget {
                       child: SelectableText(
                         'Sign In',
                         textAlign: TextAlign.center,
-                        style:
-                            Provider.of<TextThemeController>(context).headline4,
+                        style: ThemeConstants.headline4,
                       ),
                     ),
                   ),
@@ -51,11 +48,9 @@ class SignInScreen extends StatelessWidget {
                     'Please pass your device to your instructor '
                     'to help you sign in.',
                     textAlign: TextAlign.center,
-                    style: Provider.of<TextThemeController>(context)
-                        .subtitle7
-                        .copyWith(
-                          color: ColorConstants.blackSecondary,
-                        ),
+                    style: ThemeConstants.subtitle7.copyWith(
+                      color: ColorConstants.blackSecondary,
+                    ),
                   ),
                   SizedBox(height: 8.0),
                   ListenIconButton(
@@ -65,7 +60,7 @@ class SignInScreen extends StatelessWidget {
                   SizedBox(height: 48.0),
                   SelectableText(
                     'Email',
-                    style: Provider.of<TextThemeController>(context).subtitle7,
+                    style: ThemeConstants.subtitle7,
                   ),
                   SizedBox(height: 4.0),
                   SharedTextFormField(
@@ -76,7 +71,7 @@ class SignInScreen extends StatelessWidget {
                   SizedBox(height: 24.0),
                   SelectableText(
                     'Password',
-                    style: Provider.of<TextThemeController>(context).subtitle7,
+                    style: ThemeConstants.subtitle7,
                   ),
                   SizedBox(height: 4.0),
                   SharedTextFormField(

@@ -5,13 +5,11 @@
 import 'package:flutter/material.dart';
 
 import 'package:fluentui_system_icons/fluentui_system_icons.dart';
-import 'package:get_it/get_it.dart';
-import 'package:provider/provider.dart';
 
 import 'package:mint/main/ui/constants/color_constants.dart';
-import 'package:mint/main/ui/controllers/layout_controller.dart';
-import 'package:mint/main/ui/controllers/text_theme_controller.dart';
+import 'package:mint/main/ui/constants/theme_constants.dart';
 import 'package:mint/main/ui/screens/set_up/sign_in_screen.dart';
+import 'package:mint/main/ui/utils/layout_calculator.dart';
 
 class UserTypeSetUpScreen extends StatelessWidget {
   static const routeName = 'user_type_set_up';
@@ -26,7 +24,7 @@ class UserTypeSetUpScreen extends StatelessWidget {
           child: SingleChildScrollView(
             child: Padding(
               padding: EdgeInsets.symmetric(
-                horizontal: Provider.of<LayoutController>(context).wideMargin,
+                horizontal: LayoutCalculator.wideMargin(context: context),
               ),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -39,7 +37,7 @@ class UserTypeSetUpScreen extends StatelessWidget {
                       child: SelectableText(
                         'Sign In',
                         textAlign: TextAlign.center,
-                        style: GetIt.instance<TextThemeController>().headline4,
+                        style: ThemeConstants.headline4,
                       ),
                     ),
                   ),
@@ -101,7 +99,7 @@ class UserTypeOptionCard extends StatelessWidget {
                 // Not SelectableText to make entire card clickable.
                 child: Text(
                   label,
-                  style: Provider.of<TextThemeController>(context).headline6,
+                  style: ThemeConstants.headline6,
                 ),
               ),
               Icon(

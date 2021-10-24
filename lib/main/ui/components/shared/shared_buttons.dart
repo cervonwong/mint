@@ -4,9 +4,7 @@
 
 import 'package:flutter/material.dart';
 
-import 'package:provider/provider.dart';
-
-import 'package:mint/main/ui/controllers/theme_controller.dart';
+import 'package:mint/main/ui/constants/theme_constants.dart';
 
 class ElevatedButton7 extends StatelessWidget {
   final Key? key;
@@ -33,8 +31,7 @@ class ElevatedButton7 extends StatelessWidget {
   Widget build(BuildContext context) {
     return Theme(
       data: Theme.of(context).copyWith(
-        elevatedButtonTheme:
-            Provider.of<ThemeController>(context).elevatedButton7ThemeData,
+        elevatedButtonTheme: ThemeConstants.elevatedButton7ThemeData,
       ),
       child: ElevatedButton(
         key: key,
