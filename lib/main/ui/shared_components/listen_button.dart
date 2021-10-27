@@ -37,6 +37,11 @@ class ListenButton extends StatelessWidget {
         icon: const Icon(FluentIcons.speaker_2_24_regular),
         label: Text(label),
         onPressed: () {},
+        // TODO: 10/27/2021 When logic implemented, should call a controller
+        //  which calls Google's TTS to generate and audio file?? and then play
+        //  the audio file?? If want to minimise number of calls to TTS,
+        //  can store generated audio clips in Cloud Storage with the `text` as
+        //  the id, and check if it is already generated, and fetch that.
       ),
     );
   }
