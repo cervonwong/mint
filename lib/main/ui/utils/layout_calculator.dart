@@ -10,16 +10,17 @@ class LayoutCalculator {
   static LayoutBreakpoint breakpoint({required BuildContext context}) {
     final screenWidth = MediaQuery.of(context).size.width;
 
-    if (screenWidth < 600.0)
+    if (screenWidth < 600.0) {
       return LayoutBreakpoint.smallest;
-    else if (screenWidth < 905.0)
+    } else if (screenWidth < 905.0) {
       return LayoutBreakpoint.small;
-    else if (screenWidth < 1240.0)
+    } else if (screenWidth < 1240.0) {
       return LayoutBreakpoint.medium;
-    else if (screenWidth < 1440.0)
+    } else if (screenWidth < 1440.0) {
       return LayoutBreakpoint.large;
-    else
+    } else {
       return LayoutBreakpoint.largest;
+    }
   }
 
   static double margin({required BuildContext context}) {

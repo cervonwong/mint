@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_relative_imports
+
 /*
  * Copyright (C) 2021 Cervon Wong and Lee I-Shiang
  */

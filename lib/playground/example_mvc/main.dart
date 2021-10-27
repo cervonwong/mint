@@ -11,7 +11,7 @@ import 'ui/screens/random_recipe_screen.dart';
 
 void main() {
   // The start of the application.
-  runApp(ExampleMvcApp());
+  runApp(const ExampleMvcApp());
 }
 
 // Haha this is also a widget, everything is a widget.
@@ -24,7 +24,7 @@ class ExampleMvcApp extends StatelessWidget {
     // to all widgets below it.
     return ChangeNotifierProvider(
       create: (context) => RandomRecipeController(),
-      child: MaterialApp(
+      child: const MaterialApp(
         home: RandomRecipeScreen(),
       ),
     );

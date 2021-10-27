@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 
 import 'package:fluentui_system_icons/fluentui_system_icons.dart';
 
-import 'package:mint/main/ui/constants/color_constants.dart';
+import '../constants/color_constants.dart';
 
 class HelpButton extends StatelessWidget {
   const HelpButton();
@@ -14,7 +14,7 @@ class HelpButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return IconButton(
-      icon: Icon(
+      icon: const Icon(
         FluentIcons.question_circle_24_regular,
         color: ColorConstants.greenPrimary,
       ),
