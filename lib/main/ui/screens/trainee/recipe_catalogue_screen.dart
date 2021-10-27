@@ -3,6 +3,7 @@
  */
 
 import 'package:flutter/material.dart';
+import 'package:mint/main/models/recipe.dart';
 
 import '../../constants/color_constants.dart';
 import '../../constants/theme_constants.dart';
@@ -12,8 +13,18 @@ import '../../utils/layout_calculator.dart';
 
 class RecipeCatalogueScreen extends StatefulWidget {
   static const routeName = 'home';
+  late final List<Recipe> recipeList;
 
-  RecipeCatalogueScreen();
+  RecipeCatalogueScreen() {
+    // TODO: 10/27/2021 When logic implemented, recipeList should be retrieved
+    //  from some controller. Code in this constructor now is just a
+    //  placeholder.
+    recipeList = [
+      Recipe(steps: []),
+      Recipe(steps: []),
+      Recipe(steps: []),
+    ];
+  }
 
   @override
   State<RecipeCatalogueScreen> createState() => _RecipeCatalogueScreenState();
@@ -53,11 +64,66 @@ class _RecipeCatalogueScreenState extends State<RecipeCatalogueScreen> {
             ),
           ),
           const SizedBox(height: 16.0),
-          const RecipeCard(title: 'Fried Chicken Wings for Nasi Lemak'),
-          const RecipeCard(title: 'Fried Chicken Wings for Nasi Lemak'),
-          const RecipeCard(title: 'Fried Chicken Wings for Nasi Lemak'),
+          _ResponsiveRecipeCardGrid(recipeList: widget.recipeList),
         ],
       ),
+    );
+  }
+}
+
+class _ResponsiveRecipeCardGrid extends StatelessWidget {
+  final List<Recipe> recipeList;
+
+  const _ResponsiveRecipeCardGrid({required this.recipeList});
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: EdgeInsets.symmetric(
+        horizontal: LayoutCalculator.margin(context: context),
+      ),
+      child: LayoutCalculator.breakpoint(context: context) ==
+              LayoutBreakpoint.smallest
+          ? Column(
+              children: [
+                for (int i = 0; i < recipeList.length; i++)
+                  RecipeCard(
+                    title: 'Fried Chicken Wings for Nasi Lemak $i',
+                  ),
+              ],
+            )
+          : Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Expanded(
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    children: [
+                      for (int i = 0; i < recipeList.length; i++)
+                        if (i % 2 == 0)
+                          RecipeCard(
+                            title: 'Fried Chicken Wings for Nasi Lemak $i',
+                          ),
+                    ],
+                  ),
+                ),
+                const SizedBox(width: 32.0),
+                Expanded(
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    children: [
+                      for (int i = 0; i < recipeList.length; i++)
+                        if (i % 2 == 1)
+                          RecipeCard(
+                            title: 'Fried Chicken Wings for Nasi Lemak $i',
+                          ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
     );
   }
 }
@@ -71,7 +137,6 @@ class RecipeCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: EdgeInsets.symmetric(
-        horizontal: LayoutCalculator.margin(context: context),
         vertical: 16.0,
       ),
       child: Container(
