@@ -3,7 +3,7 @@
  */
 
 import 'package:flutter/material.dart';
-import 'package:mint/main/models/recipe.dart';
+import '../../../models/recipe.dart';
 
 import '../../constants/color_constants.dart';
 import '../../constants/theme_constants.dart';
@@ -136,7 +136,7 @@ class RecipeCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.symmetric(
+      padding: const EdgeInsets.symmetric(
         vertical: 16.0,
       ),
       child: Container(
