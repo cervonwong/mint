@@ -192,6 +192,37 @@ class ThemeConstants {
       }),
     ),
   );
+  static final listenButtonThemeData = OutlinedButtonThemeData(
+    style: ButtonStyle(
+      textStyle: MaterialStateProperty.all(ThemeConstants.button7),
+      shape: MaterialStateProperty.all(
+        RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(12.0),
+        ),
+      ),
+      visualDensity: const VisualDensity(vertical: 2.0),
+      foregroundColor: MaterialStateProperty.resolveWith<Color>((states) {
+        if (states.contains(MaterialState.disabled)) {
+          return ColorConstants.blackSecondary;
+        }
+        return ColorConstants.greenPrimary;
+      }),
+      backgroundColor: MaterialStateProperty.resolveWith<Color>((states) {
+        if (states.contains(MaterialState.disabled)) {
+          return ColorConstants.blackTertiary;
+        }
+        return ColorConstants.greenOverlay;
+      }),
+      side: MaterialStateProperty.resolveWith(
+        (states) {
+          if (states.contains(MaterialState.disabled)) {
+            return BorderSide.none;
+          }
+          return const BorderSide(color: ColorConstants.greenPrimary);
+        },
+      ),
+    ),
+  );
   static const iconThemeData = IconThemeData(
     color: ColorConstants.greenPrimary,
   );
