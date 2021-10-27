@@ -18,18 +18,19 @@ class RandomRecipeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-          title: Text('PLAYGROUND EXAMPLE TO DEMONSTRATE MVC ARCHITECTURE')),
+          title:
+              const Text('PLAYGROUND EXAMPLE TO DEMONSTRATE MVC ARCHITECTURE')),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text('Random Recipe Generator! '
+            const Text('Random Recipe Generator! '
                 '(This is not a functionality of the actual product)'),
-            SizedBox(height: 32.0),
-            RecipeLabel(),
-            SizedBox(height: 64.0),
+            const SizedBox(height: 32.0),
+            const RecipeLabel(),
+            const SizedBox(height: 64.0),
             // This is usually how we add spacing between widgets.
-            RandomRecipeButton(),
+            const RandomRecipeButton(),
           ],
         ),
       ),

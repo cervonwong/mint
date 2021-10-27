@@ -4,10 +4,9 @@
 
 import 'package:flutter/material.dart';
 
-import 'package:mint/main/ui/constants/theme_constants.dart';
+import '../constants/theme_constants.dart';
 
 class ElevatedButton7 extends StatelessWidget {
-  final Key? key;
   final void Function()? onPressed;
   final void Function()? onLongPress;
   final ButtonStyle? style;
@@ -17,7 +16,7 @@ class ElevatedButton7 extends StatelessWidget {
   final Widget? child;
 
   ElevatedButton7({
-    this.key,
+    Key? key,
     required this.onPressed,
     this.onLongPress,
     this.style,
@@ -25,7 +24,7 @@ class ElevatedButton7 extends StatelessWidget {
     this.autofocus = false,
     this.clipBehavior = Clip.none,
     required this.child,
-  });
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

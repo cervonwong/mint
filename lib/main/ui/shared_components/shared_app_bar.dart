@@ -6,10 +6,10 @@ import 'package:flutter/material.dart';
 
 import 'package:fluentui_system_icons/fluentui_system_icons.dart';
 
-import 'package:mint/main/ui/components/shared/help_button.dart';
-import 'package:mint/main/ui/constants/color_constants.dart';
-import 'package:mint/main/ui/constants/theme_constants.dart';
-import 'package:mint/main/ui/utils/layout_calculator.dart';
+import '../constants/color_constants.dart';
+import '../constants/theme_constants.dart';
+import '../utils/layout_calculator.dart';
+import 'help_button.dart';
 
 class SharedAppBar extends StatefulWidget implements PreferredSizeWidget {
   final ScrollController scrollController;
@@ -20,7 +20,7 @@ class SharedAppBar extends StatefulWidget implements PreferredSizeWidget {
   State<SharedAppBar> createState() => _SharedAppBarState();
 
   @override
-  Size get preferredSize => Size.fromHeight(56.0);
+  Size get preferredSize => const Size.fromHeight(56.0);
 }
 
 class _SharedAppBarState extends State<SharedAppBar> {
@@ -64,7 +64,7 @@ class _SharedAppBarState extends State<SharedAppBar> {
                   ),
                   onPressed: () => Scaffold.of(context).openDrawer(),
                 ),
-                SizedBox(width: 32.0),
+                const SizedBox(width: 32.0),
                 AnimatedOpacity(
                   duration: const Duration(milliseconds: 150),
                   opacity: isInOverlayMode ? 1.0 : 0.0,
@@ -73,8 +73,8 @@ class _SharedAppBarState extends State<SharedAppBar> {
                     style: ThemeConstants.headline6,
                   ),
                 ),
-                Spacer(),
-                HelpButton(),
+                const Spacer(),
+                const HelpButton(),
               ],
             ),
           ),

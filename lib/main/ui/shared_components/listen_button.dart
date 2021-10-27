@@ -6,8 +6,8 @@ import 'package:flutter/material.dart';
 
 import 'package:fluentui_system_icons/fluentui_system_icons.dart';
 
-import 'package:mint/main/ui/constants/color_constants.dart';
-import 'package:mint/main/ui/constants/theme_constants.dart';
+import '../constants/color_constants.dart';
+import '../constants/theme_constants.dart';
 
 class ListenButton extends StatelessWidget {
   final String text;
@@ -31,7 +31,7 @@ class ListenButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return OutlinedButton.icon(
-      icon: Icon(FluentIcons.speaker_2_24_regular),
+      icon: const Icon(FluentIcons.speaker_2_24_regular),
       label: Text(label),
       style: ButtonStyle(
         textStyle: MaterialStateProperty.all(ThemeConstants.button7),
@@ -57,7 +57,7 @@ class ListenButton extends StatelessWidget {
           if (states.contains(MaterialState.disabled)) {
             return BorderSide.none;
           }
-          return BorderSide(color: ColorConstants.greenPrimary);
+          return const BorderSide(color: ColorConstants.greenPrimary);
         }),
       ),
       onPressed: () {},

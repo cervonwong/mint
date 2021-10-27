@@ -55,7 +55,7 @@ class ThemeConstants {
   static const FontWeight _mediumWeight = FontWeight.w500;
   static const FontWeight _regularWeight = FontWeight.w400;
   static const double _globalFontSizeFactor = 1.0;
-  static final _baseTextStyle = TextStyle(
+  static final _baseTextStyle = const TextStyle(
     color: ColorConstants.blackPrimary,
   );
 
@@ -201,7 +201,8 @@ class ThemeConstants {
     hintStyle: body7.copyWith(
       color: ColorConstants.blackTertiary,
     ),
-    contentPadding: EdgeInsets.symmetric(horizontal: 24.0, vertical: 16.0),
+    contentPadding:
+        const EdgeInsets.symmetric(horizontal: 24.0, vertical: 16.0),
     border: OutlineInputBorder(
       borderSide: BorderSide.none,
       borderRadius: BorderRadius.circular(12.0),

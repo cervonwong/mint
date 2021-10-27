@@ -6,7 +6,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 class SharedTextFormField extends StatefulWidget {
-  final Key? key;
   final controller;
   final String? initialValue;
 
@@ -62,7 +61,7 @@ class SharedTextFormField extends StatefulWidget {
   final bool enableIMEPersonalizedLearning;
 
   SharedTextFormField({
-    this.key,
+    Key? key,
     this.controller,
     this.initialValue,
     // this.focusNode,
@@ -112,7 +111,7 @@ class SharedTextFormField extends StatefulWidget {
     this.scrollController,
     this.restorationId,
     this.enableIMEPersonalizedLearning = true,
-  });
+  }) : super(key: key);
 
   @override
   State<SharedTextFormField> createState() => _SharedTextFormFieldState();

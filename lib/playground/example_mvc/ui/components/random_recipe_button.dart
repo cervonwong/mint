@@ -22,7 +22,7 @@ class RandomRecipeButton extends StatelessWidget {
           onPressed: () {
             controller.requestRandomRecipe();
           },
-          child: Text('Generate random recipe!'),
+          child: const Text('Generate random recipe!'),
         );
       },
     );

@@ -6,7 +6,7 @@ import 'dart:collection';
 
 import 'package:meta/meta.dart';
 
-import 'package:mint/main/models/step.dart';
+import 'step.dart';
 
 @immutable
 class Recipe {

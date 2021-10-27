@@ -4,11 +4,11 @@
 
 import 'package:flutter/material.dart';
 
-import 'package:mint/main/ui/components/shared/listen_button.dart';
-import 'package:mint/main/ui/components/shared/shared_app_bar.dart';
-import 'package:mint/main/ui/constants/color_constants.dart';
-import 'package:mint/main/ui/constants/theme_constants.dart';
-import 'package:mint/main/ui/utils/layout_calculator.dart';
+import '../../constants/color_constants.dart';
+import '../../constants/theme_constants.dart';
+import '../../shared_components/listen_button.dart';
+import '../../shared_components/shared_app_bar.dart';
+import '../../utils/layout_calculator.dart';
 
 class RecipeCatalogueScreen extends StatefulWidget {
   static const routeName = 'home';
@@ -25,13 +25,13 @@ class _RecipeCatalogueScreenState extends State<RecipeCatalogueScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      drawer: Drawer(),
+      drawer: const Drawer(),
       extendBodyBehindAppBar: true,
       appBar: SharedAppBar(scrollController: _scrollController),
       body: ListView(
         controller: _scrollController,
         children: [
-          SizedBox(height: 12.0),
+          const SizedBox(height: 12.0),
           Padding(
             padding: EdgeInsets.symmetric(
               horizontal: LayoutCalculator.margin(context: context),
@@ -52,10 +52,10 @@ class _RecipeCatalogueScreenState extends State<RecipeCatalogueScreen> {
               ],
             ),
           ),
-          SizedBox(height: 16.0),
-          RecipeCard(title: 'Fried Chicken Wings for Nasi Lemak'),
-          RecipeCard(title: 'Fried Chicken Wings for Nasi Lemak'),
-          RecipeCard(title: 'Fried Chicken Wings for Nasi Lemak'),
+          const SizedBox(height: 16.0),
+          const RecipeCard(title: 'Fried Chicken Wings for Nasi Lemak'),
+          const RecipeCard(title: 'Fried Chicken Wings for Nasi Lemak'),
+          const RecipeCard(title: 'Fried Chicken Wings for Nasi Lemak'),
         ],
       ),
     );
@@ -83,7 +83,7 @@ class RecipeCard extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            ClipRRect(
+            const ClipRRect(
               borderRadius: BorderRadius.only(
                 topLeft: Radius.circular(12.0),
                 topRight: Radius.circular(12.0),
@@ -96,7 +96,7 @@ class RecipeCard extends StatelessWidget {
               ),
             ),
             Padding(
-              padding: EdgeInsets.symmetric(
+              padding: const EdgeInsets.symmetric(
                 horizontal: 16.0,
                 vertical: 20.0,
               ),
@@ -107,7 +107,7 @@ class RecipeCard extends StatelessWidget {
                     title,
                     style: ThemeConstants.headline6,
                   ),
-                  SizedBox(height: 12.0),
+                  const SizedBox(height: 12.0),
                   ListenButton(
                     text: title,
                     labelType: LabelType.name,

@@ -19,7 +19,7 @@ class RandomRecipeController extends ChangeNotifier {
   // getters.
   Recipe _randomRecipe;
 
-  get randomRecipe => _randomRecipe;
+  Recipe get randomRecipe => _randomRecipe;
 
   RandomRecipeController() : _randomRecipe = _generateRandomRecipe();
 
