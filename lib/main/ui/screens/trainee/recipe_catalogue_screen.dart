@@ -4,10 +4,10 @@
 
 import 'package:flutter/material.dart';
 
-import 'package:mint/main/ui/components/shared/listen_button.dart';
-import 'package:mint/main/ui/components/shared/shared_app_bar.dart';
 import 'package:mint/main/ui/constants/color_constants.dart';
 import 'package:mint/main/ui/constants/theme_constants.dart';
+import 'package:mint/main/ui/shared_components/listen_button.dart';
+import 'package:mint/main/ui/shared_components/shared_app_bar.dart';
 import 'package:mint/main/ui/utils/layout_calculator.dart';
 
 class RecipeCatalogueScreen extends StatefulWidget {

@@ -6,10 +6,11 @@ import 'package:flutter/material.dart';
 
 import 'package:fluentui_system_icons/fluentui_system_icons.dart';
 
-import 'package:mint/main/ui/components/shared/help_button.dart';
 import 'package:mint/main/ui/constants/color_constants.dart';
 import 'package:mint/main/ui/constants/theme_constants.dart';
 import 'package:mint/main/ui/utils/layout_calculator.dart';
+
+import 'help_button.dart';
 
 class SharedAppBar extends StatefulWidget implements PreferredSizeWidget {
   final ScrollController scrollController;
