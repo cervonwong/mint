@@ -9,7 +9,7 @@ import '../../../models/recipe.dart';
 import '../../constants/color_constants.dart';
 import '../../constants/theme_constants.dart';
 import '../../shared_components/listen_button.dart';
-import '../../shared_components/shared_app_bar.dart';
+import '../../shared_components/shared_app_bars.dart';
 import '../../utils/layout_calculator.dart';
 
 class RecipeCatalogueScreen extends StatefulWidget {
@@ -39,7 +39,7 @@ class _RecipeCatalogueScreenState extends State<RecipeCatalogueScreen> {
     return Scaffold(
       drawer: const Drawer(),
       extendBodyBehindAppBar: true,
-      appBar: SharedAppBar(scrollController: _scrollController),
+      appBar: TitleRevealAppBar(scrollController: _scrollController),
       body: ListView(
         controller: _scrollController,
         children: [

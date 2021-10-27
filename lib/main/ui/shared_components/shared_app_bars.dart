@@ -11,19 +11,19 @@ import '../constants/theme_constants.dart';
 import '../utils/layout_calculator.dart';
 import 'help_button.dart';
 
-class SharedAppBar extends StatefulWidget implements PreferredSizeWidget {
+class TitleRevealAppBar extends StatefulWidget implements PreferredSizeWidget {
   final ScrollController scrollController;
 
-  const SharedAppBar({required this.scrollController});
+  const TitleRevealAppBar({required this.scrollController});
 
   @override
-  State<SharedAppBar> createState() => _SharedAppBarState();
+  State<TitleRevealAppBar> createState() => _TitleRevealAppBarState();
 
   @override
   Size get preferredSize => const Size.fromHeight(56.0);
 }
 
-class _SharedAppBarState extends State<SharedAppBar> {
+class _TitleRevealAppBarState extends State<TitleRevealAppBar> {
   bool isInOverlayMode = false;
 
   @override
