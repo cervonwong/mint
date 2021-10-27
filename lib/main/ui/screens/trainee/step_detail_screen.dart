@@ -140,9 +140,6 @@ class ExitRecipeConfirmationDialog extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Dialog(
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(24.0),
-      ),
       child: Padding(
         padding: const EdgeInsets.all(32.0),
         child: Column(
