@@ -11,6 +11,8 @@ import '../constants/theme_constants.dart';
 import '../utils/layout_calculator.dart';
 import 'help_button.dart';
 
+// Tons of code duplication here :) Don't mind me.
+
 class TitleRevealAppBar extends StatefulWidget implements PreferredSizeWidget {
   final ScrollController scrollController;
 
@@ -24,15 +26,15 @@ class TitleRevealAppBar extends StatefulWidget implements PreferredSizeWidget {
 }
 
 class _TitleRevealAppBarState extends State<TitleRevealAppBar> {
-  bool isInOverlayMode = false;
+  bool isElevated = false;
 
   @override
   void initState() {
     widget.scrollController.addListener(() {
       var criteria = widget.scrollController.offset > 100;
-      if (criteria != isInOverlayMode) {
+      if (criteria != isElevated) {
         setState(() {
-          isInOverlayMode = criteria;
+          isElevated = criteria;
         });
       }
     });
@@ -43,9 +45,7 @@ class _TitleRevealAppBarState extends State<TitleRevealAppBar> {
   Widget build(BuildContext context) {
     return AnimatedContainer(
       duration: const Duration(milliseconds: 150),
-      color: isInOverlayMode
-          ? ColorConstants.ivory100
-          : ColorConstants.ivoryPrimary,
+      color: isElevated ? ColorConstants.ivory100 : ColorConstants.ivoryPrimary,
       child: Material(
         type: MaterialType.transparency,
         child: Padding(
@@ -67,7 +67,7 @@ class _TitleRevealAppBarState extends State<TitleRevealAppBar> {
                 const SizedBox(width: 32.0),
                 AnimatedOpacity(
                   duration: const Duration(milliseconds: 150),
-                  opacity: isInOverlayMode ? 1.0 : 0.0,
+                  opacity: isElevated ? 1.0 : 0.0,
                   child: SelectableText(
                     'My Recipes',
                     style: ThemeConstants.headline6,
@@ -76,6 +76,91 @@ class _TitleRevealAppBarState extends State<TitleRevealAppBar> {
                 const Spacer(),
                 const HelpButton(),
               ],
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class StepDetailAppBar extends StatefulWidget implements PreferredSizeWidget {
+  final ScrollController scrollController;
+  final VoidCallback onHomeButtonPressed;
+
+  const StepDetailAppBar({
+    required this.scrollController,
+    required this.onHomeButtonPressed,
+  });
+
+  @override
+  State<StepDetailAppBar> createState() => _StepDetailAppBarState();
+
+  @override
+  Size get preferredSize =>
+      const Size.fromHeight(300.0); // A random sufficiently large number.
+}
+
+class _StepDetailAppBarState extends State<StepDetailAppBar> {
+  bool isElevated = false;
+
+  @override
+  void initState() {
+    widget.scrollController.addListener(() {
+      var criteria = widget.scrollController.offset != 0.0;
+      if (criteria != isElevated) {
+        setState(() {
+          isElevated = criteria;
+        });
+      }
+    });
+    super.initState();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return AnimatedContainer(
+      duration: const Duration(milliseconds: 150),
+      color: isElevated ? ColorConstants.ivory100 : ColorConstants.ivoryPrimary,
+      child: Material(
+        type: MaterialType.transparency,
+        child: Padding(
+          padding: EdgeInsets.symmetric(
+            horizontal: LayoutCalculator.wideMargin(context: context) -
+                8.0, // 8.0 is margin around IconButton.
+          ),
+          child: IntrinsicHeight(
+            child: Padding(
+              padding: const EdgeInsets.only(top: 8.0),
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  IconButton(
+                    icon: const Icon(
+                      FluentIcons.home_24_regular,
+                      color: ColorConstants.blackPrimary,
+                    ),
+                    onPressed: widget.onHomeButtonPressed,
+                  ),
+                  const Spacer(),
+                  Column(
+                    children: [
+                      const SizedBox(height: 8.0),
+                      SelectableText(
+                        'Step 3 of 5',
+                        style: ThemeConstants.headline6,
+                      ),
+                      SelectableText(
+                        'You are making Fried Chicken Wings for Nasi Lemak.',
+                        style: ThemeConstants.body9,
+                      ),
+                      const SizedBox(height: 12.0),
+                    ],
+                  ),
+                  const Spacer(),
+                  const HelpButton(),
+                ],
+              ),
             ),
           ),
         ),

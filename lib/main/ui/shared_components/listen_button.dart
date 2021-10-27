@@ -18,8 +18,8 @@ class ListenButton extends StatelessWidget {
       case LabelType.name:
         label = 'Listen to name';
         break;
-      case LabelType.instructions:
-        label = 'Listen to instructions';
+      case LabelType.instruction:
+        label = 'Listen to instruction';
         break;
       case LabelType.message:
         label = 'Listen to message';
@@ -49,6 +49,6 @@ class ListenButton extends StatelessWidget {
 
 enum LabelType {
   name,
-  instructions,
+  instruction,
   message,
 }

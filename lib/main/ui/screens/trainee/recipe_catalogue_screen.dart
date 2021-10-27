@@ -3,14 +3,14 @@
  */
 
 import 'package:flutter/material.dart';
-import 'package:mint/main/ui/screens/trainee/step_detail_screen.dart';
-import '../../../models/recipe.dart';
 
+import '../../../models/recipe.dart';
 import '../../constants/color_constants.dart';
 import '../../constants/theme_constants.dart';
 import '../../shared_components/listen_button.dart';
 import '../../shared_components/shared_app_bars.dart';
 import '../../utils/layout_calculator.dart';
+import 'step_detail_screen.dart';
 
 class RecipeCatalogueScreen extends StatefulWidget {
   static const routeName = 'home';
