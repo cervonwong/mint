@@ -3,6 +3,7 @@
  */
 
 import 'package:flutter/material.dart';
+import 'package:mint/main/ui/screens/trainee/step_detail_screen.dart';
 import '../../../models/recipe.dart';
 
 import '../../constants/color_constants.dart';
@@ -141,46 +142,54 @@ class RecipeCard extends StatelessWidget {
       ),
       child: Container(
         decoration: BoxDecoration(
-          color: ColorConstants.whitePrimary,
           border: Border.all(color: ColorConstants.ivory200),
           borderRadius: BorderRadius.circular(12.0),
         ),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-            const ClipRRect(
-              borderRadius: BorderRadius.only(
-                topLeft: Radius.circular(12.0),
-                topRight: Radius.circular(12.0),
-              ),
-              child: Image(
-                image: AssetImage(
-                  'assets/sample_images/Sample_RecipeCardThumbnail.png',
+        child: Material(
+          borderRadius: BorderRadius.circular(12.0),
+          child: InkWell(
+            borderRadius: BorderRadius.circular(12.0),
+            onTap: () {
+              Navigator.pushNamed(context, StepDetailScreen.routeName);
+            },
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                const ClipRRect(
+                  borderRadius: BorderRadius.only(
+                    topLeft: Radius.circular(12.0),
+                    topRight: Radius.circular(12.0),
+                  ),
+                  child: Image(
+                    image: AssetImage(
+                      'assets/sample_images/Sample_RecipeCardThumbnail.png',
+                    ),
+                    fit: BoxFit.fitWidth,
+                  ),
                 ),
-                fit: BoxFit.fitWidth,
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.symmetric(
-                horizontal: 16.0,
-                vertical: 20.0,
-              ),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.stretch,
-                children: [
-                  Text(
-                    title,
-                    style: ThemeConstants.headline6,
+                Padding(
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 16.0,
+                    vertical: 20.0,
                   ),
-                  const SizedBox(height: 12.0),
-                  ListenButton(
-                    text: title,
-                    labelType: LabelType.name,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    children: [
+                      Text(
+                        title,
+                        style: ThemeConstants.headline6,
+                      ),
+                      const SizedBox(height: 12.0),
+                      ListenButton(
+                        text: title,
+                        labelType: LabelType.name,
+                      ),
+                    ],
                   ),
-                ],
-              ),
+                ),
+              ],
             ),
-          ],
+          ),
         ),
       ),
     );
