@@ -27,6 +27,8 @@ dev_dependencies:
   pedantic: ^1.11.1
 
 flutter:
+  assets:
+    - assets/sample_images/
   fonts:
     - family: Red Hat Text
       fonts:

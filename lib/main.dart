@@ -7,14 +7,17 @@ import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 
 import 'package:mint/main/ui/constants/theme_constants.dart';
-import 'package:mint/main/ui/screens/set_up/sign_in_screen.dart';
-import 'package:mint/main/ui/screens/set_up/user_type_set_up_screen.dart';
 import 'main/di/injection_container.dart' as injection_container;
+import 'main/ui/screens/trainee/recipe_catalogue_screen.dart';
 
 void main() async {
+  // Firebase initialisation.
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
+
+  // Dependency injection initialisation.
   injection_container.configureDependencies();
+
   runApp(MyApp());
 }
 
@@ -22,12 +25,12 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'Mint 🌿',
       theme: ThemeConstants.themeData,
-      initialRoute: SignInScreen.routeName,
+      initialRoute: RecipeCatalogueScreen.routeName,
       routes: {
-        SignInScreen.routeName: (context) => SignInScreen(),
-        UserTypeSetUpScreen.routeName: (context) => UserTypeSetUpScreen(),
+        RecipeCatalogueScreen.routeName: (context) => RecipeCatalogueScreen(),
       },
     );
   }

@@ -6,16 +6,19 @@ import 'package:flutter/material.dart';
 
 import 'package:fluentui_system_icons/fluentui_system_icons.dart';
 
-class ListenIconButton extends StatelessWidget {
-  final String text;
+import 'package:mint/main/ui/constants/color_constants.dart';
 
-  const ListenIconButton({required this.text});
+class HelpButton extends StatelessWidget {
+  const HelpButton();
 
   @override
   Widget build(BuildContext context) {
     return IconButton(
+      icon: Icon(
+        FluentIcons.question_circle_24_regular,
+        color: ColorConstants.greenPrimary,
+      ),
       onPressed: () {},
-      icon: Icon(FluentIcons.speaker_2_24_regular),
     );
   }
 }
