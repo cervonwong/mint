@@ -4,7 +4,7 @@
 
 import 'package:flutter/material.dart';
 
-import '../../../models/recipe.dart';
+import '../../../models/recipe_catalogue_info.dart';
 import '../../constants/color_constants.dart';
 import '../../constants/theme_constants.dart';
 import '../../shared_components/listen_button.dart';
@@ -14,16 +14,25 @@ import 'step_detail_screen.dart';
 
 class RecipeCatalogueScreen extends StatefulWidget {
   static const routeName = 'home';
-  late final List<Recipe> recipeList;
+  late final List<RecipeCatalogueInfo> recipeList;
 
   RecipeCatalogueScreen() {
     // TODO: 10/27/2021 When logic implemented, recipeList should be retrieved
     //  from some controller. Code in this constructor now is just a
     //  placeholder.
     recipeList = [
-      Recipe(steps: []),
-      Recipe(steps: []),
-      Recipe(steps: []),
+      RecipeCatalogueInfo(
+        name: 'Nice Recipe Name One',
+        imageUrl: 'PLACEHOLDER',
+      ),
+      RecipeCatalogueInfo(
+        name: 'Nice Recipe Name Two',
+        imageUrl: 'PLACEHOLDER',
+      ),
+      RecipeCatalogueInfo(
+        name: 'Nice Recipe Name Three',
+        imageUrl: 'PLACEHOLDER',
+      ),
     ];
   }
 
@@ -73,7 +82,7 @@ class _RecipeCatalogueScreenState extends State<RecipeCatalogueScreen> {
 }
 
 class _ResponsiveRecipeCardGrid extends StatelessWidget {
-  final List<Recipe> recipeList;
+  final List<RecipeCatalogueInfo> recipeList;
 
   const _ResponsiveRecipeCardGrid({required this.recipeList});
 
@@ -88,9 +97,7 @@ class _ResponsiveRecipeCardGrid extends StatelessWidget {
           ? Column(
               children: [
                 for (int i = 0; i < recipeList.length; i++)
-                  RecipeCard(
-                    title: 'Fried Chicken Wings for Nasi Lemak $i',
-                  ),
+                  RecipeCard(title: recipeList[i].name),
               ],
             )
           : Row(
@@ -102,10 +109,7 @@ class _ResponsiveRecipeCardGrid extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: [
                       for (int i = 0; i < recipeList.length; i++)
-                        if (i % 2 == 0)
-                          RecipeCard(
-                            title: 'Fried Chicken Wings for Nasi Lemak $i',
-                          ),
+                        if (i % 2 == 0) RecipeCard(title: recipeList[i].name),
                     ],
                   ),
                 ),
@@ -116,10 +120,7 @@ class _ResponsiveRecipeCardGrid extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: [
                       for (int i = 0; i < recipeList.length; i++)
-                        if (i % 2 == 1)
-                          RecipeCard(
-                            title: 'Fried Chicken Wings for Nasi Lemak $i',
-                          ),
+                        if (i % 2 == 1) RecipeCard(title: recipeList[i].name),
                     ],
                   ),
                 ),

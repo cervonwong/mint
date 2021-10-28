@@ -6,12 +6,12 @@ import 'package:flutter/foundation.dart';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 
-import '../models/recipe.dart';
-import '../models/step.dart';
+import '../models/recipe_step.dart';
+import '../models/recipe_step_details.dart';
 
 class RecipeController extends ChangeNotifier {
-  Recipe get recipe => _recipe;
-  late Recipe _recipe;
+  RecipeStepDetails get recipe => _recipe;
+  late RecipeStepDetails _recipe;
 
   Future<void> requestRecipe({required String id}) async {
     _recipe = await _getRecipe(id: id);
@@ -19,16 +19,20 @@ class RecipeController extends ChangeNotifier {
   }
 }
 
-Future<Recipe> _getRecipe({required String id}) async {
+Future<RecipeStepDetails> _getRecipe({required String id}) async {
   final collection = FirebaseFirestore.instance.collection('recipes');
   final querySnapshot = await collection.doc(id).get();
 
-  final recipe = Recipe(
-    steps: List<Step>.from(
+  final recipe = RecipeStepDetails(
+    steps: List<RecipeStep>.from(
       querySnapshot.data()!['steps'].map(
-            (item) => Step(step: item['step'], image: item['image']),
+            (item) =>
+                RecipeStep(instruction: item['step'], imageUrl: item['image']),
           ),
     ),
+    recipeName: '',
+    // FIXME: 10/28/2021 Edited `RecipeStepDetail`'s
+    //  parameters, please fill the `name` argument above thanks :)
   );
 
   return recipe;

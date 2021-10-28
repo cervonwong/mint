@@ -7,6 +7,8 @@ import 'package:flutter/rendering.dart';
 
 import 'package:fluentui_system_icons/fluentui_system_icons.dart';
 
+import '../../../models/recipe_step.dart';
+import '../../../models/recipe_step_details.dart';
 import '../../constants/color_constants.dart';
 import '../../constants/theme_constants.dart';
 import '../../shared_components/listen_button.dart';
@@ -22,8 +24,20 @@ import 'recipe_completion_screen.dart';
 
 class StepDetailScreen extends StatefulWidget {
   static const routeName = 'steps';
+  late final RecipeStepDetails recipeStepDetails;
 
-  StepDetailScreen();
+  StepDetailScreen() {
+    recipeStepDetails = RecipeStepDetails(
+      recipeName: 'Random Recipe Name',
+      steps: [
+        RecipeStep(instruction: 'Instruction 1'),
+        RecipeStep(instruction: 'Instruction 2'),
+        RecipeStep(instruction: 'Instruction 3'),
+        RecipeStep(instruction: 'Instruction 4'),
+        RecipeStep(instruction: 'Instruction 5'),
+      ],
+    );
+  }
 
   @override
   State<StepDetailScreen> createState() => _StepDetailScreenState();
@@ -31,6 +45,8 @@ class StepDetailScreen extends StatefulWidget {
 
 class _StepDetailScreenState extends State<StepDetailScreen> {
   final ScrollController _scrollController = ScrollController();
+  int currentStepIndex = 0;
+  int currentStepNumber = 1; // To prevent miscounting. Number = Index + 1.
 
   @override
   Widget build(BuildContext context) {
@@ -38,6 +54,9 @@ class _StepDetailScreenState extends State<StepDetailScreen> {
       extendBodyBehindAppBar: false,
       appBar: StepDetailAppBar(
         scrollController: _scrollController,
+        recipeName: widget.recipeStepDetails.recipeName,
+        currentStepNumber: currentStepNumber,
+        totalStepCount: widget.recipeStepDetails.steps.length,
         onHomeButtonPressed: () {
           showDialog(
             context: context,
@@ -58,9 +77,9 @@ class _StepDetailScreenState extends State<StepDetailScreen> {
               child: Center(
                 child: SingleChildScrollView(
                   controller: _scrollController,
-                  child: const StepCard(
-                    instruction: 'Fry chicken wings for '
-                        '8 minutes until golden brown.',
+                  child: StepCard(
+                    instruction: widget
+                        .recipeStepDetails.steps[currentStepIndex].instruction,
                   ),
                 ),
               ),
@@ -74,7 +93,7 @@ class _StepDetailScreenState extends State<StepDetailScreen> {
                 );
               },
               icon: const Icon(FluentIcons.checkmark_24_regular),
-              label: const Text('I have done step 3'),
+              label: Text('I have done Step $currentStepNumber'),
             ),
             SizedBox(
               height: LayoutCalculator.bottomButtonBottomMargin(

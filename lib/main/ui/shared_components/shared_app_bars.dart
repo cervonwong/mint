@@ -89,10 +89,16 @@ class _TitleRevealAppBarState extends State<TitleRevealAppBar> {
 class StepDetailAppBar extends StatefulWidget implements PreferredSizeWidget {
   final ScrollController scrollController;
   final VoidCallback onHomeButtonPressed;
+  final String recipeName;
+  final int currentStepNumber;
+  final int totalStepCount;
 
   const StepDetailAppBar({
     required this.scrollController,
     required this.onHomeButtonPressed,
+    required this.recipeName,
+    required this.currentStepNumber,
+    required this.totalStepCount,
   });
 
   @override
@@ -148,11 +154,12 @@ class _StepDetailAppBarState extends State<StepDetailAppBar> {
                 Column(
                   children: [
                     SelectableText(
-                      'Step 3 of 5',
+                      'Step ${widget.currentStepNumber} '
+                      'of ${widget.totalStepCount}',
                       style: ThemeConstants.headline6,
                     ),
                     SelectableText(
-                      'You are making Fried Chicken Wings for Nasi Lemak.',
+                      'You are making ${widget.recipeName}.',
                       style: ThemeConstants.body9,
                     ),
                     const SizedBox(height: 12.0),
