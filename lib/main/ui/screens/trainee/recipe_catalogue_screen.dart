@@ -3,8 +3,8 @@
  */
 
 import 'package:flutter/material.dart';
-import '../../../models/recipe.dart';
 
+import '../../../models/recipe.dart';
 import '../../constants/color_constants.dart';
 import '../../constants/theme_constants.dart';
 import '../../shared_components/listen_button.dart';
@@ -35,7 +35,7 @@ class RecipeCatalogueScreen extends StatefulWidget {
       ),
     ];
     for (final recipe in recipeList) {
-      assert (recipe.imageUrl != null);
+      assert(recipe.imageUrl != null);
     }
   }
 

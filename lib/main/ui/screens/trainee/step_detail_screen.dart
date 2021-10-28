@@ -7,8 +7,8 @@ import 'package:flutter/rendering.dart';
 
 import 'package:fluentui_system_icons/fluentui_system_icons.dart';
 
-import '../../../models/recipe_step.dart';
 import '../../../models/recipe.dart';
+import '../../../models/recipe_step.dart';
 import '../../constants/color_constants.dart';
 import '../../constants/theme_constants.dart';
 import '../../shared_components/listen_button.dart';
@@ -79,8 +79,8 @@ class _StepDetailScreenState extends State<StepDetailScreen> {
                 child: SingleChildScrollView(
                   controller: _scrollController,
                   child: StepCard(
-                    instruction: widget
-                        .recipe.steps![currentStepIndex].instruction,
+                    instruction:
+                        widget.recipe.steps![currentStepIndex].instruction,
                   ),
                 ),
               ),
