@@ -9,6 +9,7 @@ import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 
 import 'package:mint/main/ui/constants/theme_constants.dart';
+import 'package:mint/main/ui/screens/trainee/recipe_completion_screen.dart';
 import 'package:mint/main/ui/screens/trainee/step_detail_screen.dart';
 import 'main/di/injection_container.dart' as injection_container;
 import 'main/ui/screens/trainee/recipe_catalogue_screen.dart';
@@ -35,6 +36,7 @@ class MyApp extends StatelessWidget {
       routes: {
         RecipeCatalogueScreen.routeName: (context) => RecipeCatalogueScreen(),
         StepDetailScreen.routeName: (context) => StepDetailScreen(),
+        RecipeCompletionScreen.routeName: (context) => RecipeCompletionScreen(),
       },
     );
   }

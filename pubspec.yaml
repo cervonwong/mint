@@ -28,6 +28,7 @@ dev_dependencies:
 
 flutter:
   assets:
+    - assets/illustrations/
     - assets/sample_images/
   fonts:
     - family: Red Hat Text

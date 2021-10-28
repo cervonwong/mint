@@ -3,10 +3,11 @@
  */
 
 import 'package:flutter/material.dart';
-
-import 'package:fluentui_system_icons/fluentui_system_icons.dart';
 import 'package:flutter/rendering.dart';
 
+import 'package:fluentui_system_icons/fluentui_system_icons.dart';
+
+import 'package:mint/main/ui/screens/trainee/recipe_completion_screen.dart';
 import '../../constants/color_constants.dart';
 import '../../constants/theme_constants.dart';
 import '../../shared_components/listen_button.dart';
@@ -14,6 +15,10 @@ import '../../shared_components/shared_app_bars.dart';
 import '../../shared_components/shared_buttons.dart';
 import '../../utils/layout_calculator.dart';
 import 'recipe_catalogue_screen.dart';
+
+// TODO: 10/28/2021 For design, to remove hardcode for app bar, to create
+//  animation when moving between steps, slightly adjusted padding when
+//  image not present.
 
 class StepDetailScreen extends StatefulWidget {
   static const routeName = 'steps';
@@ -61,15 +66,20 @@ class _StepDetailScreenState extends State<StepDetailScreen> {
               ),
             ),
             ElevatedButtonWithIcon7(
-              onPressed: () {},
+              onPressed: () {
+                Navigator.pushNamedAndRemoveUntil(
+                  context,
+                  RecipeCompletionScreen.routeName,
+                  (route) => route.isFirst,
+                );
+              },
               icon: const Icon(FluentIcons.checkmark_24_regular),
               label: const Text('I have done step 3'),
             ),
             SizedBox(
-              height: LayoutCalculator.breakpoint(context: context) ==
-                      LayoutBreakpoint.smallest
-                  ? 16.0
-                  : 24.0,
+              height: LayoutCalculator.bottomButtonBottomMargin(
+                context: context,
+              ),
             ),
           ],
         ),
