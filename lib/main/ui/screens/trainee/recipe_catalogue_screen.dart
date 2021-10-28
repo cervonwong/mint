@@ -4,6 +4,9 @@
 
 import 'package:flutter/material.dart';
 
+import 'package:provider/provider.dart';
+
+import '../../../controller/recipe_catalogue_controller.dart';
 import '../../../models/recipe.dart';
 import '../../constants/color_constants.dart';
 import '../../constants/theme_constants.dart';
@@ -14,30 +17,8 @@ import 'step_detail_screen.dart';
 
 class RecipeCatalogueScreen extends StatefulWidget {
   static const routeName = 'home';
-  late final List<Recipe> recipeList;
 
-  RecipeCatalogueScreen() {
-    // TODO: 10/27/2021 When logic implemented, recipeList should be retrieved
-    //  from some controller. Code in this constructor now is just a
-    //  placeholder.
-    recipeList = [
-      Recipe(
-        name: 'Nice Recipe Name One',
-        imageUrl: 'PLACEHOLDER',
-      ),
-      Recipe(
-        name: 'Nice Recipe Name Two',
-        imageUrl: 'PLACEHOLDER',
-      ),
-      Recipe(
-        name: 'Nice Recipe Name Three',
-        imageUrl: 'PLACEHOLDER',
-      ),
-    ];
-    for (final recipe in recipeList) {
-      assert(recipe.imageUrl != null);
-    }
-  }
+  RecipeCatalogueScreen();
 
   @override
   State<RecipeCatalogueScreen> createState() => _RecipeCatalogueScreenState();
@@ -45,9 +26,15 @@ class RecipeCatalogueScreen extends StatefulWidget {
 
 class _RecipeCatalogueScreenState extends State<RecipeCatalogueScreen> {
   final ScrollController _scrollController = ScrollController();
+  late List<Recipe> recipeList;
 
   @override
   Widget build(BuildContext context) {
+    recipeList = Provider.of<RecipeCatalogueController>(context).recipeList;
+    for (final recipe in recipeList) {
+      assert(recipe.imageUrl != null);
+    }
+
     return Scaffold(
       drawer: const Drawer(),
       extendBodyBehindAppBar: true,
@@ -77,7 +64,7 @@ class _RecipeCatalogueScreenState extends State<RecipeCatalogueScreen> {
             ),
           ),
           const SizedBox(height: 16.0),
-          _ResponsiveRecipeCardGrid(recipeList: widget.recipeList),
+          _ResponsiveRecipeCardGrid(recipeList: recipeList),
         ],
       ),
     );

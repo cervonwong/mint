@@ -15,13 +15,35 @@ class RecipeCatalogueController extends ChangeNotifier {
       UnmodifiableListView(_recipeList);
   late List<Recipe> _recipeList;
 
-  RecipeCatalogueController() {
-    // Initialise _recipeList.
-    // TODO: 10/28/2021 Some firebase logic here. The code in this constructor
-    //  will be run when this class created for the first time. (This class will
-    //  be a singleton so this code is only called once throughout one app
-    //  usage session)
-  }
+  bool _hasInitialised = false;
 
-  // No other code needed for now.
+  RecipeCatalogueController();
+
+  // This function is called in the Provider in main.dart. This function will be
+  // called once only.
+  Future<void> initialise() async {
+    // Make sure this function is not called when this controller already initialised.
+    assert(_hasInitialised == false);
+
+    // TODO: 10/28/2021 Replace with firebase logic below.
+    _recipeList = await _generatePlaceholderRecipeList();
+    _hasInitialised = true;
+  }
+}
+
+Future<List<Recipe>> _generatePlaceholderRecipeList() async {
+  return [
+    Recipe(
+      name: 'Chicken Wings',
+      imageUrl: 'PLACEHOLDER',
+    ),
+    Recipe(
+      name: 'Chicken Wings Again',
+      imageUrl: 'PLACEHOLDER',
+    ),
+    Recipe(
+      name: 'More Chicken Wings',
+      imageUrl: 'PLACEHOLDER',
+    ),
+  ];
 }
