@@ -4,10 +4,10 @@
 
 import 'package:flutter/material.dart';
 
-import 'package:mint/main/ui/constants/theme_constants.dart';
-import 'package:mint/main/ui/screens/trainee/recipe_catalogue_screen.dart';
-import 'package:mint/main/ui/utils/layout_calculator.dart';
+import '../../constants/theme_constants.dart';
 import '../../shared_components/shared_buttons.dart';
+import '../../utils/layout_calculator.dart';
+import 'recipe_catalogue_screen.dart';
 
 class RecipeCompletionScreen extends StatelessWidget {
   static const routeName = 'recipe_completion';

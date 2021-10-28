@@ -7,7 +7,6 @@ import 'package:flutter/rendering.dart';
 
 import 'package:fluentui_system_icons/fluentui_system_icons.dart';
 
-import 'package:mint/main/ui/screens/trainee/recipe_completion_screen.dart';
 import '../../constants/color_constants.dart';
 import '../../constants/theme_constants.dart';
 import '../../shared_components/listen_button.dart';
@@ -15,6 +14,7 @@ import '../../shared_components/shared_app_bars.dart';
 import '../../shared_components/shared_buttons.dart';
 import '../../utils/layout_calculator.dart';
 import 'recipe_catalogue_screen.dart';
+import 'recipe_completion_screen.dart';
 
 // TODO: 10/28/2021 For design, to remove hardcode for app bar, to create
 //  animation when moving between steps, slightly adjusted padding when
