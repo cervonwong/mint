@@ -6,8 +6,8 @@ import 'package:flutter/foundation.dart';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 
-import '../models/recipe_step.dart';
 import '../models/recipe.dart';
+import '../models/recipe_step.dart';
 
 // This controller allows UI to select what is the current recipe of interest.
 // Then, the UI can access the `currentRecipe` to view its details.

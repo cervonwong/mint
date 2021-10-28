@@ -5,6 +5,7 @@
 import 'dart:collection';
 
 import 'package:flutter/foundation.dart';
+
 import '../models/recipe.dart';
 
 // This controller fetches the names and images of all recipes.
