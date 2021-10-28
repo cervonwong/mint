@@ -56,6 +56,14 @@ class LayoutCalculator {
         return (screenWidth - 600.0) / 2; // Placeholder value.
     }
   }
+
+  static double appBarHorizontalMargin({required BuildContext context}) {
+    return margin(context: context).clamp(16.0, 32.0);
+  }
+
+  static double appBarVerticalMargin({required BuildContext context}) {
+    return 16.0;
+  }
 }
 
 // The relative size of the app window wrt to the width of the app window.

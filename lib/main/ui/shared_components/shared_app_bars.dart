@@ -22,7 +22,7 @@ class TitleRevealAppBar extends StatefulWidget implements PreferredSizeWidget {
   State<TitleRevealAppBar> createState() => _TitleRevealAppBarState();
 
   @override
-  Size get preferredSize => const Size.fromHeight(56.0);
+  Size get preferredSize => const Size.fromHeight(300.0);
 }
 
 class _TitleRevealAppBarState extends State<TitleRevealAppBar> {
@@ -46,15 +46,17 @@ class _TitleRevealAppBarState extends State<TitleRevealAppBar> {
     return AnimatedContainer(
       duration: const Duration(milliseconds: 150),
       color: isElevated ? ColorConstants.ivory100 : ColorConstants.ivoryPrimary,
-      child: Material(
-        type: MaterialType.transparency,
-        child: Padding(
-          padding: EdgeInsets.symmetric(
-            horizontal: LayoutCalculator.margin(context: context) -
-                8.0, // 8.0 is margin around IconButton.
-          ),
-          child: SizedBox(
-            height: 56.0,
+      child: IntrinsicHeight(
+        child: Material(
+          type: MaterialType.transparency,
+          child: Padding(
+            padding: EdgeInsets.symmetric(
+              // 8.0 is margin around IconButton.
+              horizontal:
+                  LayoutCalculator.appBarHorizontalMargin(context: context) -
+                      8.0,
+              vertical: LayoutCalculator.appBarVerticalMargin(context: context),
+            ),
             child: Row(
               children: [
                 IconButton(
@@ -126,41 +128,39 @@ class _StepDetailAppBarState extends State<StepDetailAppBar> {
         type: MaterialType.transparency,
         child: Padding(
           padding: EdgeInsets.symmetric(
-            horizontal: LayoutCalculator.wideMargin(context: context) -
-                8.0, // 8.0 is margin around IconButton.
+            // 8.0 is margin around IconButton.
+            horizontal:
+                LayoutCalculator.appBarHorizontalMargin(context: context) - 8.0,
+            vertical: LayoutCalculator.appBarVerticalMargin(context: context),
           ),
           child: IntrinsicHeight(
-            child: Padding(
-              padding: const EdgeInsets.only(top: 8.0),
-              child: Row(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  IconButton(
-                    icon: const Icon(
-                      FluentIcons.home_24_regular,
-                      color: ColorConstants.blackPrimary,
+            child: Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                IconButton(
+                  icon: const Icon(
+                    FluentIcons.home_24_regular,
+                    color: ColorConstants.blackPrimary,
+                  ),
+                  onPressed: widget.onHomeButtonPressed,
+                ),
+                const Spacer(),
+                Column(
+                  children: [
+                    SelectableText(
+                      'Step 3 of 5',
+                      style: ThemeConstants.headline6,
                     ),
-                    onPressed: widget.onHomeButtonPressed,
-                  ),
-                  const Spacer(),
-                  Column(
-                    children: [
-                      const SizedBox(height: 8.0),
-                      SelectableText(
-                        'Step 3 of 5',
-                        style: ThemeConstants.headline6,
-                      ),
-                      SelectableText(
-                        'You are making Fried Chicken Wings for Nasi Lemak.',
-                        style: ThemeConstants.body9,
-                      ),
-                      const SizedBox(height: 12.0),
-                    ],
-                  ),
-                  const Spacer(),
-                  const HelpButton(),
-                ],
-              ),
+                    SelectableText(
+                      'You are making Fried Chicken Wings for Nasi Lemak.',
+                      style: ThemeConstants.body9,
+                    ),
+                    const SizedBox(height: 12.0),
+                  ],
+                ),
+                const Spacer(),
+                const HelpButton(),
+              ],
             ),
           ),
         ),
