@@ -4,6 +4,9 @@
 
 import 'package:flutter/material.dart';
 
+import 'package:provider/provider.dart';
+
+import '../../../controller/current_recipe_controller.dart';
 import '../../constants/theme_constants.dart';
 import '../../shared_components/shared_buttons.dart';
 import '../../utils/layout_calculator.dart';
@@ -11,11 +14,8 @@ import 'recipe_catalogue_screen.dart';
 
 class RecipeCompletionScreen extends StatelessWidget {
   static const routeName = 'recipe_completion';
-  final String recipeName;
 
-  // TODO: 10/28/2021 When logic implemented, recipeName should be retrieved
-  //  from some controller which knows what the current recipe is.
-  RecipeCompletionScreen() : recipeName = 'Fried Chicken Wings for Nasi Lemak';
+  RecipeCompletionScreen();
 
   @override
   Widget build(BuildContext context) {
@@ -46,7 +46,7 @@ class RecipeCompletionScreen extends StatelessWidget {
                     ),
                     const SizedBox(height: 24.0),
                     SelectableText(
-                      'You have completed $recipeName!',
+                      'You have completed ${Provider.of<CurrentRecipeController>(context).currentRecipe.name}!',
                       textAlign: TextAlign.center,
                       style: ThemeConstants.headline6,
                     ),

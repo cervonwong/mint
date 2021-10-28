@@ -34,14 +34,17 @@ class RecipeCatalogueController extends ChangeNotifier {
 Future<List<Recipe>> _generatePlaceholderRecipeList() async {
   return [
     Recipe(
+      id: 'chicken_wings',
       name: 'Chicken Wings',
       imageUrl: 'PLACEHOLDER',
     ),
     Recipe(
+      id: 'chicken_wings_again',
       name: 'Chicken Wings Again',
       imageUrl: 'PLACEHOLDER',
     ),
     Recipe(
+      id: 'more_chicken_wings',
       name: 'More Chicken Wings',
       imageUrl: 'PLACEHOLDER',
     ),

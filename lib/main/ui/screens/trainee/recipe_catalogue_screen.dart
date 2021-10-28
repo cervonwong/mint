@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 
 import 'package:provider/provider.dart';
 
+import '../../../controller/current_recipe_controller.dart';
 import '../../../controller/recipe_catalogue_controller.dart';
 import '../../../models/recipe.dart';
 import '../../constants/color_constants.dart';
@@ -87,7 +88,7 @@ class _ResponsiveRecipeCardGrid extends StatelessWidget {
           ? Column(
               children: [
                 for (int i = 0; i < recipeList.length; i++)
-                  RecipeCard(title: recipeList[i].name),
+                  RecipeCard(recipe: recipeList[i]),
               ],
             )
           : Row(
@@ -99,7 +100,7 @@ class _ResponsiveRecipeCardGrid extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: [
                       for (int i = 0; i < recipeList.length; i++)
-                        if (i % 2 == 0) RecipeCard(title: recipeList[i].name),
+                        if (i % 2 == 0) RecipeCard(recipe: recipeList[i]),
                     ],
                   ),
                 ),
@@ -110,7 +111,7 @@ class _ResponsiveRecipeCardGrid extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: [
                       for (int i = 0; i < recipeList.length; i++)
-                        if (i % 2 == 1) RecipeCard(title: recipeList[i].name),
+                        if (i % 2 == 1) RecipeCard(recipe: recipeList[i]),
                     ],
                   ),
                 ),
@@ -121,9 +122,9 @@ class _ResponsiveRecipeCardGrid extends StatelessWidget {
 }
 
 class RecipeCard extends StatelessWidget {
-  final String title;
+  final Recipe recipe;
 
-  const RecipeCard({required this.title});
+  const RecipeCard({required this.recipe});
 
   @override
   Widget build(BuildContext context) {
@@ -141,6 +142,8 @@ class RecipeCard extends StatelessWidget {
           child: InkWell(
             borderRadius: BorderRadius.circular(12.0),
             onTap: () {
+              Provider.of<CurrentRecipeController>(context, listen: false)
+                  .selectRecipe(id: recipe.id);
               Navigator.pushNamed(context, StepDetailScreen.routeName);
             },
             child: Column(
@@ -167,12 +170,12 @@ class RecipeCard extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: [
                       Text(
-                        title,
+                        recipe.name,
                         style: ThemeConstants.headline6,
                       ),
                       const SizedBox(height: 12.0),
                       ListenButton(
-                        text: title,
+                        text: recipe.name,
                         labelType: LabelType.name,
                       ),
                     ],

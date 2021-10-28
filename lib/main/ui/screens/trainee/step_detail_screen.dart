@@ -6,9 +6,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 
 import 'package:fluentui_system_icons/fluentui_system_icons.dart';
+import 'package:provider/provider.dart';
 
+import '../../../controller/current_recipe_controller.dart';
 import '../../../models/recipe.dart';
-import '../../../models/recipe_step.dart';
 import '../../constants/color_constants.dart';
 import '../../constants/theme_constants.dart';
 import '../../shared_components/listen_button.dart';
@@ -18,27 +19,10 @@ import '../../utils/layout_calculator.dart';
 import 'recipe_catalogue_screen.dart';
 import 'recipe_completion_screen.dart';
 
-// TODO: 10/28/2021 For design, to remove hardcode for app bar, to create
-//  animation when moving between steps, slightly adjusted padding when
-//  image not present.
-
 class StepDetailScreen extends StatefulWidget {
   static const routeName = 'steps';
-  late final Recipe recipe;
 
-  StepDetailScreen() {
-    recipe = Recipe(
-      name: 'Random Recipe Name',
-      steps: [
-        RecipeStep(instruction: 'Instruction 1'),
-        RecipeStep(instruction: 'Instruction 2'),
-        RecipeStep(instruction: 'Instruction 3'),
-        RecipeStep(instruction: 'Instruction 4'),
-        RecipeStep(instruction: 'Instruction 5'),
-      ],
-    );
-    assert(recipe.steps != null);
-  }
+  StepDetailScreen();
 
   @override
   State<StepDetailScreen> createState() => _StepDetailScreenState();
@@ -46,18 +30,21 @@ class StepDetailScreen extends StatefulWidget {
 
 class _StepDetailScreenState extends State<StepDetailScreen> {
   final ScrollController _scrollController = ScrollController();
+  late Recipe recipe;
   int currentStepIndex = 0;
   int currentStepNumber = 1; // To prevent miscounting. Number = Index + 1.
 
   @override
   Widget build(BuildContext context) {
+    recipe = Provider.of<CurrentRecipeController>(context).currentRecipe;
+
     return Scaffold(
       extendBodyBehindAppBar: false,
       appBar: StepDetailAppBar(
         scrollController: _scrollController,
-        recipeName: widget.recipe.name,
+        recipeName: recipe.name,
         currentStepNumber: currentStepNumber,
-        totalStepCount: widget.recipe.steps!.length,
+        totalStepCount: recipe.steps!.length,
         onHomeButtonPressed: () {
           showDialog(
             context: context,
@@ -79,8 +66,7 @@ class _StepDetailScreenState extends State<StepDetailScreen> {
                 child: SingleChildScrollView(
                   controller: _scrollController,
                   child: StepCard(
-                    instruction:
-                        widget.recipe.steps![currentStepIndex].instruction,
+                    instruction: recipe.steps![currentStepIndex].instruction,
                   ),
                 ),
               ),
