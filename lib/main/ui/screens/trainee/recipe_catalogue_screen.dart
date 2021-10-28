@@ -3,8 +3,8 @@
  */
 
 import 'package:flutter/material.dart';
+import '../../../models/recipe.dart';
 
-import '../../../models/recipe_catalogue_info.dart';
 import '../../constants/color_constants.dart';
 import '../../constants/theme_constants.dart';
 import '../../shared_components/listen_button.dart';
@@ -14,26 +14,29 @@ import 'step_detail_screen.dart';
 
 class RecipeCatalogueScreen extends StatefulWidget {
   static const routeName = 'home';
-  late final List<RecipeCatalogueInfo> recipeList;
+  late final List<Recipe> recipeList;
 
   RecipeCatalogueScreen() {
     // TODO: 10/27/2021 When logic implemented, recipeList should be retrieved
     //  from some controller. Code in this constructor now is just a
     //  placeholder.
     recipeList = [
-      RecipeCatalogueInfo(
+      Recipe(
         name: 'Nice Recipe Name One',
         imageUrl: 'PLACEHOLDER',
       ),
-      RecipeCatalogueInfo(
+      Recipe(
         name: 'Nice Recipe Name Two',
         imageUrl: 'PLACEHOLDER',
       ),
-      RecipeCatalogueInfo(
+      Recipe(
         name: 'Nice Recipe Name Three',
         imageUrl: 'PLACEHOLDER',
       ),
     ];
+    for (final recipe in recipeList) {
+      assert (recipe.imageUrl != null);
+    }
   }
 
   @override
@@ -82,7 +85,7 @@ class _RecipeCatalogueScreenState extends State<RecipeCatalogueScreen> {
 }
 
 class _ResponsiveRecipeCardGrid extends StatelessWidget {
-  final List<RecipeCatalogueInfo> recipeList;
+  final List<Recipe> recipeList;
 
   const _ResponsiveRecipeCardGrid({required this.recipeList});
 

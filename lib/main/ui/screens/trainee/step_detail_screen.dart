@@ -8,7 +8,7 @@ import 'package:flutter/rendering.dart';
 import 'package:fluentui_system_icons/fluentui_system_icons.dart';
 
 import '../../../models/recipe_step.dart';
-import '../../../models/recipe_step_details.dart';
+import '../../../models/recipe.dart';
 import '../../constants/color_constants.dart';
 import '../../constants/theme_constants.dart';
 import '../../shared_components/listen_button.dart';
@@ -24,11 +24,11 @@ import 'recipe_completion_screen.dart';
 
 class StepDetailScreen extends StatefulWidget {
   static const routeName = 'steps';
-  late final RecipeStepDetails recipeStepDetails;
+  late final Recipe recipe;
 
   StepDetailScreen() {
-    recipeStepDetails = RecipeStepDetails(
-      recipeName: 'Random Recipe Name',
+    recipe = Recipe(
+      name: 'Random Recipe Name',
       steps: [
         RecipeStep(instruction: 'Instruction 1'),
         RecipeStep(instruction: 'Instruction 2'),
@@ -37,6 +37,7 @@ class StepDetailScreen extends StatefulWidget {
         RecipeStep(instruction: 'Instruction 5'),
       ],
     );
+    assert(recipe.steps != null);
   }
 
   @override
@@ -54,9 +55,9 @@ class _StepDetailScreenState extends State<StepDetailScreen> {
       extendBodyBehindAppBar: false,
       appBar: StepDetailAppBar(
         scrollController: _scrollController,
-        recipeName: widget.recipeStepDetails.recipeName,
+        recipeName: widget.recipe.name,
         currentStepNumber: currentStepNumber,
-        totalStepCount: widget.recipeStepDetails.steps.length,
+        totalStepCount: widget.recipe.steps!.length,
         onHomeButtonPressed: () {
           showDialog(
             context: context,
@@ -79,7 +80,7 @@ class _StepDetailScreenState extends State<StepDetailScreen> {
                   controller: _scrollController,
                   child: StepCard(
                     instruction: widget
-                        .recipeStepDetails.steps[currentStepIndex].instruction,
+                        .recipe.steps![currentStepIndex].instruction,
                   ),
                 ),
               ),
