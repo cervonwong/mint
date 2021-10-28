@@ -5,6 +5,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:fluentui_system_icons/fluentui_system_icons.dart';
+import 'package:flutter/rendering.dart';
 
 import '../../constants/color_constants.dart';
 import '../../constants/theme_constants.dart';
@@ -142,43 +143,51 @@ class ExitRecipeConfirmationDialog extends StatelessWidget {
     return Dialog(
       child: Padding(
         padding: const EdgeInsets.all(32.0),
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            SelectableText(
-              'Are you sure you want to stop this recipe?',
-              style: ThemeConstants.headline5,
+        child: IntrinsicWidth(
+          child: Theme(
+            data: Theme.of(context).copyWith(
+              dividerTheme: ThemeConstants.dividerGreenThemeData,
             ),
-            const SizedBox(height: 16.0),
-            ListenButton(
-              text:
-                  'Are you sure you want to stop this recipe? <INSERT MORE EXPLANATION HERE>',
-              labelType: LabelType.message,
-            ),
-            const SizedBox(height: 86.0),
-            ElevatedButton7(
-              onPressed: () {
-                Navigator.pop(context); // Pop dialog.
-              },
-              child: const Text('No, I want to continue this recipe'),
-            ),
-            const SizedBox(height: 16.0),
-            ElevatedButton7(
-              onPressed: () {
-                Navigator.pop(context); // Pop dialog.
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                SelectableText(
+                  'Are you sure you want to stop this recipe?',
+                  style: ThemeConstants.headline5,
+                ),
+                const SizedBox(height: 24.0),
+                ListenButton(
+                  text:
+                      'Are you sure you want to stop this recipe? <INSERT MORE EXPLANATION HERE>',
+                  labelType: LabelType.message,
+                ),
+                const SizedBox(height: 32.0),
+                const Divider(),
+                const SizedBox(height: 16.0),
+                TextButton7.error(
+                  onPressed: () {
+                    Navigator.pop(context); // Pop dialog.
 
-                if (Navigator.canPop(context)) {
-                  Navigator.pop(context);
-                } else {
-                  // Technically should not happen, unless in development.
-                  Navigator.popAndPushNamed(
-                      context, RecipeCatalogueScreen.routeName);
-                }
-              },
-              child: const Text('Yes, I want to stop this recipe.'),
+                    if (Navigator.canPop(context)) {
+                      Navigator.pop(context);
+                    } else {
+                      // Technically should not happen, unless in development.
+                      Navigator.popAndPushNamed(
+                          context, RecipeCatalogueScreen.routeName);
+                    }
+                  },
+                  child: const Text('Stop recipe'),
+                ),
+                TextButton7(
+                  onPressed: () {
+                    Navigator.pop(context); // Pop dialog.
+                  },
+                  child: const Text('Continue recipe'),
+                ),
+              ],
             ),
-          ],
+          ),
         ),
       ),
     );

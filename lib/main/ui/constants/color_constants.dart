@@ -30,4 +30,5 @@ class ColorConstants {
   static const ivory200 = Color(0xFFF3D9A5);
 
   static const redPrimary = Color(0xFFE05252);
+  static const redLightOverlay = Color(0x0DE05252); // 5%.
 }
