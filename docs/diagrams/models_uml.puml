@@ -1,20 +1,17 @@
 @startuml
 
 class Recipe {
-    + image : ??
+    + id : String
     + name : String
+    + imageUrl : String? [nullable]
+    + steps : List<RecipeStep>? [nullable]
 }
 
 class RecipeStep {
-    + ordinal : int
-    + image : ??
-    + video : ??
-    + description : ??
+    + instruction : String
+    + imageUrl : String? [nullable]
 }
 
-class RecipeWithSteps {}
-
-RecipeWithSteps "1" o--- "1\n<i>recipe" Recipe
-RecipeWithSteps "1" o--- "1..*\n<i>steps" RecipeStep
+Recipe *--- RecipeStep
 
 @enduml

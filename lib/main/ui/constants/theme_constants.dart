@@ -18,6 +18,8 @@ class ThemeConstants {
 
     // Other themeData.
     appBarTheme: appBarTheme,
+    dialogTheme: dialogTheme,
+    dividerTheme: dividerIvoryThemeData,
     elevatedButtonTheme: elevatedButton7ThemeData,
     iconTheme: iconThemeData,
     inputDecorationTheme: inputDecorationTheme,
@@ -166,6 +168,22 @@ class ThemeConstants {
       statusBarIconBrightness: Brightness.dark,
     ),
   );
+  static final dialogTheme = DialogTheme(
+    backgroundColor: ColorConstants.greenOverlayOnWhite,
+    shape: RoundedRectangleBorder(
+      borderRadius: BorderRadius.circular(24.0),
+    ),
+  );
+  static final dividerIvoryThemeData = const DividerThemeData(
+    color: ColorConstants.ivory200,
+    thickness: 1.0,
+    space: 1.0,
+  );
+  static final dividerGreenThemeData = const DividerThemeData(
+    color: ColorConstants.greenBorder,
+    thickness: 1.0,
+    space: 1.0,
+  );
   static final elevatedButton7ThemeData = ElevatedButtonThemeData(
     style: ButtonStyle(
       textStyle: MaterialStateProperty.all<TextStyle>(
@@ -189,6 +207,72 @@ class ThemeConstants {
           return ColorConstants.blackTertiary;
         }
         return ColorConstants.greenPrimary;
+      }),
+    ),
+  );
+  static final listenButtonThemeData = OutlinedButtonThemeData(
+    style: ButtonStyle(
+      textStyle: MaterialStateProperty.all(ThemeConstants.button7),
+      shape: MaterialStateProperty.all(
+        RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(12.0),
+        ),
+      ),
+      visualDensity: const VisualDensity(vertical: 2.0),
+      foregroundColor: MaterialStateProperty.resolveWith<Color>((states) {
+        if (states.contains(MaterialState.disabled)) {
+          return ColorConstants.blackSecondary;
+        }
+        return ColorConstants.greenPrimary;
+      }),
+      backgroundColor: MaterialStateProperty.resolveWith<Color>((states) {
+        if (states.contains(MaterialState.disabled)) {
+          return ColorConstants.blackTertiary;
+        }
+        return ColorConstants.greenOverlay;
+      }),
+      side: MaterialStateProperty.resolveWith(
+        (states) {
+          if (states.contains(MaterialState.disabled)) {
+            return BorderSide.none;
+          }
+          return const BorderSide(color: ColorConstants.greenPrimary);
+        },
+      ),
+    ),
+  );
+  static final textButton7ThemeData = TextButtonThemeData(
+    style: ButtonStyle(
+      textStyle: MaterialStateProperty.all(ThemeConstants.button7),
+      shape: MaterialStateProperty.all(
+        RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(12.0),
+        ),
+      ),
+      visualDensity: const VisualDensity(vertical: 2.0, horizontal: 2.0),
+      foregroundColor: MaterialStateProperty.resolveWith<Color>((states) {
+        if (states.contains(MaterialState.disabled)) {
+          return ColorConstants.blackTertiary;
+        }
+        return ColorConstants.greenPrimary;
+      }),
+    ),
+  );
+  static final textButton7ErrorThemeData = TextButtonThemeData(
+    style: ButtonStyle(
+      textStyle: MaterialStateProperty.all(ThemeConstants.button7),
+      shape: MaterialStateProperty.all(
+        RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(12.0),
+        ),
+      ),
+      visualDensity: const VisualDensity(vertical: 2.0, horizontal: 2.0),
+      overlayColor: MaterialStateProperty.all(ColorConstants.redLightOverlay),
+      foregroundColor: MaterialStateProperty.resolveWith<Color>((states) {
+        if (states.contains(MaterialState.disabled)) {
+          return ColorConstants.blackTertiary;
+        }
+        return ColorConstants.redPrimary;
       }),
     ),
   );

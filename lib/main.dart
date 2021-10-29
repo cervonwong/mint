@@ -7,8 +7,14 @@
 import 'package:flutter/material.dart';
 
 import 'package:firebase_core/firebase_core.dart';
+import 'package:get_it/get_it.dart';
+import 'package:provider/provider.dart';
 
+import 'package:mint/main/controller/recipe_catalogue_controller.dart';
 import 'package:mint/main/ui/constants/theme_constants.dart';
+import 'package:mint/main/ui/screens/trainee/recipe_completion_screen.dart';
+import 'package:mint/main/ui/screens/trainee/step_detail_screen.dart';
+import 'main/controller/current_recipe_controller.dart';
 import 'main/di/injection_container.dart' as injection_container;
 import 'main/ui/screens/trainee/recipe_catalogue_screen.dart';
 
@@ -19,6 +25,7 @@ void main() async {
 
   // Dependency injection initialisation.
   injection_container.configureDependencies();
+  await GetIt.instance.allReady();
 
   runApp(MyApp());
 }
@@ -26,14 +33,27 @@ void main() async {
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'Mint 🌿',
-      theme: ThemeConstants.themeData,
-      initialRoute: RecipeCatalogueScreen.routeName,
-      routes: {
-        RecipeCatalogueScreen.routeName: (context) => RecipeCatalogueScreen(),
-      },
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider<RecipeCatalogueController>(
+          create: (_) => GetIt.instance(),
+        ),
+        ChangeNotifierProvider<CurrentRecipeController>(
+          create: (_) => GetIt.instance(),
+        ),
+      ],
+      child: MaterialApp(
+        debugShowCheckedModeBanner: false,
+        title: 'Mint 🌿',
+        theme: ThemeConstants.themeData,
+        initialRoute: RecipeCatalogueScreen.routeName,
+        routes: {
+          RecipeCatalogueScreen.routeName: (context) => RecipeCatalogueScreen(),
+          StepDetailScreen.routeName: (context) => StepDetailScreen(),
+          RecipeCompletionScreen.routeName: (context) =>
+              RecipeCompletionScreen(),
+        },
+      ),
     );
   }
 }

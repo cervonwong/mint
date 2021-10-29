@@ -4,11 +4,17 @@
 
 import 'package:flutter/material.dart';
 
+import 'package:provider/provider.dart';
+
+import '../../../controller/current_recipe_controller.dart';
+import '../../../controller/recipe_catalogue_controller.dart';
+import '../../../models/recipe.dart';
 import '../../constants/color_constants.dart';
 import '../../constants/theme_constants.dart';
 import '../../shared_components/listen_button.dart';
-import '../../shared_components/shared_app_bar.dart';
+import '../../shared_components/shared_app_bars.dart';
 import '../../utils/layout_calculator.dart';
+import 'step_detail_screen.dart';
 
 class RecipeCatalogueScreen extends StatefulWidget {
   static const routeName = 'home';
@@ -21,13 +27,19 @@ class RecipeCatalogueScreen extends StatefulWidget {
 
 class _RecipeCatalogueScreenState extends State<RecipeCatalogueScreen> {
   final ScrollController _scrollController = ScrollController();
+  late List<Recipe> recipeList;
 
   @override
   Widget build(BuildContext context) {
+    recipeList = Provider.of<RecipeCatalogueController>(context).recipeList;
+    for (final recipe in recipeList) {
+      assert(recipe.imageUrl != null);
+    }
+
     return Scaffold(
       drawer: const Drawer(),
       extendBodyBehindAppBar: true,
-      appBar: SharedAppBar(scrollController: _scrollController),
+      appBar: TitleRevealAppBar(scrollController: _scrollController),
       body: ListView(
         controller: _scrollController,
         children: [
@@ -53,69 +65,125 @@ class _RecipeCatalogueScreenState extends State<RecipeCatalogueScreen> {
             ),
           ),
           const SizedBox(height: 16.0),
-          const RecipeCard(title: 'Fried Chicken Wings for Nasi Lemak'),
-          const RecipeCard(title: 'Fried Chicken Wings for Nasi Lemak'),
-          const RecipeCard(title: 'Fried Chicken Wings for Nasi Lemak'),
+          _ResponsiveRecipeCardGrid(recipeList: recipeList),
         ],
       ),
     );
   }
 }
 
-class RecipeCard extends StatelessWidget {
-  final String title;
+class _ResponsiveRecipeCardGrid extends StatelessWidget {
+  final List<Recipe> recipeList;
 
-  const RecipeCard({required this.title});
+  const _ResponsiveRecipeCardGrid({required this.recipeList});
 
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: EdgeInsets.symmetric(
         horizontal: LayoutCalculator.margin(context: context),
+      ),
+      child: LayoutCalculator.breakpoint(context: context) ==
+              LayoutBreakpoint.smallest
+          ? Column(
+              children: [
+                for (int i = 0; i < recipeList.length; i++)
+                  RecipeCard(recipe: recipeList[i]),
+              ],
+            )
+          : Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Expanded(
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    children: [
+                      for (int i = 0; i < recipeList.length; i++)
+                        if (i % 2 == 0) RecipeCard(recipe: recipeList[i]),
+                    ],
+                  ),
+                ),
+                const SizedBox(width: 32.0),
+                Expanded(
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    children: [
+                      for (int i = 0; i < recipeList.length; i++)
+                        if (i % 2 == 1) RecipeCard(recipe: recipeList[i]),
+                    ],
+                  ),
+                ),
+              ],
+            ),
+    );
+  }
+}
+
+class RecipeCard extends StatelessWidget {
+  final Recipe recipe;
+
+  const RecipeCard({required this.recipe});
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(
         vertical: 16.0,
       ),
       child: Container(
         decoration: BoxDecoration(
-          color: ColorConstants.whitePrimary,
           border: Border.all(color: ColorConstants.ivory200),
           borderRadius: BorderRadius.circular(12.0),
         ),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-            const ClipRRect(
-              borderRadius: BorderRadius.only(
-                topLeft: Radius.circular(12.0),
-                topRight: Radius.circular(12.0),
-              ),
-              child: Image(
-                image: AssetImage(
-                  'assets/sample_images/Sample_RecipeCardThumbnail.png',
+        child: Material(
+          borderRadius: BorderRadius.circular(12.0),
+          child: InkWell(
+            borderRadius: BorderRadius.circular(12.0),
+            onTap: () {
+              Provider.of<CurrentRecipeController>(context, listen: false)
+                  .selectRecipe(id: recipe.id);
+              Navigator.pushNamed(context, StepDetailScreen.routeName);
+            },
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                const ClipRRect(
+                  borderRadius: BorderRadius.only(
+                    topLeft: Radius.circular(12.0),
+                    topRight: Radius.circular(12.0),
+                  ),
+                  child: Image(
+                    image: AssetImage(
+                      'assets/sample_images/Sample_RecipeCardThumbnail.png',
+                    ),
+                    fit: BoxFit.fitWidth,
+                  ),
                 ),
-                fit: BoxFit.fitWidth,
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.symmetric(
-                horizontal: 16.0,
-                vertical: 20.0,
-              ),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.stretch,
-                children: [
-                  Text(
-                    title,
-                    style: ThemeConstants.headline6,
+                Padding(
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 16.0,
+                    vertical: 20.0,
                   ),
-                  const SizedBox(height: 12.0),
-                  ListenButton(
-                    text: title,
-                    labelType: LabelType.name,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    children: [
+                      Text(
+                        recipe.name,
+                        style: ThemeConstants.headline6,
+                      ),
+                      const SizedBox(height: 12.0),
+                      ListenButton(
+                        text: recipe.name,
+                        labelType: LabelType.name,
+                      ),
+                    ],
                   ),
-                ],
-              ),
+                ),
+              ],
             ),
-          ],
+          ),
         ),
       ),
     );

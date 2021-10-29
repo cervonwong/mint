@@ -56,6 +56,29 @@ class LayoutCalculator {
         return (screenWidth - 600.0) / 2; // Placeholder value.
     }
   }
+
+  static double appBarHorizontalMargin({required BuildContext context}) {
+    return margin(context: context).clamp(16.0, 32.0);
+  }
+
+  static double appBarVerticalMargin({required BuildContext context}) {
+    return 16.0;
+  }
+
+  static double bottomButtonBottomMargin({required BuildContext context}) {
+    switch (breakpoint(context: context)) {
+      case LayoutBreakpoint.smallest:
+        return 16.0;
+      case LayoutBreakpoint.small:
+        return 24.0;
+      case LayoutBreakpoint.medium:
+        return 24.0;
+      case LayoutBreakpoint.large:
+        return 24.0;
+      case LayoutBreakpoint.largest:
+        return 24.0;
+    }
+  }
 }
 
 // The relative size of the app window wrt to the width of the app window.
