@@ -19,6 +19,8 @@ class RecipeCompletionScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final recipe = Provider.of<CurrentRecipeController>(context).currentRecipe!;
+
     return Scaffold(
       body: Padding(
         padding: EdgeInsets.symmetric(
@@ -46,7 +48,7 @@ class RecipeCompletionScreen extends StatelessWidget {
                     ),
                     const SizedBox(height: 24.0),
                     SelectableText(
-                      'You have completed ${Provider.of<CurrentRecipeController>(context).currentRecipe.name}!',
+                      'You have completed ${recipe.name}!',
                       textAlign: TextAlign.center,
                       style: ThemeConstants.headline6,
                     ),

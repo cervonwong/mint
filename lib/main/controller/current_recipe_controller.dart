@@ -14,8 +14,8 @@ import '../models/recipe_step.dart';
 // This controller fetches the name and steps (recipe image not needed for now)
 // of the current recipe.
 class CurrentRecipeController extends ChangeNotifier {
-  Recipe get currentRecipe => _currentRecipe;
-  late Recipe _currentRecipe;
+  Recipe? get currentRecipe => _currentRecipe; // Null if not initialised.
+  Recipe? _currentRecipe;
 
   Future<void> selectRecipe({required String id}) async {
     _currentRecipe = await _getRecipe(id: id);
