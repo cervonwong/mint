@@ -4,6 +4,7 @@
 
 import 'dart:collection';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/foundation.dart';
 
 import '../models/recipe.dart';
@@ -25,28 +26,22 @@ class RecipeCatalogueController extends ChangeNotifier {
     // Make sure this function is not called when this controller already initialised.
     assert(_hasInitialised == false);
 
-    // TODO: 10/28/2021 Replace with firebase logic below.
-    _recipeList = await _generatePlaceholderRecipeList();
+    _recipeList = await _getRecipeList();
     _hasInitialised = true;
   }
 }
 
-Future<List<Recipe>> _generatePlaceholderRecipeList() async {
-  return [
-    Recipe(
-      id: 'chicken_wings',
-      name: 'Chicken Wings',
-      imageUrl: 'PLACEHOLDER',
-    ),
-    Recipe(
-      id: 'chicken_wings_again',
-      name: 'Chicken Wings Again',
-      imageUrl: 'PLACEHOLDER',
-    ),
-    Recipe(
-      id: 'more_chicken_wings',
-      name: 'More Chicken Wings',
-      imageUrl: 'PLACEHOLDER',
-    ),
-  ];
+Future<List<Recipe>> _getRecipeList() async {
+  var snapshot = await FirebaseFirestore.instance.collection('recipes').get();
+  var recipesIterable = snapshot.docs.map((doc) => doc.data());
+  var recipes = <Recipe>[];
+  recipesIterable.forEach((recipe) {
+    recipes.add(Recipe(
+      id: recipe['id'],
+      name: recipe['name'],
+      imageUrl: recipe['imageUrl'],
+    ));
+  });
+
+  return recipes;
 }

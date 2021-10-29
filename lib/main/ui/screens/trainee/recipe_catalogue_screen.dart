@@ -3,7 +3,6 @@
  */
 
 import 'package:flutter/material.dart';
-
 import 'package:provider/provider.dart';
 
 import '../../../controller/current_recipe_controller.dart';
@@ -149,15 +148,13 @@ class RecipeCard extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
-                const ClipRRect(
-                  borderRadius: BorderRadius.only(
+                ClipRRect(
+                  borderRadius: const BorderRadius.only(
                     topLeft: Radius.circular(12.0),
                     topRight: Radius.circular(12.0),
                   ),
-                  child: Image(
-                    image: AssetImage(
-                      'assets/sample_images/Sample_RecipeCardThumbnail.png',
-                    ),
+                  child: Image.network(
+                    recipe.imageUrl!,
                     fit: BoxFit.fitWidth,
                   ),
                 ),

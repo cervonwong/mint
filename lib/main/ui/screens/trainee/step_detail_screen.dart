@@ -2,10 +2,9 @@
  * Copyright (C) 2021 Cervon Wong and Lee I-Shiang
  */
 
+import 'package:fluentui_system_icons/fluentui_system_icons.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
-
-import 'package:fluentui_system_icons/fluentui_system_icons.dart';
 import 'package:provider/provider.dart';
 
 import '../../../controller/current_recipe_controller.dart';
@@ -67,6 +66,7 @@ class _StepDetailScreenState extends State<StepDetailScreen> {
                   controller: _scrollController,
                   child: StepCard(
                     instruction: recipe.steps![currentStepIndex].instruction,
+                    imageUrl: recipe.steps![currentStepIndex].imageUrl,
                   ),
                 ),
               ),
@@ -96,8 +96,12 @@ class _StepDetailScreenState extends State<StepDetailScreen> {
 
 class StepCard extends StatelessWidget {
   final String instruction;
+  final String? imageUrl;
 
-  const StepCard({required this.instruction});
+  const StepCard({
+    required this.instruction,
+    this.imageUrl,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -112,15 +116,15 @@ class StepCard extends StatelessWidget {
         children: [
           Padding(
             padding: const EdgeInsets.all(16.0),
-            child: ClipRRect(
-              borderRadius: BorderRadius.circular(12.0),
-              child: const Image(
-                image: AssetImage(
-                  'assets/sample_images/Sample_RecipeCardThumbnail.png',
-                ),
-                fit: BoxFit.fitWidth,
-              ),
-            ),
+            child: imageUrl == null
+                ? null
+                : ClipRRect(
+                    borderRadius: BorderRadius.circular(12.0),
+                    child: Image.network(
+                      imageUrl!,
+                      fit: BoxFit.fitWidth,
+                    ),
+                  ),
           ),
           Padding(
             padding: const EdgeInsets.only(
