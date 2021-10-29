@@ -2,9 +2,9 @@
  * Copyright (C) 2021 Cervon Wong and Lee I-Shiang
  */
 
-import 'package:flutter/material.dart';
-
 import 'package:fluentui_system_icons/fluentui_system_icons.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_tts/flutter_tts.dart';
 
 import '../constants/theme_constants.dart';
 
@@ -12,6 +12,7 @@ class ListenButton extends StatelessWidget {
   final String text;
   final LabelType labelType;
   late final String label;
+  late final FlutterTts flutterTts;
 
   ListenButton({required this.text, required this.labelType}) {
     switch (labelType) {
@@ -25,6 +26,8 @@ class ListenButton extends StatelessWidget {
         label = 'Listen to message';
         break;
     }
+
+    flutterTts = FlutterTts();
   }
 
   @override
@@ -36,7 +39,9 @@ class ListenButton extends StatelessWidget {
       child: OutlinedButton.icon(
         icon: const Icon(FluentIcons.speaker_2_24_regular),
         label: Text(label),
-        onPressed: () {},
+        onPressed: () {
+          flutterTts.speak(text);
+        },
         // TODO: 10/27/2021 When logic implemented, should call a controller
         //  which calls Google's TTS to generate and audio file?? and then play
         //  the audio file?? If want to minimise number of calls to TTS,
