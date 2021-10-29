@@ -2,9 +2,10 @@
  * Copyright (C) 2021 Cervon Wong and Lee I-Shiang
  */
 
-import 'package:fluentui_system_icons/fluentui_system_icons.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+
+import 'package:fluentui_system_icons/fluentui_system_icons.dart';
 import 'package:provider/provider.dart';
 
 import '../../../controller/current_recipe_controller.dart';
