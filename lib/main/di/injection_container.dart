@@ -2,10 +2,12 @@
  * Copyright (C) 2021 Cervon Wong and Lee I-Shiang
  */
 
+import 'package:flutter_tts/flutter_tts.dart';
 import 'package:get_it/get_it.dart';
 
 import '../controller/current_recipe_controller.dart';
 import '../controller/recipe_catalogue_controller.dart';
+import '../ui/shared_components/listen_button.dart';
 
 void configureDependencies() {
   final getIt = GetIt.instance;
@@ -15,5 +17,7 @@ void configureDependencies() {
     await controller.initialise();
     return controller;
   });
+  getIt.registerLazySingleton(() => FlutterTts());
+  getIt.registerLazySingleton(() => TtsService(tts: getIt()));
   getIt.registerLazySingleton(() => CurrentRecipeController());
 }

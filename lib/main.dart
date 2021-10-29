@@ -17,6 +17,7 @@ import 'package:mint/main/ui/screens/trainee/step_detail_screen.dart';
 import 'main/controller/current_recipe_controller.dart';
 import 'main/di/injection_container.dart' as injection_container;
 import 'main/ui/screens/trainee/recipe_catalogue_screen.dart';
+import 'main/ui/shared_components/listen_button.dart';
 
 void main() async {
   // Firebase initialisation.
@@ -40,6 +41,9 @@ class MyApp extends StatelessWidget {
         ),
         ChangeNotifierProvider<CurrentRecipeController>(
           create: (_) => GetIt.instance(),
+        ),
+        ChangeNotifierProvider<TtsService>(
+          create: (context) => GetIt.instance(),
         ),
       ],
       child: MaterialApp(

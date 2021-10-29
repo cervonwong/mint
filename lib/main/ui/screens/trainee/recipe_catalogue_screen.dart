@@ -174,6 +174,7 @@ class RecipeCard extends StatelessWidget {
                       ),
                       const SizedBox(height: 12.0),
                       ListenButton(
+                        id: recipe.id,
                         text: recipe.name,
                         labelType: LabelType.name,
                       ),

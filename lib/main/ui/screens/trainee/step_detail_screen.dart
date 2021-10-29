@@ -143,6 +143,7 @@ class StepCard extends StatelessWidget {
                 ),
                 const SizedBox(height: 12.0),
                 ListenButton(
+                  id: instruction,
                   text: instruction,
                   labelType: LabelType.instruction,
                 ),
@@ -180,6 +181,7 @@ class ExitRecipeConfirmationDialog extends StatelessWidget {
                 ),
                 const SizedBox(height: 24.0),
                 ListenButton(
+                  id: 'Instruction',
                   text:
                       'Are you sure you want to stop this recipe? <INSERT MORE EXPLANATION HERE>',
                   labelType: LabelType.message,
