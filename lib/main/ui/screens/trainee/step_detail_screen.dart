@@ -32,64 +32,74 @@ class _StepDetailScreenState extends State<StepDetailScreen> {
   int currentStepIndex = 0;
   int currentStepNumber = 1; // To prevent miscounting. Number = Index + 1.
 
+  Future<void> _showExitConfirmationDialog(BuildContext context) async {
+    await showDialog(
+      context: context,
+      builder: (context) {
+        return const ExitConfirmationDialog();
+      },
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     final recipe = Provider.of<CurrentRecipeController>(context).currentRecipe;
 
     return recipe == null
         ? Container() // Crude way to wait for recipe to load
-        : Scaffold(
-            extendBodyBehindAppBar: false,
-            appBar: StepDetailAppBar(
-              scrollController: _scrollController,
-              recipeName: recipe.name,
-              currentStepNumber: currentStepNumber,
-              totalStepCount: recipe.steps!.length,
-              onHomeButtonPressed: () {
-                showDialog(
-                  context: context,
-                  builder: (context) {
-                    return const ExitRecipeConfirmationDialog();
-                  },
-                );
-              },
-            ),
-            body: Padding(
-              padding: EdgeInsets.symmetric(
-                horizontal: LayoutCalculator.wideMargin(context: context),
+        : WillPopScope(
+            onWillPop: () async {
+              await _showExitConfirmationDialog(context);
+              return false;
+            },
+            child: Scaffold(
+              extendBodyBehindAppBar: false,
+              appBar: StepDetailAppBar(
+                scrollController: _scrollController,
+                recipeName: recipe.name,
+                currentStepNumber: currentStepNumber,
+                totalStepCount: recipe.steps!.length,
+                onHomeButtonPressed: () {
+                  _showExitConfirmationDialog(context);
+                },
               ),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.stretch,
-                children: [
-                  Expanded(
-                    child: Center(
-                      child: SingleChildScrollView(
-                        controller: _scrollController,
-                        child: StepCard(
-                          instruction:
-                              recipe.steps![currentStepIndex].instruction,
-                          imageUrl: recipe.steps![currentStepIndex].imageUrl,
+              body: Padding(
+                padding: EdgeInsets.symmetric(
+                  horizontal: LayoutCalculator.wideMargin(context: context),
+                ),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: [
+                    Expanded(
+                      child: Center(
+                        child: SingleChildScrollView(
+                          controller: _scrollController,
+                          child: StepCard(
+                            instruction:
+                                recipe.steps![currentStepIndex].instruction,
+                            imageUrl: recipe.steps![currentStepIndex].imageUrl,
+                          ),
                         ),
                       ),
                     ),
-                  ),
-                  ElevatedButtonWithIcon7(
-                    onPressed: () {
-                      Navigator.pushNamedAndRemoveUntil(
-                        context,
-                        RecipeCompletionScreen.routeName,
-                        (route) => route.isFirst,
-                      );
-                    },
-                    icon: const Icon(FluentIcons.checkmark_24_regular),
-                    label: Text('I have done Step $currentStepNumber'),
-                  ),
-                  SizedBox(
-                    height: LayoutCalculator.bottomButtonBottomMargin(
-                      context: context,
+                    ElevatedButtonWithIcon7(
+                      onPressed: () {
+                        Navigator.pushNamedAndRemoveUntil(
+                          context,
+                          RecipeCompletionScreen.routeName,
+                          (route) => route.isFirst,
+                        );
+                      },
+                      icon: const Icon(FluentIcons.checkmark_24_regular),
+                      label: Text('I have done Step $currentStepNumber'),
                     ),
-                  ),
-                ],
+                    SizedBox(
+                      height: LayoutCalculator.bottomButtonBottomMargin(
+                        context: context,
+                      ),
+                    ),
+                  ],
+                ),
               ),
             ),
           );
@@ -156,10 +166,8 @@ class StepCard extends StatelessWidget {
   }
 }
 
-class ExitRecipeConfirmationDialog extends StatelessWidget {
-  const ExitRecipeConfirmationDialog({
-    Key? key,
-  }) : super(key: key);
+class ExitConfirmationDialog extends StatelessWidget {
+  const ExitConfirmationDialog();
 
   @override
   Widget build(BuildContext context) {
