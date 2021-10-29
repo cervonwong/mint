@@ -16,6 +16,7 @@ dependencies:
   fluentui_system_icons: ^1.1.142
   flutter:
     sdk: flutter
+  flutter_tts: ^3.2.2
   get_it: ^7.2.0
   provider: ^6.0.1
 

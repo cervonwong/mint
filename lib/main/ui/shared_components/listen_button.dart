@@ -2,9 +2,9 @@
  * Copyright (C) 2021 Cervon Wong and Lee I-Shiang
  */
 
-import 'package:flutter/material.dart';
-
 import 'package:fluentui_system_icons/fluentui_system_icons.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_tts/flutter_tts.dart';
 
 import '../constants/color_constants.dart';
 import '../constants/theme_constants.dart';
@@ -13,6 +13,7 @@ class ListenButton extends StatelessWidget {
   final String text;
   final LabelType labelType;
   late final String label;
+  late final FlutterTts flutterTts;
 
   ListenButton({required this.text, required this.labelType}) {
     switch (labelType) {
@@ -26,6 +27,8 @@ class ListenButton extends StatelessWidget {
         label = 'Listen to message';
         break;
     }
+
+    flutterTts = FlutterTts();
   }
 
   @override
@@ -60,7 +63,9 @@ class ListenButton extends StatelessWidget {
           return const BorderSide(color: ColorConstants.greenPrimary);
         }),
       ),
-      onPressed: () {},
+      onPressed: () {
+        flutterTts.speak(text);
+      },
     );
   }
 }
