@@ -138,6 +138,7 @@ class RecipeCard extends StatelessWidget {
           borderRadius: BorderRadius.circular(12.0),
         ),
         child: Material(
+          color: ColorConstants.whitePrimary,
           borderRadius: BorderRadius.circular(12.0),
           child: InkWell(
             borderRadius: BorderRadius.circular(12.0),
