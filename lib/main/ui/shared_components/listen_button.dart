@@ -63,7 +63,6 @@ class ListenButton extends StatelessWidget {
             ],
           ),
           secondChild: Row(
-            mainAxisSize: MainAxisSize.min,
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               const Center(
