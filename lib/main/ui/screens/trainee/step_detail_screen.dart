@@ -207,7 +207,7 @@ class _StepDetailScreenState extends State<StepDetailScreen>
                   }
                 },
                 icon: const Icon(FluentIcons.checkmark_24_regular),
-                label: Text('I have done Step $currentStepNumber'),
+                label: const Text('Done'),
               ),
               SizedBox(
                 height: LayoutCalculator.bottomButtonBottomMargin(
