@@ -226,7 +226,7 @@ class ThemeConstants {
           borderRadius: BorderRadius.circular(12.0),
         ),
       ),
-      visualDensity: const VisualDensity(vertical: 2.0),
+      visualDensity: const VisualDensity(vertical: 2.0, horizontal: 2.0),
       foregroundColor: MaterialStateProperty.resolveWith<Color>((states) {
         if (states.contains(MaterialState.disabled)) {
           return ColorConstants.blackSecondary;
