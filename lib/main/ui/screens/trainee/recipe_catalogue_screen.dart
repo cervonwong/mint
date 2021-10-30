@@ -143,6 +143,8 @@ class RecipeCard extends StatelessWidget {
           child: InkWell(
             borderRadius: BorderRadius.circular(12.0),
             onTap: () {
+              // TODO: 10/30/2021 Have container transform transition between
+              //  this screen and `StepDetailScreen`.
               Provider.of<CurrentRecipeController>(context, listen: false)
                   .selectRecipe(id: recipe.id);
               Navigator.pushNamed(context, StepDetailScreen.routeName);
