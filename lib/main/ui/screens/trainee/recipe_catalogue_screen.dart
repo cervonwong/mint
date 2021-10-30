@@ -29,6 +29,22 @@ class RecipeCatalogueScreen extends StatefulWidget {
 class _RecipeCatalogueScreenState extends State<RecipeCatalogueScreen> {
   final ScrollController _scrollController = ScrollController();
   late List<Recipe> recipeList;
+  bool titleFaded = false;
+  static const double fadeOffset = 30.0;
+
+  @override
+  void initState() {
+    super.initState();
+
+    _scrollController.addListener(() {
+      final fadeCriteria = _scrollController.offset > fadeOffset;
+      if (fadeCriteria != titleFaded) {
+        setState(() {
+          titleFaded = fadeCriteria;
+        });
+      }
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -47,6 +63,7 @@ class _RecipeCatalogueScreenState extends State<RecipeCatalogueScreen> {
         actions: [
           const HelpButton(),
         ],
+        revealOffset: fadeOffset,
       ),
       body: ListView(
         controller: _scrollController,
@@ -56,20 +73,24 @@ class _RecipeCatalogueScreenState extends State<RecipeCatalogueScreen> {
             padding: EdgeInsets.symmetric(
               horizontal: LayoutCalculator.margin(context: context),
             ),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                SelectableText(
-                  'Good afternoon, Andrea Lim!',
-                  style: ThemeConstants.subtitle7.copyWith(
-                    color: ColorConstants.blackSecondary,
+            child: AnimatedOpacity(
+              duration: const Duration(milliseconds: 150),
+              opacity: titleFaded ? 0.0 : 1.0,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  SelectableText(
+                    'Good afternoon, Andrea Lim!',
+                    style: ThemeConstants.subtitle7.copyWith(
+                      color: ColorConstants.blackSecondary,
+                    ),
                   ),
-                ),
-                SelectableText(
-                  'My Recipes',
-                  style: ThemeConstants.headline4,
-                ),
-              ],
+                  SelectableText(
+                    'My Recipes',
+                    style: ThemeConstants.headline4,
+                  ),
+                ],
+              ),
             ),
           ),
           const SizedBox(height: 16.0),

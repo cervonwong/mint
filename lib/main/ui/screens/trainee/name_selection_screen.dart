@@ -65,6 +65,7 @@ class _SmallestNameSelectionScreenState
           _PressNameInstructionListenButton(),
         ],
         actionsPersistent: false,
+        revealOffset: 180.0,
       ),
       body: ListView(
         controller: _scrollController,

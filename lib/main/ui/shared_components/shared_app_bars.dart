@@ -19,6 +19,7 @@ class TitleRevealAppBar extends StatefulWidget implements PreferredSizeWidget {
   final String title;
   final List<Widget> actions;
   final bool actionsPersistent;
+  final double revealOffset;
 
   const TitleRevealAppBar({
     required this.scrollController,
@@ -26,6 +27,7 @@ class TitleRevealAppBar extends StatefulWidget implements PreferredSizeWidget {
     required this.title,
     this.actions = const [],
     this.actionsPersistent = true,
+    this.revealOffset = 50.0,
   });
 
   @override
@@ -36,26 +38,29 @@ class TitleRevealAppBar extends StatefulWidget implements PreferredSizeWidget {
 }
 
 class _TitleRevealAppBarState extends State<TitleRevealAppBar> {
-  bool isElevated = false;
+  bool isRevealed = false;
 
   @override
   void initState() {
+    super.initState();
+
     widget.scrollController.addListener(() {
-      var criteria = widget.scrollController.offset > 100;
-      if (criteria != isElevated) {
+      final revealCriteria = widget.scrollController.offset > widget.revealOffset;
+      if (revealCriteria != isRevealed) {
         setState(() {
-          isElevated = criteria;
+          isRevealed = revealCriteria;
         });
       }
     });
-    super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
     return AnimatedContainer(
       duration: const Duration(milliseconds: 150),
-      color: isElevated ? ColorConstants.ivory100 : ColorConstants.ivoryPrimary,
+      color: isRevealed
+          ? ColorConstants.ivory100
+          : ColorConstants.ivory100.withOpacity(0.0),
       child: IntrinsicHeight(
         child: Material(
           type: MaterialType.transparency,
@@ -82,7 +87,7 @@ class _TitleRevealAppBarState extends State<TitleRevealAppBar> {
                 Expanded(
                   child: AnimatedOpacity(
                     duration: const Duration(milliseconds: 150),
-                    opacity: isElevated ? 1.0 : 0.0,
+                    opacity: isRevealed ? 1.0 : 0.0,
                     child: Text(
                       widget.title,
                       softWrap: false,
@@ -98,7 +103,7 @@ class _TitleRevealAppBarState extends State<TitleRevealAppBar> {
                       )
                     : AnimatedOpacity(
                         duration: const Duration(milliseconds: 150),
-                        opacity: isElevated ? 1.0 : 0.0,
+                        opacity: isRevealed ? 1.0 : 0.0,
                         child: Row(
                           children: widget.actions,
                         ),
@@ -140,6 +145,8 @@ class _StepDetailAppBarState extends State<StepDetailAppBar> {
 
   @override
   void initState() {
+    super.initState();
+
     widget.scrollController.addListener(() {
       var criteria = widget.scrollController.offset != 0.0;
       if (criteria != isElevated) {
@@ -148,7 +155,6 @@ class _StepDetailAppBarState extends State<StepDetailAppBar> {
         });
       }
     });
-    super.initState();
   }
 
   @override
