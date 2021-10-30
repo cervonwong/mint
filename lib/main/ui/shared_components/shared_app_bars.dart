@@ -86,7 +86,7 @@ class _TitleRevealAppBarState extends State<TitleRevealAppBar> {
                     child: Text(
                       widget.title,
                       softWrap: false,
-                      overflow: TextOverflow.fade,
+                      overflow: TextOverflow.ellipsis,
                       style: ThemeConstants.headline6,
                     ),
                   ),

@@ -57,7 +57,7 @@ class ListenButton extends StatelessWidget {
                 child: Text(
                   label,
                   softWrap: false,
-                  overflow: TextOverflow.fade,
+                  overflow: TextOverflow.ellipsis,
                 ),
               ),
             ],
