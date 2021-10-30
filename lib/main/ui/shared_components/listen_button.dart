@@ -52,7 +52,13 @@ class ListenButton extends StatelessWidget {
             children: [
               const Icon(FluentIcons.speaker_2_24_regular),
               const SizedBox(width: 8.0),
-              Text(label),
+              Flexible(
+                child: Text(
+                  label,
+                  softWrap: false,
+                  overflow: TextOverflow.fade,
+                ),
+              ),
             ],
           ),
           secondChild: Row(
@@ -101,7 +107,6 @@ class TtsService extends ChangeNotifier {
 
   void speak({required String id, required String text}) {
     currentlyPlayingId = id;
-    print(currentlyPlayingId);
     notifyListeners();
     tts.speak(text);
   }
