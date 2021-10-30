@@ -12,6 +12,7 @@ import 'package:provider/provider.dart';
 
 import 'package:mint/main/controller/recipe_catalogue_controller.dart';
 import 'package:mint/main/ui/constants/theme_constants.dart';
+import 'package:mint/main/ui/screens/trainee/name_selection_screen.dart';
 import 'package:mint/main/ui/screens/trainee/recipe_completion_screen.dart';
 import 'package:mint/main/ui/screens/trainee/step_detail_screen.dart';
 import 'main/controller/current_recipe_controller.dart';
@@ -50,12 +51,13 @@ class MyApp extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         title: 'Mint 🌿',
         theme: ThemeConstants.themeData,
-        initialRoute: RecipeCatalogueScreen.routeName,
+        initialRoute: NameSelectionScreen.routeName,
         routes: {
           RecipeCatalogueScreen.routeName: (context) => RecipeCatalogueScreen(),
           StepDetailScreen.routeName: (context) => StepDetailScreen(),
           RecipeCompletionScreen.routeName: (context) =>
               RecipeCompletionScreen(),
+          NameSelectionScreen.routeName: (context) => NameSelectionScreen(),
         },
       ),
     );

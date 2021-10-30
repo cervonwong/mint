@@ -18,6 +18,7 @@ class ThemeConstants {
 
     // Other themeData.
     appBarTheme: appBarTheme,
+    cardTheme: cardTheme,
     dialogTheme: dialogTheme,
     dividerTheme: dividerIvoryThemeData,
     elevatedButtonTheme: elevatedButton7ThemeData,
@@ -166,6 +167,13 @@ class ThemeConstants {
     systemOverlayStyle: SystemUiOverlayStyle(
       statusBarColor: Colors.transparent,
       statusBarIconBrightness: Brightness.dark,
+    ),
+  );
+  static final cardTheme = CardTheme(
+    elevation: 0.0,
+    color: ColorConstants.greenOverlay,
+    shape: RoundedRectangleBorder(
+      borderRadius: BorderRadius.circular(16.0),
     ),
   );
   static final dialogTheme = DialogTheme(
