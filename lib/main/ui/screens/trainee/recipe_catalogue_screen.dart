@@ -4,6 +4,7 @@
 
 import 'package:flutter/material.dart';
 
+import 'package:animations/animations.dart';
 import 'package:provider/provider.dart';
 
 import '../../../controller/current_recipe_controller.dart';
@@ -158,64 +159,77 @@ class RecipeCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(
-        vertical: 16.0,
-      ),
-      child: Container(
-        decoration: BoxDecoration(
-          border: Border.all(color: ColorConstants.ivory200),
+      padding: const EdgeInsets.symmetric(vertical: 16.0),
+      child: OpenContainer(
+        closedColor: ColorConstants.whitePrimary,
+        openColor: ColorConstants.ivoryPrimary,
+        middleColor: ColorConstants.ivoryPrimary,
+        transitionType: ContainerTransitionType.fadeThrough,
+        closedElevation: 0.0,
+        openElevation: 0.0,
+        closedShape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(12.0),
         ),
-        child: Material(
-          color: ColorConstants.whitePrimary,
-          borderRadius: BorderRadius.circular(12.0),
-          child: InkWell(
-            borderRadius: BorderRadius.circular(12.0),
-            onTap: () {
-              // TODO: 10/30/2021 Have container transform transition between
-              //  this screen and `StepDetailScreen`.
-              Provider.of<CurrentRecipeController>(context, listen: false)
-                  .selectRecipe(id: recipe.id);
-              Navigator.pushNamed(context, StepDetailScreen.routeName);
-            },
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: [
-                ClipRRect(
-                  borderRadius: const BorderRadius.only(
-                    topLeft: Radius.circular(12.0),
-                    topRight: Radius.circular(12.0),
-                  ),
-                  child: Image.network(
-                    recipe.imageUrl!,
-                    fit: BoxFit.fitWidth,
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: 16.0,
-                    vertical: 20.0,
-                  ),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.stretch,
-                    children: [
-                      Text(
-                        recipe.name,
-                        style: ThemeConstants.headline6,
-                      ),
-                      const SizedBox(height: 12.0),
-                      ListenButton(
-                        id: recipe.id,
-                        text: recipe.name,
-                        labelType: LabelType.name,
-                      ),
-                    ],
-                  ),
-                ),
-              ],
+        transitionDuration: const Duration(milliseconds: 600),
+        closedBuilder: (context, closedBuilder) {
+          return Container(
+            decoration: BoxDecoration(
+              border: Border.all(color: ColorConstants.ivory200),
+              borderRadius: BorderRadius.circular(12.0),
             ),
-          ),
-        ),
+            child: Material(
+              color: ColorConstants.whitePrimary,
+              borderRadius: BorderRadius.circular(12.0),
+              child: InkWell(
+                borderRadius: BorderRadius.circular(12.0),
+                onTap: () {
+                  closedBuilder();
+                },
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: [
+                    ClipRRect(
+                      borderRadius: const BorderRadius.only(
+                        topLeft: Radius.circular(12.0),
+                        topRight: Radius.circular(12.0),
+                      ),
+                      child: Image.network(
+                        recipe.imageUrl!,
+                        fit: BoxFit.fitWidth,
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 16.0,
+                        vertical: 20.0,
+                      ),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.stretch,
+                        children: [
+                          Text(
+                            recipe.name,
+                            style: ThemeConstants.headline6,
+                          ),
+                          const SizedBox(height: 12.0),
+                          ListenButton(
+                            id: recipe.id,
+                            text: recipe.name,
+                            labelType: LabelType.name,
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          );
+        },
+        openBuilder: (context, _) {
+          Provider.of<CurrentRecipeController>(context, listen: false)
+              .selectRecipe(id: recipe.id);
+          return StepDetailScreen();
+        },
       ),
     );
   }
