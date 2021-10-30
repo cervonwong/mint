@@ -195,7 +195,7 @@ class _StepDetailScreenState extends State<StepDetailScreen>
                     Navigator.pushNamedAndRemoveUntil(
                       context,
                       RecipeCompletionScreen.routeName,
-                      (route) => route.isFirst,
+                      (route) => false,
                     );
                   } else {
                     setState(() {

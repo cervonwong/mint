@@ -115,7 +115,7 @@ class _SmallestNameSelectionScreenState
                       Navigator.pushNamedAndRemoveUntil(
                         context,
                         RecipeCatalogueScreen.routeName,
-                        (route) => route.isFirst,
+                        (route) => false,
                       );
                     },
                     child: Padding(
@@ -216,7 +216,7 @@ class _SmallAndLargerNameSelectionScreen extends StatelessWidget {
                               Navigator.pushNamedAndRemoveUntil(
                                 context,
                                 RecipeCatalogueScreen.routeName,
-                                (route) => route.isFirst,
+                                (route) => false,
                               );
                             },
                             child: Padding(
