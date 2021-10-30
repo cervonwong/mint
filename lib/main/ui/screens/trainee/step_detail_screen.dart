@@ -27,10 +27,78 @@ class StepDetailScreen extends StatefulWidget {
   State<StepDetailScreen> createState() => _StepDetailScreenState();
 }
 
-class _StepDetailScreenState extends State<StepDetailScreen> {
+class _StepDetailScreenState extends State<StepDetailScreen>
+    with TickerProviderStateMixin {
   final ScrollController _scrollController = ScrollController();
   int currentStepIndex = 0;
   int currentStepNumber = 1; // To prevent miscounting. Number = Index + 1.
+
+  late final AnimationController animationController;
+  late final Animation<double> oldCardRotationAngle;
+  late final Animation<double> newCardRotationAngle;
+
+  @override
+  void initState() {
+    super.initState();
+
+    animationController = AnimationController(
+      duration: const Duration(milliseconds: 1200),
+      vsync: this,
+    );
+    oldCardRotationAngle = Tween<double>(begin: 0.0, end: 0.07).animate(
+      CurvedAnimation(
+        parent: animationController,
+        curve: const Interval(
+          0.0,
+          0.3,
+          curve: Curves.easeInOut,
+        ),
+      ),
+    );
+    newCardRotationAngle = Tween<double>(begin: 0.07, end: 0.0).animate(
+      CurvedAnimation(
+        parent: animationController,
+        curve: const Interval(
+          0.7,
+          1.0,
+          curve: Curves.easeInOut,
+        ),
+      ),
+    );
+    animationController.forward();
+  }
+
+  Animation<Offset> _generateOldCardTranslationOffset(BuildContext context) {
+    return Tween<Offset>(
+      begin: const Offset(0.0, 0.0),
+      end: Offset(-1.5 * MediaQuery.of(context).size.width, 0.0),
+    ).animate(
+      CurvedAnimation(
+        parent: animationController,
+        curve: const Interval(
+          0.0,
+          0.5,
+          curve: Curves.easeInBack,
+        ),
+      ),
+    );
+  }
+
+  Animation<Offset> _generateNewCardTranslationOffset(BuildContext context) {
+    return Tween<Offset>(
+      begin: Offset(1.5 * MediaQuery.of(context).size.width, 0.0),
+      end: const Offset(0.0, 0.0),
+    ).animate(
+      CurvedAnimation(
+        parent: animationController,
+        curve: const Interval(
+          0.5,
+          1.0,
+          curve: Curves.easeOutBack,
+        ),
+      ),
+    );
+  }
 
   Future<void> _showExitConfirmationDialog(BuildContext context) async {
     await showDialog(
@@ -44,65 +112,112 @@ class _StepDetailScreenState extends State<StepDetailScreen> {
   @override
   Widget build(BuildContext context) {
     final recipe = Provider.of<CurrentRecipeController>(context).currentRecipe;
+    if (recipe == null) {
+      return Container();
+    }
+    final steps = recipe.steps!;
 
-    return recipe == null
-        ? Container() // Crude way to wait for recipe to load
-        : WillPopScope(
-            onWillPop: () async {
-              await _showExitConfirmationDialog(context);
-              return false;
-            },
-            child: Scaffold(
-              extendBodyBehindAppBar: false,
-              appBar: StepDetailAppBar(
-                scrollController: _scrollController,
-                recipeName: recipe.name,
-                currentStepNumber: currentStepNumber,
-                totalStepCount: recipe.steps!.length,
-                onHomeButtonPressed: () {
-                  _showExitConfirmationDialog(context);
-                },
-              ),
-              body: Padding(
-                padding: EdgeInsets.symmetric(
-                  horizontal: LayoutCalculator.wideMargin(context: context),
-                ),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.stretch,
-                  children: [
-                    Expanded(
-                      child: Center(
-                        child: SingleChildScrollView(
-                          controller: _scrollController,
-                          child: StepCard(
-                            instruction:
-                                recipe.steps![currentStepIndex].instruction,
-                            imageUrl: recipe.steps![currentStepIndex].imageUrl,
-                          ),
-                        ),
-                      ),
-                    ),
-                    ElevatedButtonWithIcon7(
-                      onPressed: () {
-                        Navigator.pushNamedAndRemoveUntil(
-                          context,
-                          RecipeCompletionScreen.routeName,
-                          (route) => route.isFirst,
+    return WillPopScope(
+      onWillPop: () async {
+        await _showExitConfirmationDialog(context);
+        return false;
+      },
+      child: Scaffold(
+        extendBodyBehindAppBar: false,
+        appBar: StepDetailAppBar(
+          scrollController: _scrollController,
+          recipeName: recipe.name,
+          currentStepNumber: currentStepNumber,
+          totalStepCount: steps.length,
+          onHomeButtonPressed: () {
+            _showExitConfirmationDialog(context);
+          },
+        ),
+        body: Padding(
+          padding: EdgeInsets.symmetric(
+            horizontal: LayoutCalculator.wideMargin(context: context),
+          ),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              Expanded(
+                child: Center(
+                  child: SingleChildScrollView(
+                    controller: _scrollController,
+                    child: AnimatedBuilder(
+                      animation: animationController,
+                      builder: (context, _) {
+                        return Stack(
+                          alignment: Alignment.center,
+                          children: [
+                            Transform.translate(
+                              offset: _generateNewCardTranslationOffset(context)
+                                  .value,
+                              child: Transform.rotate(
+                                angle: newCardRotationAngle.value,
+                                child: StepCard(
+                                  instruction:
+                                      steps[currentStepIndex].instruction,
+                                  imageUrl: steps[currentStepIndex].imageUrl,
+                                ),
+                              ),
+                            ),
+                            Container(
+                              child: currentStepIndex == 0
+                                  ? null
+                                  : Transform.translate(
+                                      offset: _generateOldCardTranslationOffset(
+                                              context)
+                                          .value,
+                                      child: Transform.rotate(
+                                        angle: oldCardRotationAngle.value,
+                                        child: StepCard(
+                                          instruction:
+                                              steps[currentStepIndex - 1]
+                                                  .instruction,
+                                          imageUrl: steps[currentStepIndex - 1]
+                                              .imageUrl,
+                                        ),
+                                      ),
+                                    ),
+                            ),
+                          ],
                         );
                       },
-                      icon: const Icon(FluentIcons.checkmark_24_regular),
-                      label: Text('I have done Step $currentStepNumber'),
                     ),
-                    SizedBox(
-                      height: LayoutCalculator.bottomButtonBottomMargin(
-                        context: context,
-                      ),
-                    ),
-                  ],
+                  ),
                 ),
               ),
-            ),
-          );
+              ElevatedButtonWithIcon7(
+                onPressed: () {
+                  if (steps.length == currentStepNumber) {
+                    Navigator.pushNamedAndRemoveUntil(
+                      context,
+                      RecipeCompletionScreen.routeName,
+                      (route) => route.isFirst,
+                    );
+                  } else {
+                    setState(() {
+                      currentStepIndex++;
+                      currentStepNumber++;
+                    });
+                    animationController.reset();
+                    animationController.forward();
+                  }
+                },
+                icon: const Icon(FluentIcons.checkmark_24_regular),
+                label: Text('I have done Step $currentStepNumber'),
+              ),
+              SizedBox(
+                height: LayoutCalculator.bottomButtonBottomMargin(
+                  context: context,
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
   }
 }
 
