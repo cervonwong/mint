@@ -337,7 +337,9 @@ class ExitConfirmationDialog extends StatelessWidget {
                           } else {
                             // Technically should not happen, unless in development.
                             Navigator.popAndPushNamed(
-                                context, RecipeCatalogueScreen.routeName);
+                              context,
+                              RecipeCatalogueScreen.routeName,
+                            );
                           }
                         },
                         child: const Text('Stop recipe'),
