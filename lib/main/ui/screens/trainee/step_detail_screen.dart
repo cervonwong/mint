@@ -304,6 +304,7 @@ class ExitConfirmationDialog extends StatelessWidget {
                 children: [
                   SelectableText(
                     'Back to Home Screen?',
+                    textAlign: TextAlign.center,
                     style: ThemeConstants.headline5,
                   ),
                   const SizedBox(height: 8.0),
@@ -325,8 +326,8 @@ class ExitConfirmationDialog extends StatelessWidget {
                     labelType: LabelType.message,
                   ),
                   const SizedBox(height: 32.0),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
+                  Wrap(
+                    alignment: WrapAlignment.center,
                     children: [
                       TextButton7.error(
                         onPressed: () {
