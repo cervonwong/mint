@@ -45,7 +45,8 @@ class _TitleRevealAppBarState extends State<TitleRevealAppBar> {
     super.initState();
 
     widget.scrollController.addListener(() {
-      final revealCriteria = widget.scrollController.offset > widget.revealOffset;
+      final revealCriteria =
+          widget.scrollController.offset > widget.revealOffset;
       if (revealCriteria != isRevealed) {
         setState(() {
           isRevealed = revealCriteria;
