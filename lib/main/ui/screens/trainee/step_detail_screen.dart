@@ -19,7 +19,7 @@ import 'recipe_catalogue_screen.dart';
 import 'recipe_completion_screen.dart';
 
 class StepDetailScreen extends StatefulWidget {
-  static const routeName = 'steps';
+  static const routeName = 'trainee/steps';
 
   StepDetailScreen();
 

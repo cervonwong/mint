@@ -18,7 +18,7 @@ import '../../utils/layout_calculator.dart';
 import 'step_detail_screen.dart';
 
 class RecipeCatalogueScreen extends StatefulWidget {
-  static const routeName = 'home';
+  static const routeName = 'trainee/home';
 
   RecipeCatalogueScreen();
 

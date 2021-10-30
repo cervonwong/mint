@@ -13,7 +13,7 @@ import '../../utils/layout_calculator.dart';
 import 'recipe_catalogue_screen.dart';
 
 class RecipeCompletionScreen extends StatelessWidget {
-  static const routeName = 'recipe_completion';
+  static const routeName = 'trainee/complete';
 
   RecipeCompletionScreen();
 

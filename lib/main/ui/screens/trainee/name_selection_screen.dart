@@ -12,7 +12,7 @@ import '../../utils/layout_calculator.dart';
 import 'recipe_catalogue_screen.dart';
 
 class NameSelectionScreen extends StatelessWidget {
-  static const routeName = 'sign_in';
+  static const routeName = 'trainee';
   late final List<String> names;
 
   NameSelectionScreen() {
