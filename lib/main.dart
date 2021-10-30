@@ -49,7 +49,7 @@ class MyApp extends StatelessWidget {
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
-        title: 'Mint 🌿',
+        title: 'Mint',
         theme: ThemeConstants.themeData,
         initialRoute: NameSelectionScreen.routeName,
         routes: {
