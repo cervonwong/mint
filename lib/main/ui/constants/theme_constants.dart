@@ -169,7 +169,7 @@ class ThemeConstants {
     ),
   );
   static final dialogTheme = DialogTheme(
-    backgroundColor: ColorConstants.greenOverlayOnWhite,
+    backgroundColor: ColorConstants.ivoryPrimary,
     shape: RoundedRectangleBorder(
       borderRadius: BorderRadius.circular(24.0),
     ),

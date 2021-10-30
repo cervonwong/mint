@@ -103,6 +103,7 @@ class _StepDetailScreenState extends State<StepDetailScreen>
   Future<void> _showExitConfirmationDialog(BuildContext context) async {
     await showDialog(
       context: context,
+      barrierColor: ColorConstants.ivory100.withOpacity(0.60),
       builder: (context) {
         return const ExitConfirmationDialog();
       },
@@ -287,52 +288,70 @@ class ExitConfirmationDialog extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Dialog(
-      child: Padding(
-        padding: const EdgeInsets.all(32.0),
-        child: IntrinsicWidth(
-          child: Theme(
-            data: Theme.of(context).copyWith(
-              dividerTheme: ThemeConstants.dividerGreenThemeData,
-            ),
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: [
-                SelectableText(
-                  'Are you sure you want to stop this recipe?',
-                  style: ThemeConstants.headline5,
-                ),
-                const SizedBox(height: 24.0),
-                ListenButton(
-                  id: 'Instruction',
-                  text:
-                      'Are you sure you want to stop this recipe? <INSERT MORE EXPLANATION HERE>',
-                  labelType: LabelType.message,
-                ),
-                const SizedBox(height: 32.0),
-                const Divider(),
-                const SizedBox(height: 16.0),
-                TextButton7.error(
-                  onPressed: () {
-                    Navigator.pop(context); // Pop dialog.
+      insetAnimationDuration: const Duration(milliseconds: 500),
+      child: ConstrainedBox(
+        constraints: const BoxConstraints(maxWidth: 600.0),
+        child: Padding(
+          padding: const EdgeInsets.all(32.0),
+          child: IntrinsicWidth(
+            child: Theme(
+              data: Theme.of(context).copyWith(
+                dividerTheme: ThemeConstants.dividerGreenThemeData,
+              ),
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  SelectableText(
+                    'Back to Home Screen?',
+                    style: ThemeConstants.headline5,
+                  ),
+                  const SizedBox(height: 8.0),
+                  SelectableText(
+                    'If you leave this recipe, you will have to restart '
+                    'this recipe the next time.',
+                    textAlign: TextAlign.center,
+                    style: ThemeConstants.body7.copyWith(
+                      color: ColorConstants.blackSecondary,
+                    ),
+                  ),
+                  const SizedBox(height: 16.0),
+                  ListenButton(
+                    id: 'Instruction',
+                    text:
+                        'Do you want to go back to the home screen? If you leave '
+                        'this recipe, you will have to restart this recipe the '
+                        'next time.',
+                    labelType: LabelType.message,
+                  ),
+                  const SizedBox(height: 32.0),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      TextButton7.error(
+                        onPressed: () {
+                          Navigator.pop(context); // Pop dialog.
 
-                    if (Navigator.canPop(context)) {
-                      Navigator.pop(context);
-                    } else {
-                      // Technically should not happen, unless in development.
-                      Navigator.popAndPushNamed(
-                          context, RecipeCatalogueScreen.routeName);
-                    }
-                  },
-                  child: const Text('Stop recipe'),
-                ),
-                TextButton7(
-                  onPressed: () {
-                    Navigator.pop(context); // Pop dialog.
-                  },
-                  child: const Text('Continue recipe'),
-                ),
-              ],
+                          if (Navigator.canPop(context)) {
+                            Navigator.pop(context);
+                          } else {
+                            // Technically should not happen, unless in development.
+                            Navigator.popAndPushNamed(
+                                context, RecipeCatalogueScreen.routeName);
+                          }
+                        },
+                        child: const Text('Stop recipe'),
+                      ),
+                      TextButton7(
+                        onPressed: () {
+                          Navigator.pop(context); // Pop dialog.
+                        },
+                        child: const Text('Continue recipe'),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
             ),
           ),
         ),
