@@ -15,8 +15,20 @@ import 'help_button.dart';
 
 class TitleRevealAppBar extends StatefulWidget implements PreferredSizeWidget {
   final ScrollController scrollController;
+  final bool hasDrawer;
+  final String title;
+  final List<Widget> actions;
+  final bool actionsPersistent;
+  final double revealOffset;
 
-  const TitleRevealAppBar({required this.scrollController});
+  const TitleRevealAppBar({
+    required this.scrollController,
+    required this.hasDrawer,
+    required this.title,
+    this.actions = const [],
+    this.actionsPersistent = true,
+    this.revealOffset = 50.0,
+  });
 
   @override
   State<TitleRevealAppBar> createState() => _TitleRevealAppBarState();
@@ -26,26 +38,30 @@ class TitleRevealAppBar extends StatefulWidget implements PreferredSizeWidget {
 }
 
 class _TitleRevealAppBarState extends State<TitleRevealAppBar> {
-  bool isElevated = false;
+  bool isRevealed = false;
 
   @override
   void initState() {
+    super.initState();
+
     widget.scrollController.addListener(() {
-      var criteria = widget.scrollController.offset > 100;
-      if (criteria != isElevated) {
+      final revealCriteria =
+          widget.scrollController.offset > widget.revealOffset;
+      if (revealCriteria != isRevealed) {
         setState(() {
-          isElevated = criteria;
+          isRevealed = revealCriteria;
         });
       }
     });
-    super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
     return AnimatedContainer(
       duration: const Duration(milliseconds: 150),
-      color: isElevated ? ColorConstants.ivory100 : ColorConstants.ivoryPrimary,
+      color: isRevealed
+          ? ColorConstants.ivory100
+          : ColorConstants.ivory100.withOpacity(0.0),
       child: IntrinsicHeight(
         child: Material(
           type: MaterialType.transparency,
@@ -54,29 +70,45 @@ class _TitleRevealAppBarState extends State<TitleRevealAppBar> {
               // 8.0 is margin around IconButton.
               horizontal:
                   LayoutCalculator.appBarHorizontalMargin(context: context) -
-                      8.0,
+                      (widget.hasDrawer ? 8.0 : 0.0),
               vertical: LayoutCalculator.appBarVerticalMargin(context: context),
             ),
             child: Row(
               children: [
-                IconButton(
-                  icon: const Icon(
-                    FluentIcons.navigation_24_regular,
-                    color: ColorConstants.blackPrimary,
+                widget.hasDrawer
+                    ? IconButton(
+                        icon: const Icon(
+                          FluentIcons.navigation_24_regular,
+                          color: ColorConstants.blackPrimary,
+                        ),
+                        onPressed: () => Scaffold.of(context).openDrawer(),
+                      )
+                    : Container(),
+                widget.hasDrawer ? const SizedBox(width: 32.0) : Container(),
+                Expanded(
+                  child: AnimatedOpacity(
+                    duration: const Duration(milliseconds: 150),
+                    opacity: isRevealed ? 1.0 : 0.0,
+                    child: Text(
+                      widget.title,
+                      softWrap: false,
+                      overflow: TextOverflow.ellipsis,
+                      style: ThemeConstants.headline6,
+                    ),
                   ),
-                  onPressed: () => Scaffold.of(context).openDrawer(),
                 ),
-                const SizedBox(width: 32.0),
-                AnimatedOpacity(
-                  duration: const Duration(milliseconds: 150),
-                  opacity: isElevated ? 1.0 : 0.0,
-                  child: SelectableText(
-                    'My Recipes',
-                    style: ThemeConstants.headline6,
-                  ),
-                ),
-                const Spacer(),
-                const HelpButton(),
+                const SizedBox(width: 16.0),
+                widget.actionsPersistent
+                    ? Row(
+                        children: widget.actions,
+                      )
+                    : AnimatedOpacity(
+                        duration: const Duration(milliseconds: 150),
+                        opacity: isRevealed ? 1.0 : 0.0,
+                        child: Row(
+                          children: widget.actions,
+                        ),
+                      ),
               ],
             ),
           ),
@@ -114,6 +146,8 @@ class _StepDetailAppBarState extends State<StepDetailAppBar> {
 
   @override
   void initState() {
+    super.initState();
+
     widget.scrollController.addListener(() {
       var criteria = widget.scrollController.offset != 0.0;
       if (criteria != isElevated) {
@@ -122,7 +156,6 @@ class _StepDetailAppBarState extends State<StepDetailAppBar> {
         });
       }
     });
-    super.initState();
   }
 
   @override

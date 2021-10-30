@@ -62,7 +62,7 @@ class LayoutCalculator {
   }
 
   static double appBarVerticalMargin({required BuildContext context}) {
-    return 16.0;
+    return 12.0;
   }
 
   static double bottomButtonBottomMargin({required BuildContext context}) {

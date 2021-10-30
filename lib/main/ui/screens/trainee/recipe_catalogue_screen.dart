@@ -11,13 +11,14 @@ import '../../../controller/recipe_catalogue_controller.dart';
 import '../../../models/recipe.dart';
 import '../../constants/color_constants.dart';
 import '../../constants/theme_constants.dart';
+import '../../shared_components/help_button.dart';
 import '../../shared_components/listen_button.dart';
 import '../../shared_components/shared_app_bars.dart';
 import '../../utils/layout_calculator.dart';
 import 'step_detail_screen.dart';
 
 class RecipeCatalogueScreen extends StatefulWidget {
-  static const routeName = 'home';
+  static const routeName = 'trainee/home';
 
   RecipeCatalogueScreen();
 
@@ -28,6 +29,22 @@ class RecipeCatalogueScreen extends StatefulWidget {
 class _RecipeCatalogueScreenState extends State<RecipeCatalogueScreen> {
   final ScrollController _scrollController = ScrollController();
   late List<Recipe> recipeList;
+  bool titleFaded = false;
+  static const double fadeOffset = 30.0;
+
+  @override
+  void initState() {
+    super.initState();
+
+    _scrollController.addListener(() {
+      final fadeCriteria = _scrollController.offset > fadeOffset;
+      if (fadeCriteria != titleFaded) {
+        setState(() {
+          titleFaded = fadeCriteria;
+        });
+      }
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -39,7 +56,15 @@ class _RecipeCatalogueScreenState extends State<RecipeCatalogueScreen> {
     return Scaffold(
       drawer: const Drawer(),
       extendBodyBehindAppBar: true,
-      appBar: TitleRevealAppBar(scrollController: _scrollController),
+      appBar: TitleRevealAppBar(
+        scrollController: _scrollController,
+        hasDrawer: true,
+        title: 'My Recipes',
+        actions: [
+          const HelpButton(),
+        ],
+        revealOffset: fadeOffset,
+      ),
       body: ListView(
         controller: _scrollController,
         children: [
@@ -48,20 +73,24 @@ class _RecipeCatalogueScreenState extends State<RecipeCatalogueScreen> {
             padding: EdgeInsets.symmetric(
               horizontal: LayoutCalculator.margin(context: context),
             ),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                SelectableText(
-                  'Good afternoon, Andrea Lim!',
-                  style: ThemeConstants.subtitle7.copyWith(
-                    color: ColorConstants.blackSecondary,
+            child: AnimatedOpacity(
+              duration: const Duration(milliseconds: 150),
+              opacity: titleFaded ? 0.0 : 1.0,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  SelectableText(
+                    'Good afternoon, Andrea Lim!',
+                    style: ThemeConstants.subtitle7.copyWith(
+                      color: ColorConstants.blackSecondary,
+                    ),
                   ),
-                ),
-                SelectableText(
-                  'My Recipes',
-                  style: ThemeConstants.headline4,
-                ),
-              ],
+                  SelectableText(
+                    'My Recipes',
+                    style: ThemeConstants.headline4,
+                  ),
+                ],
+              ),
             ),
           ),
           const SizedBox(height: 16.0),
@@ -143,6 +172,8 @@ class RecipeCard extends StatelessWidget {
           child: InkWell(
             borderRadius: BorderRadius.circular(12.0),
             onTap: () {
+              // TODO: 10/30/2021 Have container transform transition between
+              //  this screen and `StepDetailScreen`.
               Provider.of<CurrentRecipeController>(context, listen: false)
                   .selectRecipe(id: recipe.id);
               Navigator.pushNamed(context, StepDetailScreen.routeName);
@@ -174,6 +205,7 @@ class RecipeCard extends StatelessWidget {
                       ),
                       const SizedBox(height: 12.0),
                       ListenButton(
+                        id: recipe.id,
                         text: recipe.name,
                         labelType: LabelType.name,
                       ),

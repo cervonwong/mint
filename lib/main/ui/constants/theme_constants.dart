@@ -18,6 +18,7 @@ class ThemeConstants {
 
     // Other themeData.
     appBarTheme: appBarTheme,
+    cardTheme: cardTheme,
     dialogTheme: dialogTheme,
     dividerTheme: dividerIvoryThemeData,
     elevatedButtonTheme: elevatedButton7ThemeData,
@@ -168,8 +169,15 @@ class ThemeConstants {
       statusBarIconBrightness: Brightness.dark,
     ),
   );
+  static final cardTheme = CardTheme(
+    elevation: 0.0,
+    color: ColorConstants.greenOverlay,
+    shape: RoundedRectangleBorder(
+      borderRadius: BorderRadius.circular(16.0),
+    ),
+  );
   static final dialogTheme = DialogTheme(
-    backgroundColor: ColorConstants.greenOverlayOnWhite,
+    backgroundColor: ColorConstants.ivoryPrimary,
     shape: RoundedRectangleBorder(
       borderRadius: BorderRadius.circular(24.0),
     ),
@@ -218,7 +226,7 @@ class ThemeConstants {
           borderRadius: BorderRadius.circular(12.0),
         ),
       ),
-      visualDensity: const VisualDensity(vertical: 2.0),
+      visualDensity: const VisualDensity(vertical: 2.0, horizontal: 2.0),
       foregroundColor: MaterialStateProperty.resolveWith<Color>((states) {
         if (states.contains(MaterialState.disabled)) {
           return ColorConstants.blackSecondary;
