@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 
 import 'package:provider/provider.dart';
 
+import 'package:mint/main/ui/shared_components/listen_button.dart';
 import '../../../controller/current_recipe_controller.dart';
 import '../../constants/theme_constants.dart';
 import '../../shared_components/shared_buttons.dart';
@@ -34,23 +35,33 @@ class RecipeCompletionScreen extends StatelessWidget {
                 child: ListView(
                   shrinkWrap: true,
                   children: [
-                    const Image(
-                      width: 360.0,
-                      height: 240.0,
-                      image: AssetImage(
-                        'assets/illustrations/Crab_WooHoo.png',
-                      ),
-                    ),
-                    SelectableText(
-                      'Well done!',
-                      textAlign: TextAlign.center,
-                      style: ThemeConstants.headline3,
-                    ),
-                    const SizedBox(height: 24.0),
-                    SelectableText(
-                      'You have completed ${recipe.name}!',
-                      textAlign: TextAlign.center,
-                      style: ThemeConstants.headline6,
+                    Column(
+                      children: [
+                        const Image(
+                          width: 360.0,
+                          height: 240.0,
+                          image: AssetImage(
+                            'assets/illustrations/Crab_WooHoo.png',
+                          ),
+                        ),
+                        SelectableText(
+                          'Well done!',
+                          textAlign: TextAlign.center,
+                          style: ThemeConstants.headline4,
+                        ),
+                        const SizedBox(height: 16.0),
+                        SelectableText(
+                          'You have completed ${recipe.name}!',
+                          textAlign: TextAlign.center,
+                          style: ThemeConstants.body7,
+                        ),
+                        const SizedBox(height: 16.0),
+                        ListenButton(
+                          id: 'Message',
+                          text: 'Well done! You have completed ${recipe.name}',
+                          labelType: LabelType.message,
+                        ),
+                      ],
                     ),
                   ],
                 ),
