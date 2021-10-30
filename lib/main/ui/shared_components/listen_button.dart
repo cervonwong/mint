@@ -93,13 +93,10 @@ class TtsService extends ChangeNotifier {
   String? currentlyPlayingId;
 
   TtsService({required this.tts}) {
-    print(tts.completionHandler);
     tts.setCompletionHandler(() {
       currentlyPlayingId = null;
-      print(currentlyPlayingId);
       notifyListeners();
     });
-    print(tts.completionHandler);
   }
 
   void speak({required String id, required String text}) {
