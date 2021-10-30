@@ -84,7 +84,7 @@ class _TitleRevealAppBarState extends State<TitleRevealAppBar> {
                     duration: const Duration(milliseconds: 150),
                     opacity: isElevated ? 1.0 : 0.0,
                     child: Text(
-                      widget.title * 3,
+                      widget.title,
                       softWrap: false,
                       overflow: TextOverflow.fade,
                       style: ThemeConstants.headline6,

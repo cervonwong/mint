@@ -48,6 +48,7 @@ class ListenButton extends StatelessWidget {
                   ? CrossFadeState.showSecond
                   : CrossFadeState.showFirst,
           firstChild: Row(
+            mainAxisSize: MainAxisSize.min,
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               const Icon(FluentIcons.speaker_2_24_regular),
@@ -62,6 +63,7 @@ class ListenButton extends StatelessWidget {
             ],
           ),
           secondChild: Row(
+            mainAxisSize: MainAxisSize.min,
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               const Center(
@@ -78,6 +80,22 @@ class ListenButton extends StatelessWidget {
               ),
             ],
           ),
+          layoutBuilder: (topChild, topChildKey, bottomChild, bottomChildKey) {
+            return Stack(
+              alignment: Alignment.center,
+              children: [
+                Positioned(
+                  key: bottomChildKey,
+                  top: 0,
+                  child: bottomChild,
+                ),
+                Positioned(
+                  key: topChildKey,
+                  child: topChild,
+                ),
+              ],
+            );
+          },
         ),
         onPressed: () {
           Provider.of<TtsService>(context, listen: false)
