@@ -15,8 +15,18 @@ import 'help_button.dart';
 
 class TitleRevealAppBar extends StatefulWidget implements PreferredSizeWidget {
   final ScrollController scrollController;
+  final bool hasDrawer;
+  final String title;
+  final List<Widget> actions;
+  final bool actionsPersistent;
 
-  const TitleRevealAppBar({required this.scrollController});
+  const TitleRevealAppBar({
+    required this.scrollController,
+    required this.hasDrawer,
+    required this.title,
+    this.actions = const [],
+    this.actionsPersistent = true,
+  });
 
   @override
   State<TitleRevealAppBar> createState() => _TitleRevealAppBarState();
@@ -54,29 +64,45 @@ class _TitleRevealAppBarState extends State<TitleRevealAppBar> {
               // 8.0 is margin around IconButton.
               horizontal:
                   LayoutCalculator.appBarHorizontalMargin(context: context) -
-                      8.0,
+                      (widget.hasDrawer ? 8.0 : 0.0),
               vertical: LayoutCalculator.appBarVerticalMargin(context: context),
             ),
             child: Row(
               children: [
-                IconButton(
-                  icon: const Icon(
-                    FluentIcons.navigation_24_regular,
-                    color: ColorConstants.blackPrimary,
+                widget.hasDrawer
+                    ? IconButton(
+                        icon: const Icon(
+                          FluentIcons.navigation_24_regular,
+                          color: ColorConstants.blackPrimary,
+                        ),
+                        onPressed: () => Scaffold.of(context).openDrawer(),
+                      )
+                    : Container(),
+                widget.hasDrawer ? const SizedBox(width: 32.0) : Container(),
+                Expanded(
+                  child: AnimatedOpacity(
+                    duration: const Duration(milliseconds: 150),
+                    opacity: isElevated ? 1.0 : 0.0,
+                    child: Text(
+                      widget.title * 3,
+                      softWrap: false,
+                      overflow: TextOverflow.fade,
+                      style: ThemeConstants.headline6,
+                    ),
                   ),
-                  onPressed: () => Scaffold.of(context).openDrawer(),
                 ),
-                const SizedBox(width: 32.0),
-                AnimatedOpacity(
-                  duration: const Duration(milliseconds: 150),
-                  opacity: isElevated ? 1.0 : 0.0,
-                  child: SelectableText(
-                    'My Recipes',
-                    style: ThemeConstants.headline6,
-                  ),
-                ),
-                const Spacer(),
-                const HelpButton(),
+                const SizedBox(width: 16.0),
+                widget.actionsPersistent
+                    ? Row(
+                        children: widget.actions,
+                      )
+                    : AnimatedOpacity(
+                        duration: const Duration(milliseconds: 150),
+                        opacity: isElevated ? 1.0 : 0.0,
+                        child: Row(
+                          children: widget.actions,
+                        ),
+                      ),
               ],
             ),
           ),

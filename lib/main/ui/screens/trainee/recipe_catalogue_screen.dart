@@ -11,6 +11,7 @@ import '../../../controller/recipe_catalogue_controller.dart';
 import '../../../models/recipe.dart';
 import '../../constants/color_constants.dart';
 import '../../constants/theme_constants.dart';
+import '../../shared_components/help_button.dart';
 import '../../shared_components/listen_button.dart';
 import '../../shared_components/shared_app_bars.dart';
 import '../../utils/layout_calculator.dart';
@@ -39,7 +40,14 @@ class _RecipeCatalogueScreenState extends State<RecipeCatalogueScreen> {
     return Scaffold(
       drawer: const Drawer(),
       extendBodyBehindAppBar: true,
-      appBar: TitleRevealAppBar(scrollController: _scrollController),
+      appBar: TitleRevealAppBar(
+        scrollController: _scrollController,
+        hasDrawer: true,
+        title: 'My Recipes',
+        actions: [
+          const HelpButton(),
+        ],
+      ),
       body: ListView(
         controller: _scrollController,
         children: [
