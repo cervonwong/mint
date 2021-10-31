@@ -1,7 +1,6 @@
 {
  "name": "Mint",
  "short_name": "Mint",
- "start_url": "../#trainee",
  "display": "standalone",
  "background_color": "#FFFCEB",
  "theme_color": "#329561",
