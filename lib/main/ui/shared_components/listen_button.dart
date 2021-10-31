@@ -67,8 +67,8 @@ class ListenButton extends StatelessWidget {
             children: [
               const Center(
                 child: SizedBox(
-                  height: 20.0,
-                  width: 20.0,
+                  height: 24.0,
+                  width: 24.0,
                   child: Padding(
                     padding: EdgeInsets.all(2.0),
                     child: CircularProgressIndicator(
