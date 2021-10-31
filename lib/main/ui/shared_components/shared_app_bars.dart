@@ -199,7 +199,16 @@ class _StepDetailAppBarState extends State<StepDetailAppBar> {
                   ],
                 ),
                 const Spacer(),
-                const HelpButton(),
+                const HelpButton(
+                  id: 'Help',
+                  text: 'This is the instruction screen. Do you see the '
+                      'instruction inside the white box in the middle of your '
+                      'screen? Read or listen to the instructions and complete '
+                      'this step of the recipe. After you have done this step, '
+                      'you can click the button on the bottom of your screen. '
+                      'Remember, if you get lost or need help, you can press '
+                      'this question mark icon!',
+                ),
               ],
             ),
           ),

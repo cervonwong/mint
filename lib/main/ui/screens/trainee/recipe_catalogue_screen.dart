@@ -62,7 +62,13 @@ class _RecipeCatalogueScreenState extends State<RecipeCatalogueScreen> {
         hasDrawer: true,
         title: 'My Recipes',
         actions: [
-          const HelpButton(),
+          const HelpButton(
+            id: 'Help',
+            text: 'This is the home screen. Do you see the pictures on the '
+                'screen? If you want to learn how to make a dish, press the '
+                'picture of the dish to see the recipe. Remember, if you get '
+                'lost or need help, you can press this question mark icon!',
+          ),
         ],
         revealOffset: fadeOffset,
       ),
