@@ -15,7 +15,9 @@ import '../../constants/theme_constants.dart';
 import '../../shared_components/help_button.dart';
 import '../../shared_components/listen_button.dart';
 import '../../shared_components/shared_app_bars.dart';
+import '../../shared_components/shared_buttons.dart';
 import '../../utils/layout_calculator.dart';
+import 'name_selection_screen.dart';
 import 'step_detail_screen.dart';
 
 class RecipeCatalogueScreen extends StatefulWidget {
@@ -55,7 +57,8 @@ class _RecipeCatalogueScreenState extends State<RecipeCatalogueScreen> {
     }
 
     return Scaffold(
-      drawer: const Drawer(),
+      drawerScrimColor: ColorConstants.ivoryScrim,
+      drawer: const _RecipeCatalogueScreenDrawer(),
       extendBodyBehindAppBar: true,
       appBar: TitleRevealAppBar(
         scrollController: _scrollController,
@@ -103,6 +106,41 @@ class _RecipeCatalogueScreenState extends State<RecipeCatalogueScreen> {
           const SizedBox(height: 16.0),
           _ResponsiveRecipeCardGrid(recipeList: recipeList),
         ],
+      ),
+    );
+  }
+}
+
+class _RecipeCatalogueScreenDrawer extends StatelessWidget {
+  const _RecipeCatalogueScreenDrawer({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Drawer(
+      child: Container(
+        color: ColorConstants.ivoryPrimary,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            const Spacer(),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 16.0),
+              child: TextButton7(
+                child: const Text('Sign out'),
+                onPressed: () {
+                  Navigator.pushNamedAndRemoveUntil(
+                    context,
+                    NameSelectionScreen.routeName,
+                    (route) => false,
+                  );
+                },
+              ),
+            ),
+            const SizedBox(height: 16.0),
+          ],
+        ),
       ),
     );
   }

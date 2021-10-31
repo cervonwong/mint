@@ -103,7 +103,7 @@ class _StepDetailScreenState extends State<StepDetailScreen>
   Future<void> _showExitConfirmationDialog(BuildContext context) async {
     await showDialog(
       context: context,
-      barrierColor: ColorConstants.ivory100.withOpacity(0.60),
+      barrierColor: ColorConstants.ivoryScrim,
       builder: (context) {
         return const ExitConfirmationDialog();
       },
