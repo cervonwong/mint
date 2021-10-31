@@ -45,6 +45,7 @@ class ElevatedButton7 extends StatelessWidget {
         autofocus: autofocus,
         clipBehavior: clipBehavior,
         child: Row(
+          mainAxisSize: MainAxisSize.min,
           mainAxisAlignment: MainAxisAlignment.center,
           children: icon == null
               ? [text]
