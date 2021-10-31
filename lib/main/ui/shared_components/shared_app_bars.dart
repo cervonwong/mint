@@ -20,6 +20,7 @@ class TitleRevealAppBar extends StatefulWidget implements PreferredSizeWidget {
   final List<Widget> actions;
   final bool actionsPersistent;
   final double revealOffset;
+  final Color revealBackgroundColor;
 
   const TitleRevealAppBar({
     required this.scrollController,
@@ -28,6 +29,7 @@ class TitleRevealAppBar extends StatefulWidget implements PreferredSizeWidget {
     this.actions = const [],
     this.actionsPersistent = true,
     this.revealOffset = 50.0,
+    this.revealBackgroundColor = ColorConstants.ivory100,
   });
 
   @override
@@ -46,7 +48,7 @@ class _TitleRevealAppBarState extends State<TitleRevealAppBar> {
 
     widget.scrollController.addListener(() {
       final revealCriteria =
-          widget.scrollController.offset > widget.revealOffset;
+          widget.scrollController.offset >= widget.revealOffset;
       if (revealCriteria != isRevealed) {
         setState(() {
           isRevealed = revealCriteria;
@@ -60,8 +62,8 @@ class _TitleRevealAppBarState extends State<TitleRevealAppBar> {
     return AnimatedContainer(
       duration: const Duration(milliseconds: 150),
       color: isRevealed
-          ? ColorConstants.ivory100
-          : ColorConstants.ivory100.withOpacity(0.0),
+          ? widget.revealBackgroundColor
+          : widget.revealBackgroundColor.withOpacity(0.0),
       child: IntrinsicHeight(
         child: Material(
           type: MaterialType.transparency,
@@ -206,6 +208,107 @@ class _StepDetailAppBarState extends State<StepDetailAppBar> {
                       'screen? Read or listen to the instructions and complete '
                       'this step of the recipe. After you have done this step, '
                       'you can click the button on the bottom of your screen. '
+                      'Remember, if you get lost or need help, you can press '
+                      'this question mark icon!',
+                ),
+              ],
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class PreparationStepAppBar extends StatefulWidget
+    implements PreferredSizeWidget {
+  final ScrollController scrollController;
+  final int currentStepNumber;
+  final int totalStepCount;
+
+  const PreparationStepAppBar({
+    required this.scrollController,
+    required this.currentStepNumber,
+    required this.totalStepCount,
+  });
+
+  @override
+  State<PreparationStepAppBar> createState() => _PreparationStepAppBarState();
+
+  @override
+  Size get preferredSize =>
+      const Size.fromHeight(300.0); // A random sufficiently large number.
+}
+
+class _PreparationStepAppBarState extends State<PreparationStepAppBar> {
+  bool isElevated = false;
+
+  @override
+  void initState() {
+    super.initState();
+
+    widget.scrollController.addListener(() {
+      var criteria = widget.scrollController.offset != 0.0;
+      if (criteria != isElevated) {
+        setState(() {
+          isElevated = criteria;
+        });
+      }
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return AnimatedContainer(
+      duration: const Duration(milliseconds: 150),
+      color: isElevated
+          ? ColorConstants.greenOverlayOnWhite
+          : ColorConstants.greenOverlayOnWhite,
+      child: Material(
+        type: MaterialType.transparency,
+        child: Padding(
+          padding: EdgeInsets.symmetric(
+            // 8.0 is margin around IconButton.
+            horizontal:
+                LayoutCalculator.appBarHorizontalMargin(context: context) - 8.0,
+            vertical: LayoutCalculator.appBarVerticalMargin(context: context),
+          ),
+          child: IntrinsicHeight(
+            child: Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                const IconButton(
+                  icon: Icon(
+                    FluentIcons.home_24_regular,
+                    color: Colors.transparent,
+                  ),
+                  onPressed: null,
+                ),
+                const Spacer(),
+                Column(
+                  children: [
+                    SelectableText(
+                      'Before handling food...',
+                      style: ThemeConstants.headline6,
+                    ),
+                    SelectableText(
+                      'Step ${widget.currentStepNumber} '
+                      'of ${widget.totalStepCount}',
+                      style: ThemeConstants.body9,
+                    ),
+                    const SizedBox(height: 12.0),
+                  ],
+                ),
+                const Spacer(),
+                const HelpButton(
+                  id: 'Help',
+                  text: 'This is the preparation screen. Do you see the '
+                      'instruction inside the white box in the middle of your '
+                      'screen? Read or listen to the instructions and complete '
+                      'your preparation. After you have done this step, '
+                      'you can click the button on the bottom of your screen. '
+                      'You have to complete all the steps before you can start '
+                      'handling food.'
                       'Remember, if you get lost or need help, you can press '
                       'this question mark icon!',
                 ),
