@@ -5,20 +5,50 @@
 import 'package:flutter/material.dart';
 
 import 'package:fluentui_system_icons/fluentui_system_icons.dart';
+import 'package:provider/provider.dart';
 
+import '../../services/TtsService.dart';
 import '../constants/color_constants.dart';
 
 class HelpButton extends StatelessWidget {
-  const HelpButton();
+  final String id;
+  final String text;
+
+  const HelpButton({
+    required this.id,
+    required this.text,
+  });
 
   @override
   Widget build(BuildContext context) {
     return IconButton(
-      icon: const Icon(
-        FluentIcons.question_circle_24_regular,
-        color: ColorConstants.greenPrimary,
+      icon: AnimatedCrossFade(
+        duration: const Duration(milliseconds: 200),
+        crossFadeState:
+            Provider.of<TtsService>(context).currentlyPlayingId == id
+                ? CrossFadeState.showSecond
+                : CrossFadeState.showFirst,
+        firstChild: const Icon(
+          FluentIcons.question_circle_24_regular,
+          color: ColorConstants.greenPrimary,
+        ),
+        secondChild: const Center(
+          child: SizedBox(
+            height: 24.0,
+            width: 24.0,
+            child: Padding(
+              padding: EdgeInsets.all(2.0),
+              child: CircularProgressIndicator(
+                strokeWidth: 2.0,
+              ),
+            ),
+          ),
+        ),
       ),
-      onPressed: () {},
+      onPressed: () {
+        Provider.of<TtsService>(context, listen: false)
+            .speak(id: id, text: text);
+      },
     );
   }
 }

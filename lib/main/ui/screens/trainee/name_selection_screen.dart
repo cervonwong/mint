@@ -211,7 +211,7 @@ class _NameCard extends StatelessWidget {
             Navigator.pushNamedAndRemoveUntil(
               context,
               RecipeCatalogueScreen.routeName,
-                  (route) => false,
+              (route) => false,
             );
           },
           child: Padding(
@@ -231,7 +231,6 @@ class _NameCard extends StatelessWidget {
     );
   }
 }
-
 
 class _PressNameInstructionListenButton extends StatelessWidget {
   _PressNameInstructionListenButton();
