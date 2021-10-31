@@ -63,7 +63,7 @@ class PageNotFoundScreen extends StatelessWidget {
                   (route) => false,
                 );
               },
-              child: const Text('Return to start of demo'),
+              text: const Text('Return to start of demo'),
             ),
             SizedBox(
               height: LayoutCalculator.bottomButtonBottomMargin(

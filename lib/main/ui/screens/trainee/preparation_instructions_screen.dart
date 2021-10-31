@@ -174,7 +174,7 @@ class _PreparationInstructionsScreenState
                 ),
               ),
             ),
-            ElevatedButtonWithIcon7(
+            ElevatedButton7(
               onPressed: () {
                 if (steps.length == currentStepNumber) {
                   Navigator.pushNamedAndRemoveUntil(
@@ -192,7 +192,7 @@ class _PreparationInstructionsScreenState
                 }
               },
               icon: const Icon(FluentIcons.checkmark_24_regular),
-              label: const Text('Done'),
+              text: const Text('Done'),
             ),
             SizedBox(
               height: LayoutCalculator.bottomButtonBottomMargin(

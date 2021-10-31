@@ -13,7 +13,9 @@ class ElevatedButton7 extends StatelessWidget {
   final FocusNode? focusNode;
   final bool autofocus;
   final Clip clipBehavior;
-  final Widget? child;
+  final bool iconLeading;
+  final Widget text;
+  final Widget? icon;
 
   ElevatedButton7({
     Key? key,
@@ -23,7 +25,9 @@ class ElevatedButton7 extends StatelessWidget {
     this.focusNode,
     this.autofocus = false,
     this.clipBehavior = Clip.none,
-    this.child,
+    this.iconLeading = true,
+    required this.text,
+    this.icon,
   }) : super(key: key);
 
   @override
@@ -40,50 +44,16 @@ class ElevatedButton7 extends StatelessWidget {
         focusNode: focusNode,
         autofocus: autofocus,
         clipBehavior: clipBehavior,
-        child: child,
-      ),
-    );
-  }
-}
-
-class ElevatedButtonWithIcon7 extends StatelessWidget {
-  final void Function()? onPressed;
-  final void Function()? onLongPress;
-  final ButtonStyle? style;
-  final FocusNode? focusNode;
-  final bool autofocus;
-  final Clip clipBehavior;
-  final Widget icon;
-  final Widget label;
-
-  ElevatedButtonWithIcon7({
-    Key? key,
-    this.onPressed,
-    this.onLongPress,
-    this.style,
-    this.focusNode,
-    this.autofocus = false,
-    this.clipBehavior = Clip.none,
-    required this.icon,
-    required this.label,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Theme(
-      data: Theme.of(context).copyWith(
-        elevatedButtonTheme: ThemeConstants.elevatedButton7ThemeData,
-      ),
-      child: ElevatedButton.icon(
-        key: key,
-        onPressed: onPressed,
-        onLongPress: onLongPress,
-        style: style,
-        focusNode: focusNode,
-        autofocus: autofocus,
-        clipBehavior: clipBehavior,
-        icon: icon,
-        label: label,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: icon == null
+              ? [text]
+              : [
+                  iconLeading ? icon! : text,
+                  const SizedBox(width: 8.0),
+                  iconLeading ? text : icon!,
+                ],
+        ),
       ),
     );
   }

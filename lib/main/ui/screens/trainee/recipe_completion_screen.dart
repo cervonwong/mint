@@ -77,7 +77,7 @@ class RecipeCompletionScreen extends StatelessWidget {
                       context, RecipeCatalogueScreen.routeName);
                 }
               },
-              child: const Text('Continue'),
+              text: const Text('Continue'),
             ),
             SizedBox(
               height: LayoutCalculator.bottomButtonBottomMargin(
