@@ -205,6 +205,7 @@ class RecipeCard extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 16.0),
       child: OpenContainer(
+        routeSettings: const RouteSettings(name: StepDetailScreen.routeName),
         closedColor: ColorConstants.whitePrimary,
         openColor: ColorConstants.ivoryPrimary,
         middleColor: ColorConstants.ivoryPrimary,
