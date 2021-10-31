@@ -106,34 +106,7 @@ class _SmallestNameSelectionScreenState
               padding: EdgeInsets.symmetric(
                 horizontal: LayoutCalculator.margin(context: context),
               ),
-              child: Card(
-                child: Material(
-                  type: MaterialType.transparency,
-                  borderRadius: BorderRadius.circular(16.0),
-                  child: InkWell(
-                    borderRadius: BorderRadius.circular(16.0),
-                    onTap: () {
-                      Navigator.pushNamedAndRemoveUntil(
-                        context,
-                        RecipeCatalogueScreen.routeName,
-                        (route) => false,
-                      );
-                    },
-                    child: Padding(
-                      padding: const EdgeInsets.symmetric(
-                        horizontal: 16.0,
-                        vertical: 12.0,
-                      ),
-                      child: Center(
-                        child: Text(
-                          name,
-                          style: ThemeConstants.body7,
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
-              ),
+              child: _NameCard(name: name),
             ),
         ],
       ),
@@ -207,34 +180,7 @@ class _SmallAndLargerNameSelectionScreen extends StatelessWidget {
                         right: LayoutCalculator.margin(context: context),
                         left: 32.0,
                       ),
-                      child: Card(
-                        child: Material(
-                          type: MaterialType.transparency,
-                          borderRadius: BorderRadius.circular(16.0),
-                          child: InkWell(
-                            borderRadius: BorderRadius.circular(16.0),
-                            onTap: () {
-                              Navigator.pushNamedAndRemoveUntil(
-                                context,
-                                RecipeCatalogueScreen.routeName,
-                                (route) => false,
-                              );
-                            },
-                            child: Padding(
-                              padding: const EdgeInsets.symmetric(
-                                horizontal: 16.0,
-                                vertical: 12.0,
-                              ),
-                              child: Center(
-                                child: Text(
-                                  name,
-                                  style: ThemeConstants.body7,
-                                ),
-                              ),
-                            ),
-                          ),
-                        ),
-                      ),
+                      child: _NameCard(name: name),
                     ),
                   const SizedBox(height: 64.0),
                 ],
@@ -246,6 +192,46 @@ class _SmallAndLargerNameSelectionScreen extends StatelessWidget {
     );
   }
 }
+
+class _NameCard extends StatelessWidget {
+  final String name;
+
+  _NameCard({required this.name});
+
+  @override
+  Widget build(BuildContext context) {
+    return Card(
+      margin: const EdgeInsets.symmetric(vertical: 4.0),
+      child: Material(
+        type: MaterialType.transparency,
+        borderRadius: BorderRadius.circular(16.0),
+        child: InkWell(
+          borderRadius: BorderRadius.circular(16.0),
+          onTap: () {
+            Navigator.pushNamedAndRemoveUntil(
+              context,
+              RecipeCatalogueScreen.routeName,
+                  (route) => false,
+            );
+          },
+          child: Padding(
+            padding: const EdgeInsets.symmetric(
+              horizontal: 16.0,
+              vertical: 17.0,
+            ),
+            child: Center(
+              child: Text(
+                name,
+                style: ThemeConstants.body7,
+              ),
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+}
+
 
 class _PressNameInstructionListenButton extends StatelessWidget {
   _PressNameInstructionListenButton();
