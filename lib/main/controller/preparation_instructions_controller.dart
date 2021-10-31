@@ -2,6 +2,7 @@
  * Copyright (C) 2021 Cervon Wong and Lee I-Shiang
  */
 
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 
 import '../models/preparation_instructions.dart';
@@ -25,12 +26,17 @@ class PreparationInstructionsController extends ChangeNotifier {
 }
 
 Future<PreparationInstructions> _getInstructions() async {
-  // TODO: 10/31/2021 Implement this. This just placeholder for now.
-  return PreparationInstructions(
-    steps: [
-      PreparationStep(instruction: 'Bing bong!', imageUrl: 'PLACEHOLDER'),
-      PreparationStep(instruction: 'Ding dong!', imageUrl: 'PLACEHOLDER'),
-      PreparationStep(instruction: 'King kong?', imageUrl: 'PLACEHOLDER'),
-    ],
+  final collection = FirebaseFirestore.instance.collection('preparation');
+  final querySnapshot = await collection.doc('preparation_instructions').get();
+
+  final preparationInstructions = PreparationInstructions(
+    steps: List<PreparationStep>.from(
+      querySnapshot.data()!['steps'].map(
+            (item) => PreparationStep(
+                instruction: item['step'], imageUrl: item['imageUrl']),
+          ),
+    ),
   );
+
+  return preparationInstructions;
 }
