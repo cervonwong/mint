@@ -6,9 +6,9 @@ import 'package:flutter/material.dart';
 
 import 'package:provider/provider.dart';
 
-import 'package:mint/main/ui/shared_components/listen_button.dart';
 import '../../../controller/current_recipe_controller.dart';
 import '../../constants/theme_constants.dart';
+import '../../shared_components/listen_button.dart';
 import '../../shared_components/shared_buttons.dart';
 import '../../utils/layout_calculator.dart';
 import 'recipe_catalogue_screen.dart';
