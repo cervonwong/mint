@@ -7,7 +7,7 @@ import 'package:flutter/material.dart';
 import '../constants/theme_constants.dart';
 import '../shared_components/shared_buttons.dart';
 import '../utils/layout_calculator.dart';
-import 'trainee/name_selection_screen.dart';
+import 'demo_intro_screen.dart';
 
 class PageNotFoundScreen extends StatelessWidget {
   final RouteSettings routeSettings;
@@ -59,7 +59,7 @@ class PageNotFoundScreen extends StatelessWidget {
               onPressed: () {
                 Navigator.pushNamedAndRemoveUntil(
                   context,
-                  NameSelectionScreen.routeName,
+                  DemoIntroScreen.routeName,
                   (route) => false,
                 );
               },

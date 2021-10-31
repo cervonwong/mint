@@ -13,6 +13,7 @@ import 'package:provider/provider.dart';
 import 'package:mint/main/controller/preparation_instructions_controller.dart';
 import 'package:mint/main/controller/recipe_catalogue_controller.dart';
 import 'package:mint/main/ui/constants/theme_constants.dart';
+import 'package:mint/main/ui/screens/demo_intro_screen.dart';
 import 'package:mint/main/ui/screens/page_not_found_screen.dart';
 import 'package:mint/main/ui/screens/trainee/name_selection_screen.dart';
 import 'package:mint/main/ui/screens/trainee/preparation_instructions_screen.dart';
@@ -57,8 +58,9 @@ class MyApp extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         title: 'Mint',
         theme: ThemeConstants.themeData,
-        initialRoute: NameSelectionScreen.routeName,
+        initialRoute: DemoIntroScreen.routeName,
         routes: {
+          DemoIntroScreen.routeName: (context) => const DemoIntroScreen(),
           NameSelectionScreen.routeName: (context) => NameSelectionScreen(),
           PreparationInstructionsScreen.routeName: (context) =>
               PreparationInstructionsScreen(),
