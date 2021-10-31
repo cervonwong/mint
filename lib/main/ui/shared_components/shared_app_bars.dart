@@ -120,7 +120,8 @@ class _TitleRevealAppBarState extends State<TitleRevealAppBar> {
   }
 }
 
-class RecipeInstructionsScreenAppBar extends StatefulWidget implements PreferredSizeWidget {
+class RecipeInstructionsScreenAppBar extends StatefulWidget
+    implements PreferredSizeWidget {
   final ScrollController scrollController;
   final VoidCallback onHomeButtonPressed;
   final String recipeName;
@@ -136,14 +137,16 @@ class RecipeInstructionsScreenAppBar extends StatefulWidget implements Preferred
   });
 
   @override
-  State<RecipeInstructionsScreenAppBar> createState() => _RecipeInstructionsScreenAppBarState();
+  State<RecipeInstructionsScreenAppBar> createState() =>
+      _RecipeInstructionsScreenAppBarState();
 
   @override
   Size get preferredSize =>
       const Size.fromHeight(300.0); // A random sufficiently large number.
 }
 
-class _RecipeInstructionsScreenAppBarState extends State<RecipeInstructionsScreenAppBar> {
+class _RecipeInstructionsScreenAppBarState
+    extends State<RecipeInstructionsScreenAppBar> {
   bool isElevated = false;
 
   @override
@@ -233,14 +236,16 @@ class PreparationInstructionsScreenAppBar extends StatefulWidget
   });
 
   @override
-  State<PreparationInstructionsScreenAppBar> createState() => _PreparationInstructionsScreenAppBarState();
+  State<PreparationInstructionsScreenAppBar> createState() =>
+      _PreparationInstructionsScreenAppBarState();
 
   @override
   Size get preferredSize =>
       const Size.fromHeight(300.0); // A random sufficiently large number.
 }
 
-class _PreparationInstructionsScreenAppBarState extends State<PreparationInstructionsScreenAppBar> {
+class _PreparationInstructionsScreenAppBarState
+    extends State<PreparationInstructionsScreenAppBar> {
   bool isElevated = false;
 
   @override

@@ -25,11 +25,12 @@ class PreparationInstructionsScreen extends StatefulWidget {
   PreparationInstructionsScreen();
 
   @override
-  State<PreparationInstructionsScreen> createState() => _PreparationInstructionsScreenState();
+  State<PreparationInstructionsScreen> createState() =>
+      _PreparationInstructionsScreenState();
 }
 
-class _PreparationInstructionsScreenState extends State<PreparationInstructionsScreen>
-    with TickerProviderStateMixin {
+class _PreparationInstructionsScreenState
+    extends State<PreparationInstructionsScreen> with TickerProviderStateMixin {
   final ScrollController _scrollController = ScrollController();
   int currentStepIndex = 0;
   int currentStepNumber = 1;

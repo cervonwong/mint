@@ -24,7 +24,8 @@ class RecipeInstructionsScreen extends StatefulWidget {
   RecipeInstructionsScreen();
 
   @override
-  State<RecipeInstructionsScreen> createState() => _RecipeInstructionsScreenState();
+  State<RecipeInstructionsScreen> createState() =>
+      _RecipeInstructionsScreenState();
 }
 
 class _RecipeInstructionsScreenState extends State<RecipeInstructionsScreen>
