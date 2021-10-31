@@ -5,9 +5,9 @@
 import 'package:flutter/material.dart';
 
 import 'package:fluentui_system_icons/fluentui_system_icons.dart';
-import 'package:flutter_tts/flutter_tts.dart';
 import 'package:provider/provider.dart';
 
+import '../../services/TtsService.dart';
 import '../constants/theme_constants.dart';
 
 class ListenButton extends StatelessWidget {
@@ -109,22 +109,4 @@ enum LabelType {
   name,
   instruction,
   message,
-}
-
-class TtsService extends ChangeNotifier {
-  final FlutterTts tts;
-  String? currentlyPlayingId;
-
-  TtsService({required this.tts}) {
-    tts.setCompletionHandler(() {
-      currentlyPlayingId = null;
-      notifyListeners();
-    });
-  }
-
-  void speak({required String id, required String text}) {
-    currentlyPlayingId = id;
-    notifyListeners();
-    tts.speak(text);
-  }
 }

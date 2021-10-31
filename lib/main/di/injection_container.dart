@@ -7,7 +7,7 @@ import 'package:get_it/get_it.dart';
 
 import '../controller/current_recipe_controller.dart';
 import '../controller/recipe_catalogue_controller.dart';
-import '../ui/shared_components/listen_button.dart';
+import '../services/TtsService.dart';
 
 void configureDependencies() {
   final getIt = GetIt.instance;
