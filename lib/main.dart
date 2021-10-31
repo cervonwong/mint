@@ -8,6 +8,7 @@ import 'package:flutter/material.dart';
 
 import 'package:firebase_core/firebase_core.dart';
 import 'package:get_it/get_it.dart';
+import 'package:mint/main/ui/screens/page_not_found_screen.dart';
 import 'package:provider/provider.dart';
 
 import 'package:mint/main/controller/preparation_instructions_controller.dart';
@@ -59,11 +60,19 @@ class MyApp extends StatelessWidget {
         initialRoute: NameSelectionScreen.routeName,
         routes: {
           NameSelectionScreen.routeName: (context) => NameSelectionScreen(),
-          PreparationInstructionsScreen.routeName: (context) => PreparationInstructionsScreen(),
+          PreparationInstructionsScreen.routeName: (context) =>
+              PreparationInstructionsScreen(),
           RecipeCatalogueScreen.routeName: (context) => RecipeCatalogueScreen(),
-          RecipeInstructionsScreen.routeName: (context) => RecipeInstructionsScreen(),
+          RecipeInstructionsScreen.routeName: (context) =>
+              RecipeInstructionsScreen(),
           RecipeCompletionScreen.routeName: (context) =>
               RecipeCompletionScreen(),
+        },
+        onUnknownRoute: (routeSettings) {
+          return MaterialPageRoute(
+            settings: const RouteSettings(name: '404'),
+            builder: (_) => PageNotFoundScreen(routeSettings: routeSettings),
+          );
         },
       ),
     );
