@@ -2,10 +2,9 @@
  * Copyright (C) 2021 Cervon Wong and Lee I-Shiang
  */
 
+import 'package:fluentui_system_icons/fluentui_system_icons.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
-
-import 'package:fluentui_system_icons/fluentui_system_icons.dart';
 import 'package:provider/provider.dart';
 
 import '../../../controller/current_recipe_controller.dart';
@@ -263,9 +262,22 @@ class StepCard extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
-                Text(
-                  instruction,
-                  style: ThemeConstants.headline6,
+                RichText(
+                  text: TextSpan(
+                    text: '',
+                    children: instruction
+                        .split(' ')
+                        .map((word) => TextSpan(
+                              text: word + ' ',
+                              style: double.tryParse(word) == null
+                                  ? ThemeConstants.headline6
+                                  : ThemeConstants.headline6.copyWith(
+                                      fontWeight: FontWeight.bold,
+                                      color: ColorConstants.greenPrimary,
+                                    ),
+                            ))
+                        .toList(),
+                  ),
                 ),
                 const SizedBox(height: 12.0),
                 ListenButton(
