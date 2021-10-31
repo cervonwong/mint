@@ -18,7 +18,7 @@ import '../../shared_components/shared_app_bars.dart';
 import '../../shared_components/shared_buttons.dart';
 import '../../utils/layout_calculator.dart';
 import 'name_selection_screen.dart';
-import 'step_detail_screen.dart';
+import 'recipe_instructions_screen.dart';
 
 class RecipeCatalogueScreen extends StatefulWidget {
   static const routeName = 'trainee/home';
@@ -205,7 +205,7 @@ class RecipeCard extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 16.0),
       child: OpenContainer(
-        routeSettings: const RouteSettings(name: StepDetailScreen.routeName),
+        routeSettings: const RouteSettings(name: RecipeInstructionsScreen.routeName),
         closedColor: ColorConstants.whitePrimary,
         openColor: ColorConstants.ivoryPrimary,
         middleColor: ColorConstants.ivoryPrimary,
@@ -273,7 +273,7 @@ class RecipeCard extends StatelessWidget {
         openBuilder: (context, _) {
           Provider.of<CurrentRecipeController>(context, listen: false)
               .selectRecipe(id: recipe.id);
-          return StepDetailScreen();
+          return RecipeInstructionsScreen();
         },
       ),
     );

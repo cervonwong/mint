@@ -16,18 +16,19 @@ import '../../shared_components/shared_buttons.dart';
 import '../../utils/layout_calculator.dart';
 import 'recipe_catalogue_screen.dart';
 
-// This screen has a similar structure with `StepDetailScreen`. Some things are
-// carried over in a hard-coded way to push out the feature quickly.
-class PreparationScreen extends StatefulWidget {
+// This screen has a similar structure with `RecipeInstructionsScreen`.
+// Some things are carried over in a hard-coded way to push out the feature
+// quickly.
+class PreparationInstructionsScreen extends StatefulWidget {
   static const routeName = 'trainee/preparation';
 
-  PreparationScreen();
+  PreparationInstructionsScreen();
 
   @override
-  State<PreparationScreen> createState() => _PreparationScreenState();
+  State<PreparationInstructionsScreen> createState() => _PreparationInstructionsScreenState();
 }
 
-class _PreparationScreenState extends State<PreparationScreen>
+class _PreparationInstructionsScreenState extends State<PreparationInstructionsScreen>
     with TickerProviderStateMixin {
   final ScrollController _scrollController = ScrollController();
   int currentStepIndex = 0;
@@ -113,7 +114,7 @@ class _PreparationScreenState extends State<PreparationScreen>
 
     return Scaffold(
       backgroundColor: ColorConstants.greenOverlayOnWhite,
-      appBar: PreparationStepAppBar(
+      appBar: PreparationInstructionsScreenAppBar(
         scrollController: _scrollController,
         currentStepNumber: currentStepNumber,
         totalStepCount: steps.length,

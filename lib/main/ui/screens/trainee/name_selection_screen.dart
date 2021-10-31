@@ -9,7 +9,7 @@ import '../../constants/theme_constants.dart';
 import '../../shared_components/listen_button.dart';
 import '../../shared_components/shared_app_bars.dart';
 import '../../utils/layout_calculator.dart';
-import 'preparation_screen.dart';
+import 'preparation_instructions_screen.dart';
 
 class NameSelectionScreen extends StatelessWidget {
   static const routeName = 'trainee';
@@ -210,7 +210,7 @@ class _NameCard extends StatelessWidget {
           onTap: () {
             Navigator.pushNamedAndRemoveUntil(
               context,
-              PreparationScreen.routeName,
+              PreparationInstructionsScreen.routeName,
               (route) => false,
             );
           },

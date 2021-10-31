@@ -120,14 +120,14 @@ class _TitleRevealAppBarState extends State<TitleRevealAppBar> {
   }
 }
 
-class StepDetailAppBar extends StatefulWidget implements PreferredSizeWidget {
+class RecipeInstructionsScreenAppBar extends StatefulWidget implements PreferredSizeWidget {
   final ScrollController scrollController;
   final VoidCallback onHomeButtonPressed;
   final String recipeName;
   final int currentStepNumber;
   final int totalStepCount;
 
-  const StepDetailAppBar({
+  const RecipeInstructionsScreenAppBar({
     required this.scrollController,
     required this.onHomeButtonPressed,
     required this.recipeName,
@@ -136,14 +136,14 @@ class StepDetailAppBar extends StatefulWidget implements PreferredSizeWidget {
   });
 
   @override
-  State<StepDetailAppBar> createState() => _StepDetailAppBarState();
+  State<RecipeInstructionsScreenAppBar> createState() => _RecipeInstructionsScreenAppBarState();
 
   @override
   Size get preferredSize =>
       const Size.fromHeight(300.0); // A random sufficiently large number.
 }
 
-class _StepDetailAppBarState extends State<StepDetailAppBar> {
+class _RecipeInstructionsScreenAppBarState extends State<RecipeInstructionsScreenAppBar> {
   bool isElevated = false;
 
   @override
@@ -220,27 +220,27 @@ class _StepDetailAppBarState extends State<StepDetailAppBar> {
   }
 }
 
-class PreparationStepAppBar extends StatefulWidget
+class PreparationInstructionsScreenAppBar extends StatefulWidget
     implements PreferredSizeWidget {
   final ScrollController scrollController;
   final int currentStepNumber;
   final int totalStepCount;
 
-  const PreparationStepAppBar({
+  const PreparationInstructionsScreenAppBar({
     required this.scrollController,
     required this.currentStepNumber,
     required this.totalStepCount,
   });
 
   @override
-  State<PreparationStepAppBar> createState() => _PreparationStepAppBarState();
+  State<PreparationInstructionsScreenAppBar> createState() => _PreparationInstructionsScreenAppBarState();
 
   @override
   Size get preferredSize =>
       const Size.fromHeight(300.0); // A random sufficiently large number.
 }
 
-class _PreparationStepAppBarState extends State<PreparationStepAppBar> {
+class _PreparationInstructionsScreenAppBarState extends State<PreparationInstructionsScreenAppBar> {
   bool isElevated = false;
 
   @override

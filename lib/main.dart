@@ -14,9 +14,9 @@ import 'package:mint/main/controller/preparation_instructions_controller.dart';
 import 'package:mint/main/controller/recipe_catalogue_controller.dart';
 import 'package:mint/main/ui/constants/theme_constants.dart';
 import 'package:mint/main/ui/screens/trainee/name_selection_screen.dart';
-import 'package:mint/main/ui/screens/trainee/preparation_screen.dart';
+import 'package:mint/main/ui/screens/trainee/preparation_instructions_screen.dart';
 import 'package:mint/main/ui/screens/trainee/recipe_completion_screen.dart';
-import 'package:mint/main/ui/screens/trainee/step_detail_screen.dart';
+import 'package:mint/main/ui/screens/trainee/recipe_instructions_screen.dart';
 import 'main/controller/current_recipe_controller.dart';
 import 'main/di/injection_container.dart' as injection_container;
 import 'main/services/TtsService.dart';
@@ -59,9 +59,9 @@ class MyApp extends StatelessWidget {
         initialRoute: NameSelectionScreen.routeName,
         routes: {
           NameSelectionScreen.routeName: (context) => NameSelectionScreen(),
-          PreparationScreen.routeName: (context) => PreparationScreen(),
+          PreparationInstructionsScreen.routeName: (context) => PreparationInstructionsScreen(),
           RecipeCatalogueScreen.routeName: (context) => RecipeCatalogueScreen(),
-          StepDetailScreen.routeName: (context) => StepDetailScreen(),
+          RecipeInstructionsScreen.routeName: (context) => RecipeInstructionsScreen(),
           RecipeCompletionScreen.routeName: (context) =>
               RecipeCompletionScreen(),
         },

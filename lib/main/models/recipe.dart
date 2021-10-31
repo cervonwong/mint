@@ -14,7 +14,7 @@ class Recipe {
   final String name;
 
   // Can be null if this piece of info not needed.
-  // E.g. the image of recipe not needed in the step details screen.
+  // E.g. the image of recipe not needed in the recipe instructions screen.
   final String? imageUrl;
 
   // UnmodifiableListView prevents list to be edited externally.

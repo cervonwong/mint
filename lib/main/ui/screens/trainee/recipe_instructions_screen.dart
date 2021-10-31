@@ -18,16 +18,16 @@ import '../../utils/layout_calculator.dart';
 import 'recipe_catalogue_screen.dart';
 import 'recipe_completion_screen.dart';
 
-class StepDetailScreen extends StatefulWidget {
-  static const routeName = 'trainee/steps';
+class RecipeInstructionsScreen extends StatefulWidget {
+  static const routeName = 'trainee/recipe/instructions';
 
-  StepDetailScreen();
+  RecipeInstructionsScreen();
 
   @override
-  State<StepDetailScreen> createState() => _StepDetailScreenState();
+  State<RecipeInstructionsScreen> createState() => _RecipeInstructionsScreenState();
 }
 
-class _StepDetailScreenState extends State<StepDetailScreen>
+class _RecipeInstructionsScreenState extends State<RecipeInstructionsScreen>
     with TickerProviderStateMixin {
   final ScrollController _scrollController = ScrollController();
   int currentStepIndex = 0;
@@ -125,7 +125,7 @@ class _StepDetailScreenState extends State<StepDetailScreen>
       },
       child: Scaffold(
         extendBodyBehindAppBar: false,
-        appBar: StepDetailAppBar(
+        appBar: RecipeInstructionsScreenAppBar(
           scrollController: _scrollController,
           recipeName: recipe.name,
           currentStepNumber: currentStepNumber,
