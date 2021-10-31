@@ -8,12 +8,12 @@ import 'package:flutter/material.dart';
 
 import 'package:firebase_core/firebase_core.dart';
 import 'package:get_it/get_it.dart';
-import 'package:mint/main/ui/screens/page_not_found_screen.dart';
 import 'package:provider/provider.dart';
 
 import 'package:mint/main/controller/preparation_instructions_controller.dart';
 import 'package:mint/main/controller/recipe_catalogue_controller.dart';
 import 'package:mint/main/ui/constants/theme_constants.dart';
+import 'package:mint/main/ui/screens/page_not_found_screen.dart';
 import 'package:mint/main/ui/screens/trainee/name_selection_screen.dart';
 import 'package:mint/main/ui/screens/trainee/preparation_instructions_screen.dart';
 import 'package:mint/main/ui/screens/trainee/recipe_completion_screen.dart';
