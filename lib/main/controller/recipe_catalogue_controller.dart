@@ -21,7 +21,7 @@ class RecipeCatalogueController extends ChangeNotifier {
 
   RecipeCatalogueController();
 
-  // This function is called in the Provider in main.dart. This function will be
+  // This function is called in injection_container.dart. This function will be
   // called once only.
   Future<void> initialise() async {
     // Make sure this function is not called when this controller already initialised.
