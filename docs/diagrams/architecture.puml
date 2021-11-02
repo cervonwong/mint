@@ -37,13 +37,15 @@ node device as "Laptop / iPad / Phone" {
 }
 node codebase as "Codebase" {
     rectangle flutter as "Flutter SDK"
+    rectangle build as "Compiled app in JS"
 }
 
 firestore <--> app : read, write, update recipe information
 app <-left- user : uses
-hosting <-- flutter : builds app
-app <-- hosting : deploys app
+hosting <-- build : deploys app
+app <-- hosting : serves app
 storage <-- firestore : access images from
 tts <-- app : request voice
+build <-- flutter : builds app
 
 @enduml
