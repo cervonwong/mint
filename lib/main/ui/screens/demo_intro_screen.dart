@@ -2,13 +2,13 @@
  * Copyright (C) 2021 Cervon Wong and Lee I-Shiang
  */
 
-import 'package:animations/animations.dart';
 import 'package:flutter/material.dart';
+
+import 'package:animations/animations.dart';
 import 'package:youtube_player_iframe/youtube_player_iframe.dart';
 
 import '../constants/color_constants.dart';
 import '../constants/theme_constants.dart';
-import '../shared_components/shared_buttons.dart';
 import '../utils/layout_calculator.dart';
 import 'trainee/name_selection_screen.dart';
 
@@ -84,7 +84,8 @@ class _DemoIntroScreenState extends State<DemoIntroScreen> {
                           ),
                         ),
                         const SizedBox(height: 48.0),
-                        ElevatedButton7(
+                        ElevatedButton(
+                          style: ThemeConstants.elevatedButton7ThemeData.style,
                           onPressed: () {
                             Navigator.pushNamedAndRemoveUntil(
                               context,
@@ -92,7 +93,7 @@ class _DemoIntroScreenState extends State<DemoIntroScreen> {
                               (route) => false,
                             );
                           },
-                          text: const Text('Try out our app!'),
+                          child: const Text('Try out our app!'),
                         ),
                         const SizedBox(height: 8.0),
                         OpenContainer(
@@ -103,7 +104,8 @@ class _DemoIntroScreenState extends State<DemoIntroScreen> {
                           closedElevation: 0.0,
                           openElevation: 0.0,
                           closedBuilder: (context, closedBuilder) {
-                            return TextButton7(
+                            return TextButton(
+                              style: ThemeConstants.textButton7ThemeData.style,
                               onPressed: () {
                                 closedBuilder();
                               },
@@ -118,14 +120,17 @@ class _DemoIntroScreenState extends State<DemoIntroScreen> {
                                   child: Row(
                                     mainAxisAlignment: MainAxisAlignment.center,
                                     children: [
-                                      TextButton7(
+                                      TextButton(
+                                        style: ThemeConstants
+                                            .textButton7ThemeData.style,
                                         onPressed: () {
                                           openContainer();
                                         },
                                         child: Text(
                                           'Return to demo page',
                                           // TODO: 11/3/2021 Fix styling, e.g. ripple color.
-                                          style: ThemeConstants.button7.copyWith(
+                                          style:
+                                              ThemeConstants.button7.copyWith(
                                             color: ColorConstants.whitePrimary,
                                           ),
                                         ),

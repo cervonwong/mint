@@ -9,7 +9,6 @@ import 'package:provider/provider.dart';
 import '../../../controller/current_recipe_controller.dart';
 import '../../constants/theme_constants.dart';
 import '../../shared_components/listen_button.dart';
-import '../../shared_components/shared_buttons.dart';
 import '../../utils/layout_calculator.dart';
 import 'recipe_catalogue_screen.dart';
 
@@ -67,17 +66,20 @@ class RecipeCompletionScreen extends StatelessWidget {
                 ),
               ),
             ),
-            ElevatedButton7(
+            ElevatedButton(
+              style: ThemeConstants.elevatedButton7ThemeData.style,
               onPressed: () {
                 if (Navigator.canPop(context)) {
                   Navigator.pop(context);
                 } else {
                   // Technically should not happen, unless in development.
                   Navigator.popAndPushNamed(
-                      context, RecipeCatalogueScreen.routeName);
+                    context,
+                    RecipeCatalogueScreen.routeName,
+                  );
                 }
               },
-              text: const Text('Continue'),
+              child: const Text('Continue'),
             ),
             SizedBox(
               height: LayoutCalculator.bottomButtonBottomMargin(

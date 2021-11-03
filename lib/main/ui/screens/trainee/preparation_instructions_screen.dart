@@ -12,7 +12,6 @@ import '../../constants/color_constants.dart';
 import '../../constants/theme_constants.dart';
 import '../../shared_components/listen_button.dart';
 import '../../shared_components/shared_app_bars.dart';
-import '../../shared_components/shared_buttons.dart';
 import '../../utils/layout_calculator.dart';
 import 'recipe_catalogue_screen.dart';
 
@@ -174,7 +173,8 @@ class _PreparationInstructionsScreenState
                 ),
               ),
             ),
-            ElevatedButton7(
+            ElevatedButton.icon(
+              style: ThemeConstants.elevatedButton7ThemeData.style,
               onPressed: () {
                 if (steps.length == currentStepNumber) {
                   Navigator.pushNamedAndRemoveUntil(
@@ -192,7 +192,7 @@ class _PreparationInstructionsScreenState
                 }
               },
               icon: const Icon(FluentIcons.checkmark_24_regular),
-              text: const Text('Done'),
+              label: const Text('Done'),
             ),
             SizedBox(
               height: LayoutCalculator.bottomButtonBottomMargin(

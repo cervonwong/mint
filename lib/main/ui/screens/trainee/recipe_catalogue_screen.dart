@@ -15,7 +15,6 @@ import '../../constants/theme_constants.dart';
 import '../../shared_components/help_button.dart';
 import '../../shared_components/listen_button.dart';
 import '../../shared_components/shared_app_bars.dart';
-import '../../shared_components/shared_buttons.dart';
 import '../../utils/layout_calculator.dart';
 import 'name_selection_screen.dart';
 import 'recipe_instructions_screen.dart';
@@ -127,7 +126,8 @@ class _RecipeCatalogueScreenDrawer extends StatelessWidget {
             const Spacer(),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 16.0),
-              child: TextButton7(
+              child: TextButton(
+                style: ThemeConstants.textButton7ThemeData.style,
                 child: const Text('Sign out'),
                 onPressed: () {
                   Navigator.pushNamedAndRemoveUntil(

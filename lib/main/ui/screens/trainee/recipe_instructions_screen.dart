@@ -13,7 +13,6 @@ import '../../constants/color_constants.dart';
 import '../../constants/theme_constants.dart';
 import '../../shared_components/listen_button.dart';
 import '../../shared_components/shared_app_bars.dart';
-import '../../shared_components/shared_buttons.dart';
 import '../../utils/layout_calculator.dart';
 import 'recipe_catalogue_screen.dart';
 import 'recipe_completion_screen.dart';
@@ -190,7 +189,8 @@ class _RecipeInstructionsScreenState extends State<RecipeInstructionsScreen>
                   ),
                 ),
               ),
-              ElevatedButton7(
+              ElevatedButton.icon(
+                style: ThemeConstants.elevatedButton7ThemeData.style,
                 onPressed: () {
                   if (steps.length == currentStepNumber) {
                     Navigator.pushNamedAndRemoveUntil(
@@ -208,7 +208,7 @@ class _RecipeInstructionsScreenState extends State<RecipeInstructionsScreen>
                   }
                 },
                 icon: const Icon(FluentIcons.checkmark_24_regular),
-                text: const Text('Done'),
+                label: const Text('Done'),
               ),
               SizedBox(
                 height: LayoutCalculator.bottomButtonBottomMargin(
@@ -343,7 +343,8 @@ class ExitConfirmationDialog extends StatelessWidget {
                   Wrap(
                     alignment: WrapAlignment.center,
                     children: [
-                      TextButton7.error(
+                      TextButton(
+                        style: ThemeConstants.textButton7ErrorThemeData.style,
                         onPressed: () {
                           Navigator.pop(context); // Pop dialog.
 
@@ -359,7 +360,8 @@ class ExitConfirmationDialog extends StatelessWidget {
                         },
                         child: const Text('Stop recipe'),
                       ),
-                      TextButton7(
+                      TextButton(
+                        style: ThemeConstants.textButton7ThemeData.style,
                         onPressed: () {
                           Navigator.pop(context); // Pop dialog.
                         },

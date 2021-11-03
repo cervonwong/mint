@@ -5,7 +5,6 @@
 import 'package:flutter/material.dart';
 
 import '../constants/theme_constants.dart';
-import '../shared_components/shared_buttons.dart';
 import '../utils/layout_calculator.dart';
 import 'demo_intro_screen.dart';
 
@@ -55,7 +54,8 @@ class PageNotFoundScreen extends StatelessWidget {
                 ),
               ),
             ),
-            ElevatedButton7(
+            ElevatedButton(
+              style: ThemeConstants.elevatedButton7ThemeData.style,
               onPressed: () {
                 Navigator.pushNamedAndRemoveUntil(
                   context,
@@ -63,7 +63,7 @@ class PageNotFoundScreen extends StatelessWidget {
                   (route) => false,
                 );
               },
-              text: const Text('Return to start of demo'),
+              child: const Text('Return to start of demo'),
             ),
             SizedBox(
               height: LayoutCalculator.bottomButtonBottomMargin(
