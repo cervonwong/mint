@@ -1,0 +1,51 @@
+@startuml
+'https://plantuml.com/deployment-diagram
+
+skinparam shadowing false
+skinparam wrapWidth 200
+skinparam maxMessageSize 100
+skinparam defaultFontName Red Hat Text Medium
+skinparam defaultFontSize 16
+skinparam roundCorner 24
+skinparam maxSize 20
+skinparam cloudBackgroundColor #C0E9F9
+skinparam cloudBorderColor #6F97A6
+skinparam rectangleBackgroundColor #d0e9d7
+skinparam rectangleBorderColor #329561
+skinparam rectangleFontColor #000000
+skinparam actorBackgroundColor #F6FFF6
+skinparam actorBorderColor #006D44
+skinparam queueBackgroundColor #F6FFF6
+skinparam queueBorderColor #006D44
+skinparam nodeBackgroundColor transparent
+skinparam nodeBorderColor #006D44
+skinparam componentBackgroundColor #d0e9d7
+skinparam componentBorderColor #329561
+skinparam arrowColor #3C6472
+skinparam arrowThickness 2
+
+actor user as "Instructor / Trainee"
+
+node server as "Server" {
+    cloud storage as "Firebase Cloud Storage"
+    cloud firestore as "Firebase Cloud Firestore Database"
+    rectangle hosting as "Firebase Web Hosting"
+}
+node device as "Laptop / iPad / Phone" {
+    rectangle app as "Mint Web Application" #329561;text:FFFFFF
+    component tts as "Web browser's TTS synthesiser"
+}
+node codebase as "Codebase" {
+    rectangle flutter as "Flutter SDK"
+    rectangle build as "Compiled app in JS"
+}
+
+firestore <--> app : read, write, update recipe information
+app <-left- user : uses
+hosting <-- build : deploys app
+app <-- hosting : serves app
+storage <-- firestore : access images from
+tts <-- app : request voice
+build <-- flutter : builds app
+
+@enduml

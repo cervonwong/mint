@@ -4,9 +4,9 @@
  * Copyright (C) 2021 Cervon Wong and Lee I-Shiang
  */
 
-import 'package:flutter/material.dart';
-
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
 import 'package:provider/provider.dart';
 
@@ -27,6 +27,7 @@ import 'main/ui/screens/trainee/recipe_catalogue_screen.dart';
 void main() async {
   // Firebase initialisation.
   WidgetsFlutterBinding.ensureInitialized();
+  await FirebaseAuth.instance.signInAnonymously();
   await Firebase.initializeApp();
 
   // Dependency injection initialisation.
