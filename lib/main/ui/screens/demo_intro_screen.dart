@@ -2,7 +2,9 @@
  * Copyright (C) 2021 Cervon Wong and Lee I-Shiang
  */
 
+import 'package:animations/animations.dart';
 import 'package:flutter/material.dart';
+import 'package:youtube_player_iframe/youtube_player_iframe.dart';
 
 import '../constants/color_constants.dart';
 import '../constants/theme_constants.dart';
@@ -10,10 +12,28 @@ import '../shared_components/shared_buttons.dart';
 import '../utils/layout_calculator.dart';
 import 'trainee/name_selection_screen.dart';
 
-class DemoIntroScreen extends StatelessWidget {
+class DemoIntroScreen extends StatefulWidget {
   static const routeName = 'demo';
 
   const DemoIntroScreen();
+
+  @override
+  State<DemoIntroScreen> createState() => _DemoIntroScreenState();
+}
+
+class _DemoIntroScreenState extends State<DemoIntroScreen> {
+  bool showVideo = false;
+
+  final YoutubePlayerController _youtubePlayerController =
+      YoutubePlayerController(
+    initialVideoId: '8FsldVUxE7c',
+    params: const YoutubePlayerParams(
+      color: 'red',
+      strictRelatedVideos: true,
+      showControls: true,
+      showFullscreenButton: true,
+    ),
+  );
 
   @override
   Widget build(BuildContext context) {
@@ -75,9 +95,52 @@ class DemoIntroScreen extends StatelessWidget {
                           text: const Text('Try out our app!'),
                         ),
                         const SizedBox(height: 8.0),
-                        TextButton7(
-                          onPressed: () {},
-                          child: const Text('Learn more by watching our video'),
+                        OpenContainer(
+                          transitionDuration:
+                              const Duration(milliseconds: 1000),
+                          closedColor: Colors.transparent,
+                          openColor: Colors.black,
+                          closedElevation: 0.0,
+                          openElevation: 0.0,
+                          closedBuilder: (context, closedBuilder) {
+                            return TextButton7(
+                              onPressed: () {
+                                closedBuilder();
+                              },
+                              child: const Text('Watch our intro video!'),
+                            );
+                          },
+                          openBuilder: (context, openContainer) {
+                            return Column(
+                              children: [
+                                const SizedBox(height: 4.0),
+                                Container(
+                                  child: Row(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      TextButton7(
+                                        onPressed: () {
+                                          openContainer();
+                                        },
+                                        child: Text(
+                                          'Return to demo page',
+                                          // TODO: 11/3/2021 Fix styling, e.g. ripple color.
+                                          style: ThemeConstants.button7.copyWith(
+                                            color: ColorConstants.whitePrimary,
+                                          ),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                                Expanded(
+                                  child: YoutubePlayerIFrame(
+                                    controller: _youtubePlayerController,
+                                  ),
+                                ),
+                              ],
+                            );
+                          },
                         ),
                       ],
                     ),
