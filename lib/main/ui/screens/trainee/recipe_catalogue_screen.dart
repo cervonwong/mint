@@ -16,7 +16,7 @@ import '../../shared_components/help_button.dart';
 import '../../shared_components/listen_button.dart';
 import '../../shared_components/shared_app_bars.dart';
 import '../../utils/layout_calculator.dart';
-import 'name_selection_screen.dart';
+import '../demo_intro_screen.dart';
 import 'recipe_instructions_screen.dart';
 
 class RecipeCatalogueScreen extends StatefulWidget {
@@ -128,11 +128,11 @@ class _RecipeCatalogueScreenDrawer extends StatelessWidget {
               padding: const EdgeInsets.symmetric(horizontal: 16.0),
               child: TextButton(
                 style: ThemeConstants.textButton7ThemeData.style,
-                child: const Text('Sign out'),
+                child: const Text('Return to demo homepage'),
                 onPressed: () {
                   Navigator.pushNamedAndRemoveUntil(
                     context,
-                    NameSelectionScreen.routeName,
+                    DemoIntroScreen.routeName,
                     (route) => false,
                   );
                 },

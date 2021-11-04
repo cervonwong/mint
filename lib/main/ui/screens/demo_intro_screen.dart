@@ -127,7 +127,7 @@ class _DemoIntroScreenState extends State<DemoIntroScreen> {
                                           openContainer();
                                         },
                                         child: Text(
-                                          'Return to demo page',
+                                          'Return to demo homepage',
                                           // TODO: 11/3/2021 Fix styling, e.g. ripple color.
                                           style:
                                               ThemeConstants.button7.copyWith(
