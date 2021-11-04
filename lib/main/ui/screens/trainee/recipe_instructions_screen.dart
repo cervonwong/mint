@@ -135,21 +135,22 @@ class _RecipeInstructionsScreenState extends State<RecipeInstructionsScreen>
             _showExitConfirmationDialog(context);
           },
         ),
-        body: Padding(
-          padding: EdgeInsets.symmetric(
-            horizontal: LayoutCalculator.wideMargin(context: context),
-          ),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: [
-              Expanded(
-                child: Center(
-                  child: SingleChildScrollView(
-                    controller: _scrollController,
-                    child: AnimatedBuilder(
-                      animation: animationController,
-                      builder: (context, _) {
-                        return Stack(
+        body: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            Expanded(
+              child: Center(
+                child: SingleChildScrollView(
+                  controller: _scrollController,
+                  child: AnimatedBuilder(
+                    animation: animationController,
+                    builder: (context, _) {
+                      return Padding(
+                        padding: EdgeInsets.symmetric(
+                          horizontal:
+                              LayoutCalculator.wideMargin(context: context),
+                        ),
+                        child: Stack(
                           alignment: Alignment.center,
                           children: [
                             Transform.translate(
@@ -186,13 +187,18 @@ class _RecipeInstructionsScreenState extends State<RecipeInstructionsScreen>
                                     ),
                             ),
                           ],
-                        );
-                      },
-                    ),
+                        ),
+                      );
+                    },
                   ),
                 ),
               ),
-              ElevatedButton.icon(
+            ),
+            Padding(
+              padding: EdgeInsets.symmetric(
+                horizontal: LayoutCalculator.wideMargin(context: context),
+              ),
+              child: ElevatedButton.icon(
                 style: ThemeConstants.elevatedButton7ThemeData.style,
                 onPressed: () {
                   if (steps.length == currentStepNumber) {
@@ -213,13 +219,13 @@ class _RecipeInstructionsScreenState extends State<RecipeInstructionsScreen>
                 icon: const Icon(FluentIcons.checkmark_24_regular),
                 label: const Text('Done'),
               ),
-              SizedBox(
-                height: LayoutCalculator.bottomButtonBottomMargin(
-                  context: context,
-                ),
+            ),
+            SizedBox(
+              height: LayoutCalculator.bottomButtonBottomMargin(
+                context: context,
               ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );
