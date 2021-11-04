@@ -2,8 +2,9 @@
  * Copyright (C) 2021 Cervon Wong and Lee I-Shiang
  */
 
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
+
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 import '../models/preparation_instructions.dart';
 

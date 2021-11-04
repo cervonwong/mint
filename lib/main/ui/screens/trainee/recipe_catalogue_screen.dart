@@ -15,10 +15,9 @@ import '../../constants/theme_constants.dart';
 import '../../shared_components/help_button.dart';
 import '../../shared_components/listen_button.dart';
 import '../../shared_components/shared_app_bars.dart';
-import '../../shared_components/shared_buttons.dart';
 import '../../utils/layout_calculator.dart';
-import 'name_selection_screen.dart';
-import 'step_detail_screen.dart';
+import '../demo/demo_intro_screen.dart';
+import 'recipe_instructions_screen.dart';
 
 class RecipeCatalogueScreen extends StatefulWidget {
   static const routeName = 'trainee/home';
@@ -127,12 +126,13 @@ class _RecipeCatalogueScreenDrawer extends StatelessWidget {
             const Spacer(),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 16.0),
-              child: TextButton7(
-                child: const Text('Sign out'),
+              child: TextButton(
+                style: ThemeConstants.textButton7ThemeData.style,
+                child: const Text('Return to demo homepage'),
                 onPressed: () {
                   Navigator.pushNamedAndRemoveUntil(
                     context,
-                    NameSelectionScreen.routeName,
+                    DemoIntroScreen.routeName,
                     (route) => false,
                   );
                 },
@@ -205,6 +205,8 @@ class RecipeCard extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 16.0),
       child: OpenContainer(
+        routeSettings:
+            const RouteSettings(name: RecipeInstructionsScreen.routeName),
         closedColor: ColorConstants.whitePrimary,
         openColor: ColorConstants.ivoryPrimary,
         middleColor: ColorConstants.ivoryPrimary,
@@ -214,7 +216,7 @@ class RecipeCard extends StatelessWidget {
         closedShape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(12.0),
         ),
-        transitionDuration: const Duration(milliseconds: 600),
+        transitionDuration: const Duration(milliseconds: 800),
         closedBuilder: (context, closedBuilder) {
           return Container(
             decoration: BoxDecoration(
@@ -272,7 +274,7 @@ class RecipeCard extends StatelessWidget {
         openBuilder: (context, _) {
           Provider.of<CurrentRecipeController>(context, listen: false)
               .selectRecipe(id: recipe.id);
-          return StepDetailScreen();
+          return RecipeInstructionsScreen();
         },
       ),
     );

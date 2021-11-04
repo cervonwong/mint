@@ -4,19 +4,22 @@
  * Copyright (C) 2021 Cervon Wong and Lee I-Shiang
  */
 
+import 'package:flutter/material.dart';
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
+import 'package:provider/provider.dart';
+
 import 'package:mint/main/controller/preparation_instructions_controller.dart';
 import 'package:mint/main/controller/recipe_catalogue_controller.dart';
 import 'package:mint/main/ui/constants/theme_constants.dart';
+import 'package:mint/main/ui/screens/demo/demo_intro_screen.dart';
+import 'package:mint/main/ui/screens/page_not_found_screen.dart';
 import 'package:mint/main/ui/screens/trainee/name_selection_screen.dart';
-import 'package:mint/main/ui/screens/trainee/preparation_screen.dart';
+import 'package:mint/main/ui/screens/trainee/preparation_instructions_screen.dart';
 import 'package:mint/main/ui/screens/trainee/recipe_completion_screen.dart';
-import 'package:mint/main/ui/screens/trainee/step_detail_screen.dart';
-import 'package:provider/provider.dart';
-
+import 'package:mint/main/ui/screens/trainee/recipe_instructions_screen.dart';
 import 'main/controller/current_recipe_controller.dart';
 import 'main/di/injection_container.dart' as injection_container;
 import 'main/services/TtsService.dart';
@@ -57,14 +60,23 @@ class MyApp extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         title: 'Mint',
         theme: ThemeConstants.themeData,
-        initialRoute: NameSelectionScreen.routeName,
+        initialRoute: DemoIntroScreen.routeName,
         routes: {
+          DemoIntroScreen.routeName: (context) => const DemoIntroScreen(),
           NameSelectionScreen.routeName: (context) => NameSelectionScreen(),
-          PreparationScreen.routeName: (context) => PreparationScreen(),
+          PreparationInstructionsScreen.routeName: (context) =>
+              PreparationInstructionsScreen(),
           RecipeCatalogueScreen.routeName: (context) => RecipeCatalogueScreen(),
-          StepDetailScreen.routeName: (context) => StepDetailScreen(),
+          RecipeInstructionsScreen.routeName: (context) =>
+              RecipeInstructionsScreen(),
           RecipeCompletionScreen.routeName: (context) =>
               RecipeCompletionScreen(),
+        },
+        onUnknownRoute: (routeSettings) {
+          return MaterialPageRoute(
+            settings: const RouteSettings(name: '404'),
+            builder: (_) => PageNotFoundScreen(routeSettings: routeSettings),
+          );
         },
       ),
     );

@@ -4,23 +4,17 @@
 
 import 'package:flutter/material.dart';
 
-import 'package:provider/provider.dart';
+import '../constants/theme_constants.dart';
+import '../utils/layout_calculator.dart';
+import 'demo/demo_intro_screen.dart';
 
-import '../../../controller/current_recipe_controller.dart';
-import '../../constants/theme_constants.dart';
-import '../../shared_components/listen_button.dart';
-import '../../utils/layout_calculator.dart';
-import 'recipe_catalogue_screen.dart';
+class PageNotFoundScreen extends StatelessWidget {
+  final RouteSettings routeSettings;
 
-class RecipeCompletionScreen extends StatelessWidget {
-  static const routeName = 'trainee/complete';
-
-  RecipeCompletionScreen();
+  PageNotFoundScreen({required this.routeSettings});
 
   @override
   Widget build(BuildContext context) {
-    final recipe = Provider.of<CurrentRecipeController>(context).currentRecipe!;
-
     return Scaffold(
       body: Padding(
         padding: EdgeInsets.symmetric(
@@ -40,25 +34,19 @@ class RecipeCompletionScreen extends StatelessWidget {
                           width: 360.0,
                           height: 240.0,
                           image: AssetImage(
-                            'assets/illustrations/Crab_WooHoo.png',
+                            'assets/illustrations/Crab_Thinking.png',
                           ),
                         ),
                         SelectableText(
-                          'Well done!',
+                          'Error 404: Page not found',
                           textAlign: TextAlign.center,
                           style: ThemeConstants.headline4,
                         ),
                         const SizedBox(height: 16.0),
                         SelectableText(
-                          'You have completed ${recipe.name}!',
+                          'Debug info: $routeSettings',
                           textAlign: TextAlign.center,
                           style: ThemeConstants.body7,
-                        ),
-                        const SizedBox(height: 16.0),
-                        ListenButton(
-                          id: 'Message',
-                          text: 'Well done! You have completed ${recipe.name}',
-                          labelType: LabelType.message,
                         ),
                       ],
                     ),
@@ -69,17 +57,13 @@ class RecipeCompletionScreen extends StatelessWidget {
             ElevatedButton(
               style: ThemeConstants.elevatedButton7ThemeData.style,
               onPressed: () {
-                if (Navigator.canPop(context)) {
-                  Navigator.pop(context);
-                } else {
-                  // Technically should not happen, unless in development.
-                  Navigator.popAndPushNamed(
-                    context,
-                    RecipeCatalogueScreen.routeName,
-                  );
-                }
+                Navigator.pushNamedAndRemoveUntil(
+                  context,
+                  DemoIntroScreen.routeName,
+                  (route) => false,
+                );
               },
-              child: const Text('Continue'),
+              child: const Text('Return to start of demo'),
             ),
             SizedBox(
               height: LayoutCalculator.bottomButtonBottomMargin(

@@ -13,6 +13,7 @@ class ColorConstants {
 
   static const whitePrimary = Color(0xFFFFFFFF);
   static const whiteSecondary = Color(0xB3FFFFFF); // 70%.
+  static const whiteOverlay = Color(0x33FFFFFF); // 20%.
 
   static const greenPrimary = Color(0xFF329561);
   static const greenLightOverlay = Color(0x0D329561); // 5%.
