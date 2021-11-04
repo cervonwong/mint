@@ -10,8 +10,8 @@ import 'package:provider/provider.dart';
 import '../../../controller/preparation_instructions_controller.dart';
 import '../../constants/color_constants.dart';
 import '../../constants/theme_constants.dart';
-import '../../shared_components/listen_button.dart';
 import '../../shared_components/shared_app_bars.dart';
+import '../../shared_components/step_card.dart';
 import '../../utils/layout_calculator.dart';
 import 'recipe_catalogue_screen.dart';
 
@@ -142,6 +142,7 @@ class _PreparationInstructionsScreenState
                             child: Transform.rotate(
                               angle: newCardRotationAngle.value,
                               child: StepCard(
+                                borderColor: ColorConstants.greenBorder,
                                 instruction:
                                     steps[currentStepIndex].instruction,
                                 imageUrl: steps[currentStepIndex].imageUrl,
@@ -158,6 +159,7 @@ class _PreparationInstructionsScreenState
                                     child: Transform.rotate(
                                       angle: oldCardRotationAngle.value,
                                       child: StepCard(
+                                        borderColor: ColorConstants.greenBorder,
                                         instruction: steps[currentStepIndex - 1]
                                             .instruction,
                                         imageUrl: steps[currentStepIndex - 1]
@@ -201,79 +203,6 @@ class _PreparationInstructionsScreenState
             ),
           ],
         ),
-      ),
-    );
-  }
-}
-
-class StepCard extends StatelessWidget {
-  final String instruction;
-  final String? imageUrl;
-
-  const StepCard({
-    required this.instruction,
-    this.imageUrl,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(
-        color: ColorConstants.whitePrimary,
-        border: Border.all(color: ColorConstants.greenBorder),
-        borderRadius: BorderRadius.circular(12.0),
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: [
-          Padding(
-            padding: const EdgeInsets.all(16.0),
-            child: imageUrl == null
-                ? null
-                : ClipRRect(
-                    borderRadius: BorderRadius.circular(12.0),
-                    child: Image.network(
-                      imageUrl!,
-                      fit: BoxFit.fitWidth,
-                    ),
-                  ),
-          ),
-          Padding(
-            padding: const EdgeInsets.only(
-              left: 16.0,
-              right: 16.0,
-              bottom: 16.0,
-            ),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: [
-                RichText(
-                  text: TextSpan(
-                    text: '',
-                    children: instruction
-                        .split(' ')
-                        .map((word) => TextSpan(
-                              text: word + ' ',
-                              style: double.tryParse(word) == null
-                                  ? ThemeConstants.headline6
-                                  : ThemeConstants.headline6.copyWith(
-                                      fontWeight: FontWeight.bold,
-                                      color: ColorConstants.greenPrimary,
-                                    ),
-                            ))
-                        .toList(),
-                  ),
-                ),
-                const SizedBox(height: 12.0),
-                ListenButton(
-                  id: instruction,
-                  text: instruction,
-                  labelType: LabelType.instruction,
-                ),
-              ],
-            ),
-          ),
-        ],
       ),
     );
   }
