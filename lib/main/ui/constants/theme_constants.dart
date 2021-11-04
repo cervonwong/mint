@@ -257,6 +257,63 @@ class ThemeConstants {
       ),
     ),
   );
+  static final outlinedButton7ThemeData = OutlinedButtonThemeData(
+    style: ButtonStyle(
+      textStyle: MaterialStateProperty.all(ThemeConstants.button7),
+      shape: MaterialStateProperty.all(
+        RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(12.0),
+        ),
+      ),
+      visualDensity: const VisualDensity(
+        vertical: _verticalVisualDensityLarge,
+        horizontal: _horizontalVisualDensity,
+      ),
+      foregroundColor: MaterialStateProperty.resolveWith<Color>((states) {
+        if (states.contains(MaterialState.disabled)) {
+          return ColorConstants.blackTertiary;
+        }
+        return ColorConstants.greenPrimary;
+      }),
+      side: MaterialStateProperty.resolveWith(
+        (states) {
+          if (states.contains(MaterialState.disabled)) {
+            return BorderSide.none;
+          }
+          return const BorderSide(color: ColorConstants.blackTertiary);
+        },
+      ),
+    ),
+  );
+  static final outlinedButton7ErrorThemeData = OutlinedButtonThemeData(
+    style: ButtonStyle(
+      textStyle: MaterialStateProperty.all(ThemeConstants.button7),
+      shape: MaterialStateProperty.all(
+        RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(12.0),
+        ),
+      ),
+      visualDensity: const VisualDensity(
+        vertical: _verticalVisualDensityLarge,
+        horizontal: _horizontalVisualDensity,
+      ),
+      overlayColor: MaterialStateProperty.all(ColorConstants.redLightOverlay),
+      foregroundColor: MaterialStateProperty.resolveWith<Color>((states) {
+        if (states.contains(MaterialState.disabled)) {
+          return ColorConstants.blackTertiary;
+        }
+        return ColorConstants.redPrimary;
+      }),
+      side: MaterialStateProperty.resolveWith(
+        (states) {
+          if (states.contains(MaterialState.disabled)) {
+            return BorderSide.none;
+          }
+          return const BorderSide(color: ColorConstants.blackTertiary);
+        },
+      ),
+    ),
+  );
   static final textButton7ThemeData = TextButtonThemeData(
     style: ButtonStyle(
       textStyle: MaterialStateProperty.all(ThemeConstants.button7),
@@ -340,7 +397,7 @@ class ThemeConstants {
   static final dialogTheme = DialogTheme(
     backgroundColor: ColorConstants.ivoryPrimary,
     shape: RoundedRectangleBorder(
-      borderRadius: BorderRadius.circular(24.0),
+      borderRadius: BorderRadius.circular(32.0),
     ),
   );
   static final dividerIvoryThemeData = const DividerThemeData(
