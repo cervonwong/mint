@@ -161,6 +161,7 @@ class ThemeConstants {
   );
 
   // BUTTON THEME DATA ARGUMENTS ==============================================
+  static const _horizontalVisualDensityCta = 4.0;
   static const _horizontalVisualDensity = 2.0;
   static const _verticalVisualDensityLarge = 4.0;
   static const _verticalVisualDensityRegular = 2.0;
@@ -178,6 +179,35 @@ class ThemeConstants {
       visualDensity: const VisualDensity(
         vertical: _verticalVisualDensityLarge,
         horizontal: _horizontalVisualDensity,
+      ),
+      foregroundColor: MaterialStateProperty.resolveWith<Color>((states) {
+        if (states.contains(MaterialState.disabled)) {
+          return ColorConstants.blackSecondary;
+        }
+        return ColorConstants.whitePrimary;
+      }),
+      backgroundColor: MaterialStateProperty.resolveWith<Color>((states) {
+        if (states.contains(MaterialState.disabled)) {
+          return ColorConstants.blackTertiary;
+        }
+        return ColorConstants.greenPrimary;
+      }),
+    ),
+  );
+  static final elevatedButton7CtaThemeData = ElevatedButtonThemeData(
+    style: ButtonStyle(
+      textStyle: MaterialStateProperty.all<TextStyle>(
+        button7,
+      ),
+      elevation: MaterialStateProperty.all<double>(0.0),
+      shape: MaterialStateProperty.all<OutlinedBorder>(
+        RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(999.0),
+        ),
+      ),
+      visualDensity: const VisualDensity(
+        vertical: _verticalVisualDensityLarge,
+        horizontal: _horizontalVisualDensityCta,
       ),
       foregroundColor: MaterialStateProperty.resolveWith<Color>((states) {
         if (states.contains(MaterialState.disabled)) {
@@ -265,6 +295,27 @@ class ThemeConstants {
           return ColorConstants.blackTertiary;
         }
         return ColorConstants.redPrimary;
+      }),
+    ),
+  );
+  static final textButton7WhiteThemeData = TextButtonThemeData(
+    style: ButtonStyle(
+      textStyle: MaterialStateProperty.all(ThemeConstants.button7),
+      shape: MaterialStateProperty.all(
+        RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(12.0),
+        ),
+      ),
+      visualDensity: const VisualDensity(
+        vertical: _verticalVisualDensityRegular,
+        horizontal: _horizontalVisualDensity,
+      ),
+      overlayColor: MaterialStateProperty.all(ColorConstants.whiteOverlay),
+      foregroundColor: MaterialStateProperty.resolveWith<Color>((states) {
+        if (states.contains(MaterialState.disabled)) {
+          return ColorConstants.blackTertiary;
+        }
+        return ColorConstants.whitePrimary;
       }),
     ),
   );

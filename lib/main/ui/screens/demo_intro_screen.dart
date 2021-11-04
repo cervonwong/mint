@@ -85,7 +85,8 @@ class _DemoIntroScreenState extends State<DemoIntroScreen> {
                         ),
                         const SizedBox(height: 48.0),
                         ElevatedButton(
-                          style: ThemeConstants.elevatedButton7ThemeData.style,
+                          style:
+                              ThemeConstants.elevatedButton7CtaThemeData.style,
                           onPressed: () {
                             Navigator.pushNamedAndRemoveUntil(
                               context,
@@ -122,17 +123,12 @@ class _DemoIntroScreenState extends State<DemoIntroScreen> {
                                     children: [
                                       TextButton(
                                         style: ThemeConstants
-                                            .textButton7ThemeData.style,
+                                            .textButton7WhiteThemeData.style,
                                         onPressed: () {
                                           openContainer();
                                         },
-                                        child: Text(
+                                        child: const Text(
                                           'Return to demo homepage',
-                                          // TODO: 11/3/2021 Fix styling, e.g. ripple color.
-                                          style:
-                                              ThemeConstants.button7.copyWith(
-                                            color: ColorConstants.whitePrimary,
-                                          ),
                                         ),
                                       ),
                                     ],
