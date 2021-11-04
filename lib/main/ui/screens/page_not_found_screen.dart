@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 
 import '../constants/theme_constants.dart';
 import '../utils/layout_calculator.dart';
-import 'demo_intro_screen.dart';
+import 'demo/demo_intro_screen.dart';
 
 class PageNotFoundScreen extends StatelessWidget {
   final RouteSettings routeSettings;

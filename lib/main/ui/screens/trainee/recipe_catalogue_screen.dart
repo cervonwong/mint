@@ -16,7 +16,7 @@ import '../../shared_components/help_button.dart';
 import '../../shared_components/listen_button.dart';
 import '../../shared_components/shared_app_bars.dart';
 import '../../utils/layout_calculator.dart';
-import '../demo_intro_screen.dart';
+import '../demo/demo_intro_screen.dart';
 import 'recipe_instructions_screen.dart';
 
 class RecipeCatalogueScreen extends StatefulWidget {

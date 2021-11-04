@@ -7,10 +7,10 @@ import 'package:flutter/material.dart';
 import 'package:animations/animations.dart';
 import 'package:youtube_player_iframe/youtube_player_iframe.dart';
 
-import '../constants/color_constants.dart';
-import '../constants/theme_constants.dart';
-import '../utils/layout_calculator.dart';
-import 'trainee/name_selection_screen.dart';
+import '../../constants/color_constants.dart';
+import '../../constants/theme_constants.dart';
+import '../../utils/layout_calculator.dart';
+import '../trainee/name_selection_screen.dart';
 
 class DemoIntroScreen extends StatefulWidget {
   static const routeName = 'demo';
@@ -60,12 +60,11 @@ class _DemoIntroScreenState extends State<DemoIntroScreen> {
                   SelectableText(
                     'Welcome to the Mint demo',
                     textAlign: TextAlign.center,
-                    style:
-                        (LayoutCalculator.breakpoint(context: context) ==
-                                    LayoutBreakpoint.smallest
-                                ? ThemeConstants.headline4
-                                : ThemeConstants.headline3)
-                            .copyWith(
+                    style: (LayoutCalculator.breakpoint(context: context) ==
+                                LayoutBreakpoint.smallest
+                            ? ThemeConstants.headline4
+                            : ThemeConstants.headline3)
+                        .copyWith(
                       color: ColorConstants.greenPrimary,
                     ),
                   ),
@@ -82,8 +81,7 @@ class _DemoIntroScreenState extends State<DemoIntroScreen> {
                   ),
                   const SizedBox(height: 48.0),
                   ElevatedButton(
-                    style:
-                        ThemeConstants.elevatedButton7CtaThemeData.style,
+                    style: ThemeConstants.elevatedButton7CtaThemeData.style,
                     onPressed: () {
                       Navigator.pushNamedAndRemoveUntil(
                         context,
@@ -95,8 +93,7 @@ class _DemoIntroScreenState extends State<DemoIntroScreen> {
                   ),
                   const SizedBox(height: 8.0),
                   OpenContainer(
-                    transitionDuration:
-                        const Duration(milliseconds: 1000),
+                    transitionDuration: const Duration(milliseconds: 1000),
                     closedColor: Colors.transparent,
                     openColor: Colors.black,
                     closedElevation: 0.0,
