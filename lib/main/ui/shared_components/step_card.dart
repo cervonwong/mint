@@ -19,6 +19,81 @@ class StepCard extends StatelessWidget {
     this.imageUrl,
   });
 
+  static AnimationController generateAnimationController(
+    TickerProvider provider,
+  ) {
+    return AnimationController(
+      duration: const Duration(milliseconds: 1200),
+      vsync: provider,
+    );
+  }
+
+  static Animation<double> getOldCardRotationAngle(
+      AnimationController controller) {
+    return Tween<double>(begin: 0.0, end: 0.07).animate(
+      CurvedAnimation(
+        parent: controller,
+        curve: const Interval(
+          0.0,
+          0.3,
+          curve: Curves.easeInOut,
+        ),
+      ),
+    );
+  }
+
+  static Animation<double> getNewCardRotationAngle(
+      AnimationController controller) {
+    return Tween<double>(begin: 0.07, end: 0.0).animate(
+      CurvedAnimation(
+        parent: controller,
+        curve: const Interval(
+          0.7,
+          1.0,
+          curve: Curves.easeInOut,
+        ),
+      ),
+    );
+  }
+
+  static Animation<Offset> generateOldCardTranslationOffset(
+    BuildContext context,
+    AnimationController controller,
+  ) {
+    return Tween<Offset>(
+      begin: const Offset(0.0, 0.0),
+      end: Offset(-1.5 * MediaQuery.of(context).size.width, 0.0),
+    ).animate(
+      CurvedAnimation(
+        parent: controller,
+        curve: const Interval(
+          0.0,
+          0.5,
+          curve: Curves.easeInBack,
+        ),
+      ),
+    );
+  }
+
+  static Animation<Offset> generateNewCardTranslationOffset(
+    BuildContext context,
+    AnimationController controller,
+  ) {
+    return Tween<Offset>(
+      begin: Offset(1.5 * MediaQuery.of(context).size.width, 0.0),
+      end: const Offset(0.0, 0.0),
+    ).animate(
+      CurvedAnimation(
+        parent: controller,
+        curve: const Interval(
+          0.5,
+          1.0,
+          curve: Curves.easeOutBack,
+        ),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(

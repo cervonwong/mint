@@ -42,63 +42,12 @@ class _PreparationInstructionsScreenState
   void initState() {
     super.initState();
 
-    animationController = AnimationController(
-      duration: const Duration(milliseconds: 1200),
-      vsync: this,
-    );
-    oldCardRotationAngle = Tween<double>(begin: 0.0, end: 0.07).animate(
-      CurvedAnimation(
-        parent: animationController,
-        curve: const Interval(
-          0.0,
-          0.3,
-          curve: Curves.easeInOut,
-        ),
-      ),
-    );
-    newCardRotationAngle = Tween<double>(begin: 0.07, end: 0.0).animate(
-      CurvedAnimation(
-        parent: animationController,
-        curve: const Interval(
-          0.7,
-          1.0,
-          curve: Curves.easeInOut,
-        ),
-      ),
-    );
+    animationController = StepCard.generateAnimationController(this);
+    oldCardRotationAngle =
+        StepCard.getOldCardRotationAngle(animationController);
+    newCardRotationAngle =
+        StepCard.getNewCardRotationAngle(animationController);
     animationController.forward();
-  }
-
-  Animation<Offset> _generateOldCardTranslationOffset(BuildContext context) {
-    return Tween<Offset>(
-      begin: const Offset(0.0, 0.0),
-      end: Offset(-1.5 * MediaQuery.of(context).size.width, 0.0),
-    ).animate(
-      CurvedAnimation(
-        parent: animationController,
-        curve: const Interval(
-          0.0,
-          0.5,
-          curve: Curves.easeInBack,
-        ),
-      ),
-    );
-  }
-
-  Animation<Offset> _generateNewCardTranslationOffset(BuildContext context) {
-    return Tween<Offset>(
-      begin: Offset(1.5 * MediaQuery.of(context).size.width, 0.0),
-      end: const Offset(0.0, 0.0),
-    ).animate(
-      CurvedAnimation(
-        parent: animationController,
-        curve: const Interval(
-          0.5,
-          1.0,
-          curve: Curves.easeOutBack,
-        ),
-      ),
-    );
   }
 
   @override
@@ -138,8 +87,10 @@ class _PreparationInstructionsScreenState
                         alignment: Alignment.center,
                         children: [
                           Transform.translate(
-                            offset: _generateNewCardTranslationOffset(context)
-                                .value,
+                            offset: StepCard.generateNewCardTranslationOffset(
+                              context,
+                              animationController,
+                            ).value,
                             child: Transform.rotate(
                               angle: newCardRotationAngle.value,
                               child: StepCard(
@@ -154,9 +105,11 @@ class _PreparationInstructionsScreenState
                             child: currentStepIndex == 0
                                 ? null
                                 : Transform.translate(
-                                    offset: _generateOldCardTranslationOffset(
-                                            context)
-                                        .value,
+                                    offset: StepCard
+                                        .generateOldCardTranslationOffset(
+                                      context,
+                                      animationController,
+                                    ).value,
                                     child: Transform.rotate(
                                       angle: oldCardRotationAngle.value,
                                       child: StepCard(
