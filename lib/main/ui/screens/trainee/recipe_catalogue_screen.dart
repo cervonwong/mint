@@ -216,7 +216,7 @@ class RecipeCard extends StatelessWidget {
         closedShape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(12.0),
         ),
-        transitionDuration: const Duration(milliseconds: 600),
+        transitionDuration: const Duration(milliseconds: 800),
         closedBuilder: (context, closedBuilder) {
           return Container(
             decoration: BoxDecoration(
