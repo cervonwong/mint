@@ -22,7 +22,7 @@ import 'package:mint/main/ui/screens/trainee/recipe_completion_screen.dart';
 import 'package:mint/main/ui/screens/trainee/recipe_instructions_screen.dart';
 import 'main/controller/current_recipe_controller.dart';
 import 'main/di/injection_container.dart' as injection_container;
-import 'main/services/TtsService.dart';
+import 'main/services/tts_service.dart';
 import 'main/ui/screens/trainee/recipe_catalogue_screen.dart';
 
 void main() async {
@@ -35,10 +35,12 @@ void main() async {
   injection_container.configureDependencies();
   await GetIt.instance.allReady();
 
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
+  const MyApp({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return MultiProvider(
@@ -65,12 +67,13 @@ class MyApp extends StatelessWidget {
           DemoIntroScreen.routeName: (context) => const DemoIntroScreen(),
           NameSelectionScreen.routeName: (context) => NameSelectionScreen(),
           PreparationInstructionsScreen.routeName: (context) =>
-              PreparationInstructionsScreen(),
-          RecipeCatalogueScreen.routeName: (context) => RecipeCatalogueScreen(),
+              const PreparationInstructionsScreen(),
+          RecipeCatalogueScreen.routeName: (context) =>
+              const RecipeCatalogueScreen(),
           RecipeInstructionsScreen.routeName: (context) =>
-              RecipeInstructionsScreen(),
+              const RecipeInstructionsScreen(),
           RecipeCompletionScreen.routeName: (context) =>
-              RecipeCompletionScreen(),
+              const RecipeCompletionScreen(),
         },
         onUnknownRoute: (routeSettings) {
           return MaterialPageRoute(

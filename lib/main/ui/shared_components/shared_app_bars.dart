@@ -23,6 +23,7 @@ class TitleRevealAppBar extends StatefulWidget implements PreferredSizeWidget {
   final Color revealBackgroundColor;
 
   const TitleRevealAppBar({
+    Key? key,
     required this.scrollController,
     required this.hasDrawer,
     required this.title,
@@ -30,7 +31,7 @@ class TitleRevealAppBar extends StatefulWidget implements PreferredSizeWidget {
     this.actionsPersistent = true,
     this.revealOffset = 50.0,
     this.revealBackgroundColor = ColorConstants.ivory100,
-  });
+  }) : super(key: key);
 
   @override
   State<TitleRevealAppBar> createState() => _TitleRevealAppBarState();
@@ -129,12 +130,13 @@ class RecipeInstructionsScreenAppBar extends StatefulWidget
   final int totalStepCount;
 
   const RecipeInstructionsScreenAppBar({
+    Key? key,
     required this.scrollController,
     required this.onHomeButtonPressed,
     required this.recipeName,
     required this.currentStepNumber,
     required this.totalStepCount,
-  });
+  }) : super(key: key);
 
   @override
   State<RecipeInstructionsScreenAppBar> createState() =>
@@ -230,10 +232,11 @@ class PreparationInstructionsScreenAppBar extends StatefulWidget
   final int totalStepCount;
 
   const PreparationInstructionsScreenAppBar({
+    Key? key,
     required this.scrollController,
     required this.currentStepNumber,
     required this.totalStepCount,
-  });
+  }) : super(key: key);
 
   @override
   State<PreparationInstructionsScreenAppBar> createState() =>

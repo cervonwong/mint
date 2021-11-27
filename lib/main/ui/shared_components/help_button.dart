@@ -7,7 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:fluentui_system_icons/fluentui_system_icons.dart';
 import 'package:provider/provider.dart';
 
-import '../../services/TtsService.dart';
+import '../../services/tts_service.dart';
 import '../constants/color_constants.dart';
 
 class HelpButton extends StatelessWidget {
@@ -15,9 +15,10 @@ class HelpButton extends StatelessWidget {
   final String text;
 
   const HelpButton({
+    Key? key,
     required this.id,
     required this.text,
-  });
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

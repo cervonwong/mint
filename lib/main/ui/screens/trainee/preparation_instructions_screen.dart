@@ -21,7 +21,7 @@ import 'recipe_catalogue_screen.dart';
 class PreparationInstructionsScreen extends StatefulWidget {
   static const routeName = 'trainee/preparation';
 
-  PreparationInstructionsScreen();
+  const PreparationInstructionsScreen({Key? key}) : super(key: key);
 
   @override
   State<PreparationInstructionsScreen> createState() =>

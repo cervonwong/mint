@@ -31,5 +31,5 @@ class Recipe {
     required this.name,
     this.imageUrl,
     List<RecipeStep>? steps,
-  }) : _steps = steps == null ? null : steps.toList();
+  }) : _steps = steps?.toList();
 }

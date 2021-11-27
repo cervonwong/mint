@@ -15,7 +15,7 @@ class NameSelectionScreen extends StatelessWidget {
   static const routeName = 'trainee';
   late final List<String> names;
 
-  NameSelectionScreen() {
+  NameSelectionScreen({Key? key}) : super(key: key) {
     names = [
       'Andrea Lim',
       'Barry Tan',
@@ -42,7 +42,7 @@ class NameSelectionScreen extends StatelessWidget {
 class _SmallestNameSelectionScreen extends StatefulWidget {
   final List<String> names;
 
-  _SmallestNameSelectionScreen({required this.names});
+  const _SmallestNameSelectionScreen({required this.names});
 
   @override
   State<_SmallestNameSelectionScreen> createState() =>
@@ -61,7 +61,7 @@ class _SmallestNameSelectionScreenState
         scrollController: _scrollController,
         hasDrawer: false,
         title: 'Please press your name',
-        actions: [
+        actions: const [
           _PressNameInstructionListenButton(),
         ],
         actionsPersistent: false,
@@ -98,7 +98,7 @@ class _SmallestNameSelectionScreenState
             padding: EdgeInsets.symmetric(
               horizontal: LayoutCalculator.margin(context: context),
             ),
-            child: _PressNameInstructionListenButton(),
+            child: const _PressNameInstructionListenButton(),
           ),
           const SizedBox(height: 48.0),
           for (final name in widget.names)
@@ -117,7 +117,7 @@ class _SmallestNameSelectionScreenState
 class _SmallAndLargerNameSelectionScreen extends StatelessWidget {
   final List<String> names;
 
-  _SmallAndLargerNameSelectionScreen({required this.names});
+  const _SmallAndLargerNameSelectionScreen({required this.names});
 
   @override
   Widget build(BuildContext context) {
@@ -159,7 +159,7 @@ class _SmallAndLargerNameSelectionScreen extends StatelessWidget {
                         padding: EdgeInsets.only(
                           left: LayoutCalculator.margin(context: context),
                         ),
-                        child: _PressNameInstructionListenButton(),
+                        child: const _PressNameInstructionListenButton(),
                       ),
                     ],
                   ),
@@ -196,7 +196,7 @@ class _SmallAndLargerNameSelectionScreen extends StatelessWidget {
 class _NameCard extends StatelessWidget {
   final String name;
 
-  _NameCard({required this.name});
+  const _NameCard({required this.name});
 
   @override
   Widget build(BuildContext context) {
@@ -233,7 +233,7 @@ class _NameCard extends StatelessWidget {
 }
 
 class _PressNameInstructionListenButton extends StatelessWidget {
-  _PressNameInstructionListenButton();
+  const _PressNameInstructionListenButton();
 
   @override
   Widget build(BuildContext context) {

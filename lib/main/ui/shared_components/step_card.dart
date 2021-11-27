@@ -14,10 +14,11 @@ class StepCard extends StatelessWidget {
   final String? imageUrl;
 
   const StepCard({
+    Key? key,
     required this.borderColor,
     required this.instruction,
     this.imageUrl,
-  });
+  }) : super(key: key);
 
   static AnimationController generateAnimationController(
     TickerProvider provider,

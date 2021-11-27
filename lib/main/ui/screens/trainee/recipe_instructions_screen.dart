@@ -21,7 +21,7 @@ import 'recipe_completion_screen.dart';
 class RecipeInstructionsScreen extends StatefulWidget {
   static const routeName = 'trainee/recipe/instructions';
 
-  RecipeInstructionsScreen();
+  const RecipeInstructionsScreen({Key? key}) : super(key: key);
 
   @override
   State<RecipeInstructionsScreen> createState() =>
@@ -186,7 +186,7 @@ class _RecipeInstructionsScreenState extends State<RecipeInstructionsScreen>
 }
 
 class ExitConfirmationDialog extends StatelessWidget {
-  const ExitConfirmationDialog();
+  const ExitConfirmationDialog({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

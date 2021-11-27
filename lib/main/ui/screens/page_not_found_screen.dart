@@ -11,7 +11,10 @@ import 'demo/demo_intro_screen.dart';
 class PageNotFoundScreen extends StatelessWidget {
   final RouteSettings routeSettings;
 
-  PageNotFoundScreen({required this.routeSettings});
+  const PageNotFoundScreen({
+    Key? key,
+    required this.routeSettings,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 class SharedTextFormField extends StatefulWidget {
-  final controller;
+  final TextEditingController? controller;
   final String? initialValue;
 
   // final FocusNode? focusNode; // Do not accept this parameter because using
@@ -60,7 +60,7 @@ class SharedTextFormField extends StatefulWidget {
   final String? restorationId;
   final bool enableIMEPersonalizedLearning;
 
-  SharedTextFormField({
+  const SharedTextFormField({
     Key? key,
     this.controller,
     this.initialValue,

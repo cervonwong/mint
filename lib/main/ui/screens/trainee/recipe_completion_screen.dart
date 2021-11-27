@@ -15,7 +15,7 @@ import 'recipe_catalogue_screen.dart';
 class RecipeCompletionScreen extends StatelessWidget {
   static const routeName = 'trainee/complete';
 
-  RecipeCompletionScreen();
+  const RecipeCompletionScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

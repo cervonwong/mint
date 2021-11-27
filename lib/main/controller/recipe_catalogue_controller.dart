@@ -36,13 +36,13 @@ Future<List<Recipe>> _getRecipeList() async {
   var snapshot = await FirebaseFirestore.instance.collection('recipes').get();
   var recipesIterable = snapshot.docs.map((doc) => doc.data());
   var recipes = <Recipe>[];
-  recipesIterable.forEach((recipe) {
+  for (var recipe in recipesIterable) {
     recipes.add(Recipe(
       id: recipe['id'],
       name: recipe['name'],
       imageUrl: recipe['imageUrl'],
     ));
-  });
+  }
 
   return recipes;
 }

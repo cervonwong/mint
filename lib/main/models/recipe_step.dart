@@ -9,5 +9,5 @@ class RecipeStep {
   final String instruction;
   final String? imageUrl;
 
-  RecipeStep({required this.instruction, this.imageUrl});
+  const RecipeStep({required this.instruction, this.imageUrl});
 }

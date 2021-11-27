@@ -24,7 +24,7 @@ class PreparationStep {
   final String instruction;
   final String? imageUrl; // Can be null if instructor don't provide image.
 
-  PreparationStep({
+  const PreparationStep({
     required this.instruction,
     this.imageUrl,
   });

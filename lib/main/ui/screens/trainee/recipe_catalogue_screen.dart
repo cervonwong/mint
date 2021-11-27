@@ -22,7 +22,7 @@ import 'recipe_instructions_screen.dart';
 class RecipeCatalogueScreen extends StatefulWidget {
   static const routeName = 'trainee/home';
 
-  RecipeCatalogueScreen();
+  const RecipeCatalogueScreen({Key? key}) : super(key: key);
 
   @override
   State<RecipeCatalogueScreen> createState() => _RecipeCatalogueScreenState();
@@ -63,8 +63,8 @@ class _RecipeCatalogueScreenState extends State<RecipeCatalogueScreen> {
         scrollController: _scrollController,
         hasDrawer: true,
         title: 'My Recipes',
-        actions: [
-          const HelpButton(
+        actions: const [
+          HelpButton(
             id: 'Help',
             text: 'This is the home screen. Do you see the pictures on the '
                 'screen? If you want to learn how to make a dish, press the '
@@ -198,7 +198,7 @@ class _ResponsiveRecipeCardGrid extends StatelessWidget {
 class RecipeCard extends StatelessWidget {
   final Recipe recipe;
 
-  const RecipeCard({required this.recipe});
+  const RecipeCard({Key? key, required this.recipe}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -274,7 +274,7 @@ class RecipeCard extends StatelessWidget {
         openBuilder: (context, _) {
           Provider.of<CurrentRecipeController>(context, listen: false)
               .selectRecipe(id: recipe.id);
-          return RecipeInstructionsScreen();
+          return const RecipeInstructionsScreen();
         },
       ),
     );

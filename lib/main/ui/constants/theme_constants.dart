@@ -60,7 +60,7 @@ class ThemeConstants {
   static const FontWeight _mediumWeight = FontWeight.w500;
   static const FontWeight _regularWeight = FontWeight.w400;
   static const double _globalFontSizeFactor = 1.0;
-  static final _baseTextStyle = const TextStyle(
+  static const _baseTextStyle = TextStyle(
     color: ColorConstants.blackPrimary,
   );
 
@@ -400,12 +400,12 @@ class ThemeConstants {
       borderRadius: BorderRadius.circular(32.0),
     ),
   );
-  static final dividerIvoryThemeData = const DividerThemeData(
+  static const dividerIvoryThemeData = DividerThemeData(
     color: ColorConstants.ivory200,
     thickness: 1.0,
     space: 1.0,
   );
-  static final dividerGreenThemeData = const DividerThemeData(
+  static const dividerGreenThemeData = DividerThemeData(
     color: ColorConstants.greenBorder,
     thickness: 1.0,
     space: 1.0,

@@ -7,7 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:fluentui_system_icons/fluentui_system_icons.dart';
 import 'package:provider/provider.dart';
 
-import '../../services/TtsService.dart';
+import '../../services/tts_service.dart';
 import '../constants/theme_constants.dart';
 
 class ListenButton extends StatelessWidget {
@@ -17,10 +17,11 @@ class ListenButton extends StatelessWidget {
   late final String label;
 
   ListenButton({
+    Key? key,
     required this.id,
     required this.text,
     required this.labelType,
-  }) {
+  }) : super(key: key) {
     switch (labelType) {
       case LabelType.name:
         label = 'Listen to name';
@@ -64,8 +65,8 @@ class ListenButton extends StatelessWidget {
           ),
           secondChild: Row(
             mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              const Center(
+            children: const [
+              Center(
                 child: SizedBox(
                   height: 24.0,
                   width: 24.0,

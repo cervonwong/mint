@@ -15,7 +15,7 @@ import '../trainee/name_selection_screen.dart';
 class DemoIntroScreen extends StatefulWidget {
   static const routeName = 'demo';
 
-  const DemoIntroScreen();
+  const DemoIntroScreen({Key? key}) : super(key: key);
 
   @override
   State<DemoIntroScreen> createState() => _DemoIntroScreenState();
@@ -111,22 +111,20 @@ class _DemoIntroScreenState extends State<DemoIntroScreen> {
                       return Column(
                         children: [
                           const SizedBox(height: 4.0),
-                          Container(
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                TextButton(
-                                  style: ThemeConstants
-                                      .textButton7WhiteThemeData.style,
-                                  onPressed: () {
-                                    openContainer();
-                                  },
-                                  child: const Text(
-                                    'Return to demo homepage',
-                                  ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              TextButton(
+                                style: ThemeConstants
+                                    .textButton7WhiteThemeData.style,
+                                onPressed: () {
+                                  openContainer();
+                                },
+                                child: const Text(
+                                  'Return to demo homepage',
                                 ),
-                              ],
-                            ),
+                              ),
+                            ],
                           ),
                           Expanded(
                             child: YoutubePlayerIFrame(

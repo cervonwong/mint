@@ -8,7 +8,7 @@ import 'package:get_it/get_it.dart';
 import '../controller/current_recipe_controller.dart';
 import '../controller/preparation_instructions_controller.dart';
 import '../controller/recipe_catalogue_controller.dart';
-import '../services/TtsService.dart';
+import '../services/tts_service.dart';
 
 void configureDependencies() {
   final getIt = GetIt.instance;
