@@ -23,6 +23,9 @@ skinparam componentBackgroundColor #d0e9d7
 skinparam componentBorderColor #329561
 skinparam arrowColor #3C6472
 skinparam arrowThickness 2
+skinparam titleFontSize 24
+
+title Components and services used to create Mint.\n
 
 actor user as "Instructor / Trainee"
 
